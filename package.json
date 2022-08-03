@@ -14,6 +14,10 @@
     "build-storybook": "build-storybook"
   },
   "dependencies": {
+    "@emotion/babel-plugin": "^11.9.2",
+    "@emotion/react": "^11.9.3",
+    "@emotion/styled": "^11.9.3",
+    "@mui/material": "^5.9.1",
     "next": "12.2.2",
     "react": "18.2.0",
     "react-dom": "18.2.0"
@@ -33,6 +37,7 @@
     "babel-loader": "^8.2.5",
     "eslint": "8.20.0",
     "eslint-config-next": "12.2.2",
+    "eslint-config-prettier": "^8.5.0",
     "eslint-plugin-storybook": "^0.6.1",
     "husky": "^8.0.1",
     "prettier": "^2.7.1"

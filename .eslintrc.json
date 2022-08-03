@@ -1,9 +1,22 @@
 {
+  "env": {
+    "browser": true,
+    "es2021": true,
+    "node": true
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020,
+    "sourceType": "module",
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
   "extends": [
     "plugin:storybook/recommended",
     "next",
     "next/core-web-vitals",
-    "eslint:recommended"
+    "eslint:recommended",
+    "prettier"
   ],
   "globals": {
     "React": "readonly"
