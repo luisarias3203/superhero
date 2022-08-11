@@ -1,0 +1,21 @@
+$HelveticaNeueRegular: 'HelveticaNeueRegular';
+$HelveticaNeueBold: 'HelveticaNeueBold';
+$ObelixProBold: 'ObelixProBold';
+$ObelixProRegular: 'ObelixProRegular';
+
+$font-face: $HelveticaNeueRegular, $HelveticaNeueBold, $ObelixProBold,
+  $ObelixProRegular;
+
+@each $font in $font-face {
+  @font-face {
+    font: {
+      family: $font;
+      display: swap;
+      style: normal;
+      weight: normal;
+    }
+
+    src: local('#{$font}'),
+      url('../public/fonts/typography/#{$font}.woff2') format('woff2');
+  }
+} ;
