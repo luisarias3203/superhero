@@ -16,6 +16,6 @@ $font-face: $HelveticaNeueRegular, $HelveticaNeueBold, $ObelixProBold,
     }
 
     src: local('#{$font}'),
-      url('../public/fonts/typography/#{$font}.woff2') format('woff2');
+      url('/fonts/typography/#{$font}.woff2') format('woff2');
   }
 } ;
