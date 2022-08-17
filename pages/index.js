@@ -37,6 +37,7 @@ export default function Home() {
           layout="fill"
           objectFit="cover"
           quality={100}
+          alt="blue background"
           sx={{
             position: 'absolute',
             height: '100%',
