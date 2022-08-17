@@ -10269,7 +10269,7 @@
     "minimist" "^1.1.1"
     "walker" "~1.0.5"
 
-"sass@^1.3.0":
+"sass@^1.3.0", "sass@^1.54.4":
   "integrity" "sha512-3tmF16yvnBwtlPrNBHw/H907j8MlOX8aTBnlNX1yrKx24RKcJGPyLhFUwkoKBKesR3unP93/2z14Ll8NicwQUA=="
   "resolved" "https://registry.npmjs.org/sass/-/sass-1.54.4.tgz"
   "version" "1.54.4"
