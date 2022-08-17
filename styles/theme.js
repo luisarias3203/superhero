@@ -68,6 +68,42 @@ const theme = createTheme({
     },
   },
   components: {
+    MuiCssBaseline: {
+      styleOverrides: `
+        @font-face {
+          font-family: HelveticaNeueRegular;
+          font-display: swap;
+          font-style: normal;
+          font-weight: 400;
+          src: local('HelveticaNeueRegular'),
+            url(/fonts/typography/HelveticaNeueRegular.woff2) format('woff2');
+        }
+        @font-face {
+          font-family: HelveticaNeueBold;
+          font-display: swap;
+          font-style: normal;
+          font-weight: 400;
+          src: local('HelveticaNeueBold'),
+            url(/fonts/typography/HelveticaNeueBold.woff2) format('woff2');
+        }
+        @font-face {
+          font-family: ObelixProBold;
+          font-display: swap;
+          font-style: normal;
+          font-weight: 400;
+          src: local('ObelixProBold'),
+            url(/fonts/typography/ObelixProBold.woff2) format('woff2');
+        }
+        @font-face {
+          font-family: ObelixProRegular;
+          font-display: swap;
+          font-style: normal;
+          font-weight: 400;
+          src: local('ObelixProRegular'),
+            url(/fonts/typography/ObelixProRegular.woff2) format('woff2');
+        }
+      `,
+    },
     MuiButton: {
       styleOverrides: {
         root: {

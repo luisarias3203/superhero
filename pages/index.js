@@ -6,6 +6,7 @@ import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import React from 'react';
 import Link from '../components/link';
+import BlueBg from '../public/images/blue-background.png';
 import DC from '../public/images/dc-comics.png';
 import SpiderMan from '../public/images/spider-man.png';
 import theme from '../styles/theme';
@@ -33,7 +34,7 @@ export default function Home() {
         }}
       >
         <Image
-          src="/images/blue-background.png"
+          src={BlueBg}
           layout="fill"
           objectFit="cover"
           quality={100}
