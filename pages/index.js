@@ -6,6 +6,8 @@ import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import React from 'react';
 import Link from '../components/link';
+import DC from '../public/images/dc-comics.png';
+import SpiderMan from '../public/images/spider-man.png';
 import theme from '../styles/theme';
 
 export default function Home() {
@@ -66,12 +68,7 @@ export default function Home() {
                 },
               }}
             >
-              <Image
-                src="/images/dc-comics.png"
-                alt="DC Comics"
-                height={789}
-                width={502}
-              />
+              <Image src={DC} alt="DC Comics" />
             </Box>
           </Grid>
           <Grid item xs={12} lg={6}>
@@ -89,16 +86,12 @@ export default function Home() {
                 },
                 [theme.breakpoints.up('xl')]: {
                   right: '14%',
+                  width: 390,
                 },
               }}
             >
               <Box>
-                <Image
-                  src="/images/spider-man.png"
-                  alt="Spider man"
-                  height={520}
-                  width={390}
-                />
+                <Image src={SpiderMan} alt="Spider man" />
               </Box>
             </Slide>
             <Box>
