@@ -1,3 +1,9 @@
+import Container from '@mui/material/Container';
+
 export default function Header() {
-  return <header>Header</header>;
+  return (
+    <header>
+      <Container maxWidth="lg" align="center"></Container>
+    </header>
+  );
 }

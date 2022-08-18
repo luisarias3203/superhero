@@ -1,8 +1,8 @@
 import Button from '@mui/material/Button';
 import NextLink from 'next/link';
-import { forwardRef } from 'react';
+import React, { forwardRef } from 'react';
 
-const Link = forwardRef(function Link(
+const CustomLink = forwardRef(function Link(
   { href, prefetch, replace, scroll, shallow, locale, ...props },
   ref
 ) {
@@ -20,4 +20,4 @@ const Link = forwardRef(function Link(
   );
 });
 
-export default Link;
+export default CustomLink;
