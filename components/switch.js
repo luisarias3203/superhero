@@ -52,11 +52,11 @@ const StyleSwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
-function CustomSwitch({ label, labelPlacement }) {
+function CustomSwitch({ label, labelPlacement, color }) {
   return (
-    <FormGroup row>
+    <FormGroup row sx={{ mb: 1, justifyContent: 'center' }}>
       <FormControlLabel
-        control={<StyleSwitch color="secondary" />}
+        control={<StyleSwitch color={color} />}
         label={label}
         labelPlacement={labelPlacement}
       />
@@ -67,6 +67,7 @@ function CustomSwitch({ label, labelPlacement }) {
 CustomSwitch.defaultProps = {
   label: 'Add to Team',
   labelPlacement: 'start',
+  color: 'secondary',
 };
 
 export default CustomSwitch;

@@ -51,6 +51,12 @@ const theme = createTheme({
       lineHeight: 1.75,
       letterSpacing: 0,
     },
+    h3: {
+      fontFamily: 'ObelixProBold',
+      fontSize: 16,
+      lineHeight: 2.18,
+      letterSpacing: 0,
+    },
     body1: {
       fontFamily: 'HelveticaNeueRegular',
       fontSize: 14,

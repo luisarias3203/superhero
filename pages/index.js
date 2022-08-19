@@ -51,25 +51,8 @@ export default function Home() {
       </Box>
       <Container maxWidth="lg" align="center">
         <Grid container columnSpacing={0} alignItems="center">
-          <Grid
-            item
-            xs={12}
-            lg={6}
-            sx={{
-              mb: 20,
-              [theme.breakpoints.up('lg')]: {
-                mb: 0,
-              },
-            }}
-          >
-            <Box
-              sx={{
-                width: 230,
-                [theme.breakpoints.up('lg')]: {
-                  width: '100%',
-                },
-              }}
-            >
+          <Grid item xs={12} lg={6} mb={{ xs: 20, lg: 0 }}>
+            <Box width={{ xs: 230, lg: '100%' }}>
               <Image src={DC} alt="DC Comics" />
             </Box>
           </Grid>
@@ -97,7 +80,7 @@ export default function Home() {
               </Box>
             </Slide>
             <Box>
-              <Typography variant="h1" sx={{ mb: 15 }} color="white">
+              <Typography variant="h1" mb={15} color="white">
                 Create Your own Team of Superheroes
               </Typography>
               <CustomLink href="/search" variant="contained" color="secondary">
