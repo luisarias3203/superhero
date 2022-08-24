@@ -1,11 +1,11 @@
-import { Slide } from '@mui/material';
 import Box from '@mui/material/Box';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
+import Slide from '@mui/material/Slide';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import React from 'react';
-import Link from '../components/link';
+import CustomLink from '../components/link';
 import BlueBg from '../public/images/blue-background.png';
 import DC from '../public/images/dc-comics.png';
 import SpiderMan from '../public/images/spider-man.png';
@@ -51,25 +51,8 @@ export default function Home() {
       </Box>
       <Container maxWidth="lg" align="center">
         <Grid container columnSpacing={0} alignItems="center">
-          <Grid
-            item
-            xs={12}
-            lg={6}
-            sx={{
-              mb: 20,
-              [theme.breakpoints.up('lg')]: {
-                mb: 0,
-              },
-            }}
-          >
-            <Box
-              sx={{
-                width: 230,
-                [theme.breakpoints.up('lg')]: {
-                  width: '100%',
-                },
-              }}
-            >
+          <Grid item xs={12} lg={6} mb={{ xs: 20, lg: 0 }}>
+            <Box width={{ xs: 230, lg: '100%' }}>
               <Image src={DC} alt="DC Comics" />
             </Box>
           </Grid>
@@ -97,12 +80,12 @@ export default function Home() {
               </Box>
             </Slide>
             <Box>
-              <Typography variant="h1" sx={{ mb: 15 }} color="white">
+              <Typography variant="h1" mb={15} color="white">
                 Create Your own Team of Superheroes
               </Typography>
-              <Link href="/search" variant="contained" color="secondary">
+              <CustomLink href="/search" variant="contained" color="secondary">
                 Enter
-              </Link>
+              </CustomLink>
             </Box>
           </Grid>
         </Grid>

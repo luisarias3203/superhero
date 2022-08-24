@@ -24,9 +24,6 @@ const theme = createTheme({
       main: '#F9873D',
       light: '#EB6E1C',
     },
-    grey: {
-      A400: '#BFBFBF',
-    },
     text: {
       primary: common.black,
     },
@@ -52,6 +49,12 @@ const theme = createTheme({
       fontFamily: 'ObelixProBold',
       fontSize: 20,
       lineHeight: 1.75,
+      letterSpacing: 0,
+    },
+    h3: {
+      fontFamily: 'ObelixProBold',
+      fontSize: 16,
+      lineHeight: 2.18,
       letterSpacing: 0,
     },
     body1: {
