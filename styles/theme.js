@@ -5,16 +5,6 @@ import { createBreakpoints } from '@mui/system';
 const breakpoints = createBreakpoints({});
 
 const theme = createTheme({
-  breakpoints: {
-    values: {
-      xs: 0,
-      sm: 768,
-      md: 992,
-      lg: 1280,
-      xl: 1440,
-      xxl: 1600,
-    },
-  },
   palette: {
     primary: {
       main: '#0084FF',
@@ -146,6 +136,16 @@ const theme = createTheme({
             paddingLeft: 0,
             paddingRight: 0,
             maxWidth: 1200,
+          },
+        },
+      },
+    },
+    MuiToolbar: {
+      styleOverrides: {
+        dense: {
+          minHeight: 55,
+          [breakpoints.up('sm')]: {
+            minHeight: 115,
           },
         },
       },
