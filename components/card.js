@@ -115,7 +115,7 @@ export default function CustomCard() {
           alt="image"
           image="https://i.picsum.photos/id/1055/536/354.jpg?hmac=Hn5PGfnC-Vl2rw83fls2cbf4Erp2tKUF1vJFW9xkU5w"
         />
-        <Typography variant="h2" sx={{ mb: 5, width: '100%' }}>
+        <Typography variant="h2" sx={{ mb: 3, width: '100%' }}>
           Wolverine
         </Typography>
         <CustomSwitch />

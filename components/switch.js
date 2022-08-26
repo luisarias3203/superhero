@@ -54,7 +54,7 @@ const StyleSwitch = styled(Switch)(({ theme }) => ({
 
 function CustomSwitch({ label, labelPlacement, color }) {
   return (
-    <FormGroup row sx={{ mb: 1, justifyContent: 'center' }}>
+    <FormGroup row sx={{ mb: 1, justifyContent: 'center', width: '100%' }}>
       <FormControlLabel
         control={<StyleSwitch color={color} />}
         label={label}

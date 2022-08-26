@@ -69,7 +69,7 @@ export default function Home() {
                 [theme.breakpoints.down('lg')]: {
                   display: 'none',
                 },
-                [theme.breakpoints.up('xl')]: {
+                [theme.breakpoints.up('lg')]: {
                   right: '14%',
                   width: 390,
                 },
