@@ -1,4 +1,4 @@
-import { createTheme } from '@mui/material';
+import { alpha, createTheme } from '@mui/material';
 import { common } from '@mui/material/colors';
 import { createBreakpoints } from '@mui/system';
 
@@ -100,27 +100,57 @@ const theme = createTheme({
     MuiButton: {
       styleOverrides: {
         root: {
-          color: common.white,
-          borderRadius: 0,
           boxShadow: 'none',
-          fontFamily: 'ObelixProBold',
-          fontSize: 24,
-          lineHeight: 1.4167,
           letterSpacing: 0,
-          padding: '10px 32px',
           '&:hover': {
             boxShadow: 'none',
           },
         },
+        sizeMedium: {
+          padding: '4px 10px',
+          textTransform: 'none',
+        },
+        sizeLarge: {
+          borderRadius: 0,
+          fontFamily: 'ObelixProBold',
+          fontSize: 24,
+          lineHeight: 1.4167,
+          padding: '10px 32px',
+        },
         containedSecondary: {
+          color: common.white,
           '&:hover': {
             backgroundColor: '#EB6E1C',
           },
+        },
+        outlinedSecondary: {
+          borderColor: '#EB6E1C',
+        },
+        startIcon: {
+          marginLeft: 0,
+          marginRight: '4px',
         },
       },
     },
     MuiContainer: {
       styleOverrides: {
+        maxWidthXl: {
+          paddingLeft: 15,
+          paddingRight: 15,
+          [breakpoints.up('sm')]: {
+            paddingLeft: 50,
+            paddingRight: 50,
+          },
+          [breakpoints.up('lg')]: {
+            paddingLeft: 30,
+            paddingRight: 30,
+          },
+          [breakpoints.up('xl')]: {
+            paddingLeft: 0,
+            paddingRight: 0,
+            maxWidth: 1200,
+          },
+        },
         maxWidthLg: {
           paddingLeft: 15,
           paddingRight: 15,
@@ -144,8 +174,96 @@ const theme = createTheme({
       styleOverrides: {
         dense: {
           minHeight: 55,
-          [breakpoints.up('sm')]: {
+          [breakpoints.up('md')]: {
             minHeight: 115,
+          },
+        },
+      },
+    },
+    MuiDivider: {
+      styleOverrides: {
+        dashed: {
+          borderColor: '#E9E9E9',
+          borderStyle: 'dashed',
+        },
+      },
+    },
+    MuiInputLabel: {
+      styleOverrides: {
+        root: {
+          color: alpha(common.black, 0.85),
+          marginBottom: 8,
+          maxWidth: '100%',
+          position: 'relative',
+          transform: 'none',
+          '&.Mui-focused': {
+            color: alpha(common.black, 0.85),
+          },
+        },
+      },
+    },
+    MuiInput: {
+      styleOverrides: {
+        root: {
+          borderRadius: 4,
+          border: `1px solid ${alpha(common.black, 0.15)}`,
+          padding: '5px 12px',
+          transition: 'border-color 300ms cubic-bezier(0.4, 0, 0.2, 1)',
+          '&:after, &:before': {
+            display: 'none',
+          },
+          'label + &': {
+            marginTop: 0,
+          },
+          '&.MuiNativeSelect-root': {
+            color: alpha(common.black, 0.65),
+          },
+          '&.Mui-focused': {
+            borderColor: common.black,
+          },
+        },
+        input: {
+          height: 'auto',
+          lineHeight: 1.57,
+          padding: 0,
+          '&:placeholder': {
+            color: alpha(common.black, 0.25),
+          },
+        },
+      },
+    },
+    MuiSlider: {
+      styleOverrides: {
+        root: {
+          color: '#91D5FF',
+          height: 4,
+          paddingBottom: 4,
+          paddingTop: 4,
+        },
+        thumb: {
+          backgroundColor: common.white,
+          border: '2px solid #91D5FF',
+          height: 14,
+          width: 14,
+          '&:hover': {
+            borderColor: '#0084FF',
+          },
+        },
+        track: {
+          height: 4,
+        },
+        rail: {
+          color: alpha(common.black, 0.15),
+          height: 4,
+        },
+        valueLabel: {
+          backgroundColor: '#595959',
+          borderRadius: 4,
+          fontSize: 14,
+          lineHeight: 1.57,
+          padding: '1px 8px',
+          '&:before': {
+            backgroundColor: '#595959',
           },
         },
       },
