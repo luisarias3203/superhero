@@ -1,3 +1,4 @@
+import { Close } from '@mui/icons-material';
 import { Autocomplete, TextField } from '@mui/material';
 import Collapse from '@mui/material/Collapse';
 import Container from '@mui/material/Container';
@@ -10,21 +11,39 @@ import NativeSelect from '@mui/material/NativeSelect';
 import Slider from '@mui/material/Slider';
 import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
+import theme from '../styles/theme';
 
-const powerStats = [
-  'Intelligence',
+const powerStatsOptions = [
+  'intelligence',
   'strength',
-  'Speed',
-  'Durability',
-  'Power',
-  'Combat',
+  'speed',
+  'durability',
+  'power',
+  'combat',
 ];
 
-export default function Filter({ openFilter }) {
-  const [value, setValue] = useState([0, 100]);
+// Convert an Array's Values to Object Keys
+const powerStats = powerStatsOptions.reduce((previousValue, currentValue) => {
+  return { ...previousValue, [currentValue]: [0, 100] };
+}, {});
 
-  const handleChange = (event, newValue) => {
-    setValue(newValue);
+export default function Filter({ openFilter }) {
+  const [value, setValue] = useState({
+    keyword: '',
+    gender: '',
+    alignment: '',
+    powerStats,
+  });
+
+  const handleValue = ({ target }) => {
+    const { value, name } = target;
+    setValue((prev) => ({
+      ...prev,
+      [name]: value,
+      // powerStats: {
+      //   [name]: value,
+      // },
+    }));
   };
 
   return (
@@ -34,18 +53,30 @@ export default function Filter({ openFilter }) {
         <Grid container columnSpacing={15} rowSpacing={8}>
           <Grid item xs={12} sm={6} md={3} lg={2}>
             <FormControl fullWidth>
-              <InputLabel id="Keyword" shrink>
+              <InputLabel id="keyword" shrink>
                 Keyword
               </InputLabel>
-              <Input placeholder="Keyword" id="Keyword" fullWidth />
+              <Input
+                placeholder="Keyword"
+                id="keyword"
+                name="keyword"
+                fullWidth
+                value={value.keyword}
+                onChange={handleValue}
+              />
             </FormControl>
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={2}>
             <FormControl fullWidth>
-              <InputLabel htmlFor="Gender" shrink>
+              <InputLabel htmlFor="gender" shrink>
                 Gender
               </InputLabel>
-              <NativeSelect id="Gender">
+              <NativeSelect
+                id="gender"
+                name="gender"
+                value={value.gender}
+                onChange={handleValue}
+              >
                 <option value="" disabled>
                   Gender
                 </option>
@@ -56,29 +87,38 @@ export default function Filter({ openFilter }) {
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={2}>
             <FormControl fullWidth>
-              <InputLabel htmlFor="Alignment" shrink>
+              <InputLabel htmlFor="alignment" shrink>
                 Alignment
               </InputLabel>
-              <NativeSelect id="Alignment">
+              <NativeSelect
+                id="alignment"
+                name="alignment"
+                value={value.alignment}
+                onChange={handleValue}
+              >
                 <option value="" disabled>
                   Alignment
                 </option>
-                <option value="Good">Female</option>
-                <option value="Bad">Male</option>
+                <option value="Good">Good</option>
+                <option value="Bad">Bad</option>
               </NativeSelect>
             </FormControl>
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={2}>
             <FormControl fullWidth>
-              <InputLabel htmlFor="PowerStats" shrink>
+              <InputLabel htmlFor="powerStats" shrink>
                 PowerStats
               </InputLabel>
               <Autocomplete
                 multiple
-                id="PowerStats"
-                options={powerStats}
+                id="powerStats"
+                options={powerStatsOptions}
+                disableClearable
+                // value={value.powerStats.intelligence}
+                // onChange={handleValue}
+                ChipProps={{ deleteIcon: <Close /> }}
                 renderInput={(params) => (
-                  <TextField {...params} placeholder="PowerStats" />
+                  <TextField {...params} variant="standard" name="powerStats" />
                 )}
               />
             </FormControl>
@@ -87,15 +127,26 @@ export default function Filter({ openFilter }) {
             <Grid container columnSpacing={15} rowSpacing={8}>
               <Grid item xs={12} sm={3} md={3} lg={6}>
                 <FormControl fullWidth>
-                  <Typography variant="body1" component="p" sx={{ mb: 4 }}>
-                    Intelligence
+                  <Typography
+                    id="intelligence"
+                    variant="body1"
+                    component="p"
+                    sx={{ mb: 4, textTransform: 'capitalize' }}
+                  >
+                    {powerStatsOptions[0]}
                   </Typography>
                   <Slider
-                    size="small"
-                    getAriaLabel={() => 'Intelligence'}
-                    value={value}
-                    onChange={handleChange}
-                    valueLabelDisplay="on"
+                    aria-labelledby="intelligence"
+                    name="intelligence"
+                    value={value.powerStats.intelligence}
+                    onChange={handleValue}
+                    valueLabelDisplay="auto"
+                    sx={{
+                      marginLeft: 'auto',
+                      marginRight: 'auto',
+                      maxWidth: 'calc(100% - 20px)',
+                      [theme.breakpoints.up('md')]: { maxWidth: '100%' },
+                    }}
                   />
                 </FormControl>
               </Grid>

@@ -3,7 +3,7 @@ import { Close } from '@mui/icons-material';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import FilterListOutlinedIcon from '@mui/icons-material/FilterListOutlined';
 import SortRoundedIcon from '@mui/icons-material/SortRounded';
-import { Button, Toolbar, useMediaQuery } from '@mui/material';
+import { Button, Toolbar } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import { common } from '@mui/material/colors';
@@ -52,15 +52,20 @@ const CustomDrawer = styled(Drawer)(({ theme }) => ({
 
 export default function Header() {
   const [openDrawer, setOpenDrawer] = useState(false);
+  const [openFilter, setOpenFilter] = useState(false);
 
   const handleOpenDrawer = () => {
     setOpenDrawer(!openDrawer);
+    if (openFilter) setOpenFilter(false);
   };
-
-  const [openFilter, setOpenFilter] = useState(false);
 
   const handleOpenFilter = () => {
     setOpenFilter(!openFilter);
+    if (openDrawer) setOpenDrawer(false);
+  };
+
+  const handleClearFilter = () => {
+    console.log(true);
   };
 
   return (
@@ -133,7 +138,7 @@ export default function Header() {
                   display: { xs: 'none', md: 'inline-flex' },
                 }}
                 startIcon={<Close />}
-                // onClick={handleOpenFilter}
+                onClick={handleClearFilter}
               >
                 Clear Filters
               </Button>
@@ -144,9 +149,9 @@ export default function Header() {
               color="secondary"
               onClick={handleOpenFilter}
             >
-              {useMediaQuery(theme.breakpoints.up('md')) && (
-                <FilterListOutlinedIcon />
-              )}
+              <FilterListOutlinedIcon
+                sx={{ display: { xs: 'none', md: 'block' } }}
+              />
               Filters
             </Button>
           </Box>

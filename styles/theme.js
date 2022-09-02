@@ -107,8 +107,13 @@ const theme = createTheme({
           },
         },
         sizeMedium: {
-          padding: '4px 10px',
+          minWidth: '60px',
+          padding: '1px 6px',
           textTransform: 'none',
+          [breakpoints.up('md')]: {
+            minWidth: '64px',
+            padding: '4px 10px',
+          },
         },
         sizeLarge: {
           borderRadius: 0,
@@ -148,7 +153,7 @@ const theme = createTheme({
           [breakpoints.up('xl')]: {
             paddingLeft: 0,
             paddingRight: 0,
-            maxWidth: 1200,
+            maxWidth: 1350,
           },
         },
         maxWidthLg: {
@@ -265,6 +270,50 @@ const theme = createTheme({
           '&:before': {
             backgroundColor: '#595959',
           },
+        },
+      },
+    },
+    MuiAutocomplete: {
+      styleOverrides: {
+        tag: {
+          border: '1px solid #D9D9D9',
+          borderRadius: '2px',
+          margin: '1px',
+        },
+        inputRoot: {
+          '&.MuiAutocomplete-inputRoot': {
+            paddingBottom: '5px',
+            paddingLeft: '12px',
+          },
+          '&.MuiInputBase-adornedStart': {
+            paddingBottom: '4px',
+            paddingLeft: '2px',
+            paddingTop: '4px',
+          },
+          '& .MuiAutocomplete-input': {
+            padding: 0,
+          },
+        },
+        endAdornment: {
+          right: '7px',
+        },
+      },
+    },
+    MuiChip: {
+      styleOverrides: {
+        root: {
+          backgroundColor: '#F3F3F3',
+          height: 'auto',
+          '& .MuiChip-deleteIcon': {
+            color: alpha(common.black, 0.45),
+            height: '11px',
+            width: '11px',
+          },
+        },
+        label: {
+          fontSize: '12px',
+          paddingLeft: '8px',
+          paddingRight: '8px',
         },
       },
     },
