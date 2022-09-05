@@ -6,7 +6,7 @@ export const BlueTextureBg = styled.div`
   background-image: url(${(props) =>
     props.OrangeTexture ? OrangeTexture.src : BlueTexture.src});
   background-color: #f8f8f8;
-  background-position: 30vw -10vw;
+  background-position: 40vw -10vw;
   background-repeat: no-repeat;
   background-size: cover;
   position: fixed;
