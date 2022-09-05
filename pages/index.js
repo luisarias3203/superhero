@@ -83,7 +83,12 @@ export default function Home() {
               <Typography variant="h1" mb={15} color="white">
                 Create Your own Team of Superheroes
               </Typography>
-              <CustomLink href="/search" variant="contained" color="secondary">
+              <CustomLink
+                href="/search"
+                variant="contained"
+                color="secondary"
+                size="large"
+              >
                 Enter
               </CustomLink>
             </Box>

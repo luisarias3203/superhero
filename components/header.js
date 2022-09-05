@@ -1,19 +1,23 @@
 import styled from '@emotion/styled';
+import { Close } from '@mui/icons-material';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
+import FilterListOutlinedIcon from '@mui/icons-material/FilterListOutlined';
 import SortRoundedIcon from '@mui/icons-material/SortRounded';
+import { Button, Toolbar } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import { common } from '@mui/material/colors';
 import Container from '@mui/material/Container';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 import React, { useState } from 'react';
 import CustomLink from '../components/link';
 import theme from '../styles/theme';
+import Filter from './filter';
 
 const CustomHeader = styled(AppBar)(({ theme }) => ({
+  color: common.black,
   backgroundColor: common.white,
   left: 0,
   boxShadow: '0 2px 4px 0 rgba(176,176,176,0.5)',
@@ -29,39 +33,51 @@ const Logo = styled(Box)(({ theme }) => ({
   right: 0,
   top: 0,
   width: 200,
-  [theme.breakpoints.up('sm')]: {
-    margin: 0,
+  [theme.breakpoints.up('md')]: {
+    margin: '0 40px 0 0',
     position: 'static',
     width: 'auto',
   },
 }));
 
 const CustomDrawer = styled(Drawer)(({ theme }) => ({
-  position: 'relative',
+  top: '57px',
   width: '100%',
-  zIndex: 1,
   '& .MuiDrawer-paper': {
+    boxShadow: 'none',
+    top: '57px',
     width: '100%',
   },
 }));
 
 export default function Header() {
-  const [open, setOpen] = useState(false);
+  const [openDrawer, setOpenDrawer] = useState(false);
+  const [openFilter, setOpenFilter] = useState(false);
 
-  const handleDrawerOpen = () => {
-    setOpen(!open);
+  const handleOpenDrawer = () => {
+    setOpenDrawer(!openDrawer);
+    if (openFilter) setOpenFilter(false);
+  };
+
+  const handleOpenFilter = () => {
+    setOpenFilter(!openFilter);
+    if (openDrawer) setOpenDrawer(false);
+  };
+
+  const handleClearFilter = () => {
+    console.log(true);
   };
 
   return (
     <CustomHeader position="sticky">
       <Container maxWidth="xl" component="nav">
-        <Toolbar variant="dense">
+        <Toolbar variant="dense" sx={{ padding: { xs: '10px 0', md: 0 } }}>
           <IconButton
             aria-label="open drawer"
-            onClick={handleDrawerOpen}
-            sx={{ display: { sm: 'none' }, color: common.black }}
+            onClick={handleOpenDrawer}
+            sx={{ display: { md: 'none' }, color: common.black, padding: 0 }}
           >
-            {open ? (
+            {openDrawer ? (
               <CloseRoundedIcon fontSize="large" />
             ) : (
               <SortRoundedIcon fontSize="large" />
@@ -72,7 +88,7 @@ export default function Header() {
               href="/"
               sx={{
                 color: common.black,
-                [theme.breakpoints.down('sm')]: { padding: 0 },
+                padding: 0,
               }}
               variant="text"
             >
@@ -80,14 +96,14 @@ export default function Header() {
                 variant="h2"
                 component="h1"
                 sx={{
-                  [theme.breakpoints.down('sm')]: { fontSize: '16px' },
+                  [theme.breakpoints.down('md')]: { fontSize: '16px' },
                 }}
               >
                 SuperSearch
               </Typography>
             </CustomLink>
           </Logo>
-          <Box sx={{ display: { xs: 'none', sm: 'block' } }}>
+          <Box sx={{ display: { xs: 'none', md: 'block' } }}>
             <CustomLink
               href="/search"
               sx={{ padding: '5px 12px' }}
@@ -113,10 +129,36 @@ export default function Header() {
               </Typography>
             </CustomLink>
           </Box>
+          <Box sx={{ marginLeft: 'auto' }}>
+            {openFilter && (
+              <Button
+                variant="text"
+                sx={{
+                  color: common.black,
+                  display: { xs: 'none', md: 'inline-flex' },
+                }}
+                startIcon={<Close />}
+                onClick={handleClearFilter}
+              >
+                Clear Filters
+              </Button>
+            )}
+
+            <Button
+              variant={openFilter ? 'contained' : 'outlined'}
+              color="secondary"
+              onClick={handleOpenFilter}
+            >
+              <FilterListOutlinedIcon
+                sx={{ display: { xs: 'none', md: 'block' } }}
+              />
+              Filters
+            </Button>
+          </Box>
         </Toolbar>
       </Container>
-      <CustomDrawer anchor="left" open={open} hideBackdrop={true}>
-        <Toolbar variant="dense" />
+      <Filter openFilter={openFilter} />
+      <CustomDrawer anchor="left" open={openDrawer} hideBackdrop={true}>
         <CustomLink
           href="/search"
           sx={{ padding: '10px', marginTop: '20px' }}
