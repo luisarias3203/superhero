@@ -128,9 +128,7 @@ export default function Filter({ openFilter }) {
                 value={value.gender}
                 onChange={handleInputSelect}
               >
-                <option value="" disabled>
-                  Gender
-                </option>
+                <option value="">Gender</option>
                 <option value="Female">Female</option>
                 <option value="Male">Male</option>
               </NativeSelect>
@@ -147,9 +145,7 @@ export default function Filter({ openFilter }) {
                 value={value.alignment}
                 onChange={handleInputSelect}
               >
-                <option value="" disabled>
-                  Alignment
-                </option>
+                <option value="">Alignment</option>
                 <option value="Good">Good</option>
                 <option value="Bad">Bad</option>
               </NativeSelect>
