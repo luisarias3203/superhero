@@ -1,5 +1,4 @@
 import styled from '@emotion/styled';
-import { Close } from '@mui/icons-material';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import FilterListOutlinedIcon from '@mui/icons-material/FilterListOutlined';
 import SortRoundedIcon from '@mui/icons-material/SortRounded';
@@ -64,10 +63,6 @@ export default function Header() {
     if (openDrawer) setOpenDrawer(false);
   };
 
-  const handleClearFilter = () => {
-    console.log(true);
-  };
-
   return (
     <CustomHeader position="sticky">
       <Container maxWidth="xl" component="nav">
@@ -129,21 +124,7 @@ export default function Header() {
               </Typography>
             </CustomLink>
           </Box>
-          <Box sx={{ marginLeft: 'auto' }}>
-            {openFilter && (
-              <Button
-                variant="text"
-                sx={{
-                  color: common.black,
-                  display: { xs: 'none', md: 'inline-flex' },
-                }}
-                startIcon={<Close />}
-                onClick={handleClearFilter}
-              >
-                Clear Filters
-              </Button>
-            )}
-
+          <Box sx={{ marginLeft: 'auto' }} id="filter-options">
             <Button
               variant={openFilter ? 'contained' : 'outlined'}
               color="secondary"
