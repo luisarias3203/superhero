@@ -17,7 +17,7 @@ export default function Home() {
       sx={{
         minHeight: '100vh',
         pb: 7,
-        pt: 2,
+        pt: 15,
         position: 'relative',
         [theme.breakpoints.up('lg')]: { pt: 17, pb: 0 },
       }}
@@ -51,8 +51,8 @@ export default function Home() {
       </Box>
       <Container maxWidth="lg" align="center">
         <Grid container columnSpacing={0} alignItems="center">
-          <Grid item xs={12} lg={6} mb={{ xs: 20, lg: 0 }}>
-            <Box width={{ xs: 230, lg: '100%' }}>
+          <Grid item xs={12} lg={6} mb={{ xs: 10, lg: 0 }}>
+            <Box width={{ xs: 180, lg: '100%' }}>
               <Image src={DC} alt="DC Comics" />
             </Box>
           </Grid>
@@ -64,13 +64,12 @@ export default function Home() {
               timeout={1000}
               sx={{
                 position: 'absolute',
-                top: -94,
-                right: '1%',
-                [theme.breakpoints.down('lg')]: {
-                  display: 'none',
-                },
+                right: '5%',
+                width: 100,
+                top: -8,
                 [theme.breakpoints.up('lg')]: {
                   right: '14%',
+                  top: -94,
                   width: 390,
                 },
               }}
