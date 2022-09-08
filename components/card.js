@@ -2,23 +2,15 @@ import styled from '@emotion/styled';
 import ExpandCircleDownOutlined from '@mui/icons-material/ExpandCircleDownOutlined';
 import { alpha, Box } from '@mui/material';
 import Card from '@mui/material/Card';
-import CardMedia from '@mui/material/CardMedia';
 import Collapse from '@mui/material/Collapse';
 import { common } from '@mui/material/colors';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
+import Image from 'next/image';
 import React, { useState } from 'react';
+import CustomLink from '../components/link';
 import BgCard from '../public/images/bg-card.svg';
 import CustomSwitch from './switch';
-
-const CustomCardMedia = styled(CardMedia)(({ theme }) => ({
-  position: 'absolute',
-  bottom: 0,
-  left: 0,
-  right: 0,
-  top: 0,
-  zIndex: -2,
-}));
 
 const CustomCardContent = styled(Box)(({ theme, expanded }) => ({
   display: 'flex',
@@ -31,15 +23,13 @@ const CustomCardContent = styled(Box)(({ theme, expanded }) => ({
   padding: '16px 16px 40px',
   zIndex: 1,
   minHeight: 400,
-  border: `4px solid transparent`,
+  borderStyle: 'solid',
+  borderWidth: '4px',
   transition: theme.transitions.create('border', {
     duration: theme.transitions.duration.complex,
   }),
   '&:hover': {
-    border:
-      expanded === 'false'
-        ? `4px solid ${theme.palette.secondary.main}`
-        : '4px solid transparent',
+    borderColor: expanded === 'false' ? `${theme.palette.secondary.main}` : '',
   },
   '&:after': {
     background: `linear-gradient(180deg, transparent 0%, ${alpha(
@@ -105,19 +95,32 @@ export default function CustomCard() {
       sx={{
         boxShadow: 'none',
         position: 'relative',
-        background: 'transparent',
       }}
     >
+      <Image
+        src="https://dummyimage.com/1000x2000/888/aaa"
+        layout="fill"
+        objectFit="cover"
+        quality={100}
+        alt="blue background"
+        sx={{
+          position: 'absolute',
+          bottom: 0,
+          left: 0,
+          right: 0,
+          top: 0,
+          zIndex: -2,
+        }}
+      />
       <CustomCardContent expanded={expanded.toString()}>
-        <CustomCardMedia
-          component="img"
-          height="100%"
-          alt="image"
-          image="https://i.picsum.photos/id/1055/536/354.jpg?hmac=Hn5PGfnC-Vl2rw83fls2cbf4Erp2tKUF1vJFW9xkU5w"
-        />
-        <Typography variant="h2" sx={{ mb: 3, width: '100%' }}>
-          Wolverine
-        </Typography>
+        <CustomLink href="/details/1" variant="text">
+          <Typography
+            variant="h2"
+            sx={{ mb: 3, width: '100%', color: common.white }}
+          >
+            Wolverine
+          </Typography>
+        </CustomLink>
         <CustomSwitch />
         <Collapse in={expanded}>
           <Typography variant="h3" component="p" mb={2.5}>

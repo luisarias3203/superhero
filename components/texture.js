@@ -2,9 +2,9 @@ import styled from '@emotion/styled';
 import BlueTexture from '../public/images/blue-texture-dots.svg';
 import OrangeTexture from '../public/images/orange-texture-dots.svg';
 
-export const BlueTextureBg = styled.div`
+export const TextureBg = styled.div`
   background-image: url(${(props) =>
-    props.OrangeTexture ? OrangeTexture.src : BlueTexture.src});
+    props.orange ? OrangeTexture.src : BlueTexture.src});
   background-color: #f8f8f8;
   background-position: 40vw -10vw;
   background-repeat: no-repeat;

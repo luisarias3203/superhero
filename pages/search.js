@@ -3,7 +3,7 @@ import Grid from '@mui/material/Grid';
 import React from 'react';
 import CustomCard from '../components/card';
 import Layout from '../components/layout';
-import { BlueTextureBg } from '../components/texture';
+import { TextureBg } from '../components/texture';
 
 function Search() {
   return (
@@ -11,7 +11,7 @@ function Search() {
       {/* <CustomLink href="/details/[id]" as={`/details/${1}`}>
         Go to hero
       </CustomLink> */}
-      <BlueTextureBg />
+      <TextureBg />
       <Container maxWidth="lg" sx={{ pt: '50px', pb: '50px' }}>
         <Grid container columnSpacing={18} rowSpacing={13}>
           <Grid item xs={12} sm={6} lg={3}>

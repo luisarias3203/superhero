@@ -10,6 +10,7 @@ import Container from '@mui/material/Container';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
+import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import CustomLink from '../components/link';
 import theme from '../styles/theme';
@@ -52,6 +53,7 @@ const CustomDrawer = styled(Drawer)(({ theme }) => ({
 export default function Header() {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openFilter, setOpenFilter] = useState(false);
+  const router = useRouter();
 
   const handleOpenDrawer = () => {
     setOpenDrawer(!openDrawer);
@@ -124,18 +126,20 @@ export default function Header() {
               </Typography>
             </CustomLink>
           </Box>
-          <Box sx={{ marginLeft: 'auto' }} id="filter-options">
-            <Button
-              variant={openFilter ? 'contained' : 'outlined'}
-              color="secondary"
-              onClick={handleOpenFilter}
-            >
-              <FilterListOutlinedIcon
-                sx={{ display: { xs: 'none', md: 'block' } }}
-              />
-              Filters
-            </Button>
-          </Box>
+          {router.pathname == '/search' && (
+            <Box sx={{ marginLeft: 'auto' }} id="filter-options">
+              <Button
+                variant={openFilter ? 'contained' : 'outlined'}
+                color="secondary"
+                onClick={handleOpenFilter}
+              >
+                <FilterListOutlinedIcon
+                  sx={{ display: { xs: 'none', md: 'block' } }}
+                />
+                Filters
+              </Button>
+            </Box>
+          )}
         </Toolbar>
       </Container>
       <Filter openFilter={openFilter} />
