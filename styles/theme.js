@@ -59,6 +59,15 @@ const theme = createTheme({
       lineHeight: 1.333,
       letterSpacing: 0,
     },
+    caption: {
+      fontFamily: 'ObelixProBold',
+      fontSize: 30,
+      lineHeight: 1.4,
+      letterSpacing: 0,
+      [breakpoints.up('md')]: {
+        fontSize: 40,
+      },
+    },
   },
   components: {
     MuiCssBaseline: {
@@ -67,7 +76,6 @@ const theme = createTheme({
           font-family: HelveticaNeueRegular;
           font-display: swap;
           font-style: normal;
-          font-weight: 400;
           src: local('HelveticaNeueRegular'),
             url(/fonts/typography/HelveticaNeueRegular.woff2) format('woff2');
         }
@@ -75,7 +83,6 @@ const theme = createTheme({
           font-family: HelveticaNeueBold;
           font-display: swap;
           font-style: normal;
-          font-weight: 400;
           src: local('HelveticaNeueBold'),
             url(/fonts/typography/HelveticaNeueBold.woff2) format('woff2');
         }
@@ -83,7 +90,6 @@ const theme = createTheme({
           font-family: ObelixProBold;
           font-display: swap;
           font-style: normal;
-          font-weight: 400;
           src: local('ObelixProBold'),
             url(/fonts/typography/ObelixProBold.woff2) format('woff2');
         }
@@ -91,7 +97,6 @@ const theme = createTheme({
           font-family: ObelixProRegular;
           font-display: swap;
           font-style: normal;
-          font-weight: 400;
           src: local('ObelixProRegular'),
             url(/fonts/typography/ObelixProRegular.woff2) format('woff2');
         }
@@ -139,7 +144,7 @@ const theme = createTheme({
     },
     MuiContainer: {
       styleOverrides: {
-        maxWidthXl: {
+        root: {
           paddingLeft: 15,
           paddingRight: 15,
           [breakpoints.up('sm')]: {
@@ -153,23 +158,15 @@ const theme = createTheme({
           [breakpoints.up('xl')]: {
             paddingLeft: 0,
             paddingRight: 0,
+          },
+        },
+        maxWidthXl: {
+          [breakpoints.up('xl')]: {
             maxWidth: 1350,
           },
         },
         maxWidthLg: {
-          paddingLeft: 15,
-          paddingRight: 15,
-          [breakpoints.up('sm')]: {
-            paddingLeft: 50,
-            paddingRight: 50,
-          },
-          [breakpoints.up('lg')]: {
-            paddingLeft: 30,
-            paddingRight: 30,
-          },
           [breakpoints.up('xl')]: {
-            paddingLeft: 0,
-            paddingRight: 0,
             maxWidth: 1200,
           },
         },

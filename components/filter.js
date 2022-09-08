@@ -75,7 +75,7 @@ export default function Filter({ openFilter }) {
   useEffect(() => {
     const clearButton = document.querySelector('#clear-filter');
     const filterOptions = document.querySelector('#filter-options');
-    filterOptions.prepend(clearButton);
+    if (clearButton && filterOptions) filterOptions.prepend(clearButton);
   }, []);
 
   const clearFilter = () => {
