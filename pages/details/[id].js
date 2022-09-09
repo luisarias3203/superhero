@@ -41,7 +41,13 @@ export default function HeroDetail() {
     <Layout>
       <TextureBg orange />
       <Grid container>
-        <Grid item xs={12} md={5} sx={{ position: 'relative' }}>
+        <Grid
+          item
+          xs={12}
+          md={5}
+          sx={{ position: 'relative' }}
+          mb={{ xs: 10, md: 0 }}
+        >
           <Image
             src="https://dummyimage.com/1000x2000/aaa/fff"
             layout="fill"
