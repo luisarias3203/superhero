@@ -74,7 +74,7 @@ export default function HeroDetail() {
             <CustomSwitch />
           </ImageBox>
         </Grid>
-        <Grid item xs={12} md={7}>
+        <Grid item xs={12} md={7} mb={{ xs: 20, md: 0 }}>
           <Container maxWidth="false" sx={{ padding: { md: '75px 50px' } }}>
             <Grid container>
               <Grid item xs={12} lg={6} mb={12}>
