@@ -4,8 +4,15 @@ import React from 'react';
 import CustomCard from '../components/card';
 import Layout from '../components/layout';
 import { TextureBg } from '../components/texture';
+import handler from './api/hello';
 
 function Search() {
+  const requestParams = `/getAll?page=0&limit=8`;
+  const method = 'POST';
+
+  const data = handler(requestParams, method);
+  console.log(data);
+
   return (
     <Layout>
       {/* <CustomLink href="/details/[id]" as={`/details/${1}`}>
