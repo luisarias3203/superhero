@@ -28,35 +28,37 @@ const powerStatsOptions = [
   'combat',
 ];
 
+// Convert an Array's Values to Object Keys (intelligence:{max: 100, min: 0})
+const powerStatsValues = powerStatsOptions.reduce(
+  (previousValue, currentValue) => {
+    return {
+      ...previousValue,
+      [currentValue]: {
+        min: 0,
+        max: 100,
+      },
+    };
+  },
+  {}
+);
+
 const initialState = {
   keyword: '',
   gender: '',
   alignment: '',
   powerStats: [],
-  powerStatsValues: {},
+  ...powerStatsValues,
 };
 
-export default function Filter({ openFilter }) {
+export default function Filter(props) {
   const [value, setValue] = useState(initialState);
 
-  const handleInputSelect = ({ target }) => {
+  const handleInputSelect = ({ target }, newValue) => {
     const { value, name } = target;
     setValue((prev) => ({
       ...prev,
-      [name]: value,
-    }));
-  };
-
-  const handleAutocomplete = (event, newValue) => {
-    // Convert an Array's Values to Object Keys (intelligence: [0, 100])
-    const powerStatsValues = newValue.reduce((previousValue, currentValue) => {
-      return { ...previousValue, [currentValue]: [0, 100] };
-    }, {});
-
-    setValue((prev) => ({
-      ...prev,
-      powerStats: newValue,
-      powerStatsValues,
+      ...(name && { [name]: value }),
+      ...(newValue && { powerStats: newValue }),
     }));
   };
 
@@ -65,9 +67,9 @@ export default function Filter({ openFilter }) {
 
     setValue((prev) => ({
       ...prev,
-      powerStatsValues: {
-        ...prev.powerStatsValues,
-        [name]: value,
+      [name]: {
+        min: value[0],
+        max: value[1],
       },
     }));
   };
@@ -84,8 +86,10 @@ export default function Filter({ openFilter }) {
 
   const changedState = JSON.stringify(value) !== JSON.stringify(initialState);
 
+  props.searchSuperhero(value);
+
   return (
-    <Collapse in={openFilter}>
+    <Collapse in={props.openFilter}>
       <Fade in={changedState} id="clear-filter">
         <Button
           variant="text"
@@ -154,7 +158,7 @@ export default function Filter({ openFilter }) {
           <Grid item xs={12} sm={6} md={3} lg={2}>
             <FormControl fullWidth>
               <InputLabel htmlFor="powerStats" shrink>
-                PowerStats
+                Powerstats
               </InputLabel>
               <Autocomplete
                 sx={{ textTransform: 'capitalize' }}
@@ -163,7 +167,7 @@ export default function Filter({ openFilter }) {
                 options={powerStatsOptions}
                 disableClearable
                 value={value.powerStats}
-                onChange={handleAutocomplete}
+                onChange={handleInputSelect}
                 ChipProps={{ deleteIcon: <Close /> }}
                 renderInput={(params) => (
                   <TextField {...params} variant="standard" name="powerStats" />
@@ -188,7 +192,7 @@ export default function Filter({ openFilter }) {
                       <Slider
                         aria-labelledby={stat}
                         name={stat}
-                        value={value.powerStatsValues[index]}
+                        value={value.index}
                         defaultValue={[0, 100]}
                         min={0}
                         max={100}
