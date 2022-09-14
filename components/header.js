@@ -50,7 +50,7 @@ const CustomDrawer = styled(Drawer)(({ theme }) => ({
   },
 }));
 
-export default function Header() {
+export default function Header(props) {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openFilter, setOpenFilter] = useState(false);
   const router = useRouter();
@@ -142,7 +142,7 @@ export default function Header() {
           )}
         </Toolbar>
       </Container>
-      <Filter openFilter={openFilter} />
+      {router.pathname == '/search' && <Filter openFilter={openFilter} />}
       <CustomDrawer anchor="left" open={openDrawer} hideBackdrop={true}>
         <CustomLink
           href="/search"

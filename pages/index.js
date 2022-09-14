@@ -39,14 +39,6 @@ export default function Home() {
           objectFit="cover"
           quality={100}
           alt="blue background"
-          sx={{
-            position: 'absolute',
-            height: '100%',
-            width: '100%',
-            top: 0,
-            left: 0,
-            zIndex: -1,
-          }}
         />
       </Box>
       <Container maxWidth="lg" align="center">

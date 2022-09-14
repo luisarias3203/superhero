@@ -7,7 +7,7 @@ const nextConfig = {
     defaultLocale: 'en',
   },
   images: {
-    domains: ['dummyimage.com'],
+    domains: ['dummyimage.com', 'adk-fe-onboarding-static.s3.amazonaws.com'],
   },
 };
 
