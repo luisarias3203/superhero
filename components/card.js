@@ -83,7 +83,7 @@ const CustomCardButton = styled(IconButton)(({ theme, expanded }) => ({
   }),
 }));
 
-export default function CustomCard() {
+export default function CustomCard(props) {
   const [expanded, setExpanded] = useState(false);
 
   const handleExpandClick = () => {
@@ -93,53 +93,46 @@ export default function CustomCard() {
   return (
     <Card
       sx={{
+        background: 'transparent',
         boxShadow: 'none',
         position: 'relative',
       }}
     >
       <Image
-        src="https://dummyimage.com/1000x2000/888/aaa"
+        src={props.superhero.images.md}
         layout="fill"
         objectFit="cover"
         quality={100}
-        alt="blue background"
-        sx={{
-          position: 'absolute',
-          bottom: 0,
-          left: 0,
-          right: 0,
-          top: 0,
-          zIndex: -2,
-        }}
+        alt={props.superhero.name}
       />
       <CustomCardContent expanded={expanded.toString()}>
-        <CustomLink href="/details/1" variant="text">
+        <CustomLink href={`/details/${props.superhero.id}`} variant="text">
           <Typography
             variant="h2"
             sx={{ mb: 3, width: '100%', color: common.white }}
           >
-            Wolverine
+            {props.superhero.name}
           </Typography>
         </CustomLink>
         <CustomSwitch />
         <Collapse in={expanded}>
           <Typography variant="h3" component="p" mb={2.5}>
-            Intelligence : 94
+            Intelligence : {props.superhero.powerstats.intelligence}
           </Typography>
           <Typography variant="h3" component="p" mb={2.5}>
-            strength : 80
+            strength : {props.superhero.powerstats.strength}
           </Typography>
           <Typography variant="h3" component="p" mb={2.5}>
-            Speed : 21
+            Speed : {props.superhero.powerstats.speed}
           </Typography>
           <Typography variant="h3" component="p" mb={2.5}>
-            Durability : 20
+            Durability : {props.superhero.powerstats.durability}
           </Typography>
           <Typography variant="h3" component="p" mb={2.5}>
-            Power : 92
+            Power : {props.superhero.powerstats.power}
           </Typography>
           <Typography variant="h3" component="p" mb={2.5}>
-            combat : 70
+            combat : {props.superhero.powerstats.combat}
           </Typography>
         </Collapse>
         <CustomCardButton

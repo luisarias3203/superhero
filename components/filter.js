@@ -2,13 +2,13 @@ import { Close } from '@mui/icons-material';
 import {
   Autocomplete,
   Button,
+  Collapse,
   Fade,
   FormControl,
   Slider,
   TextField,
   Typography,
 } from '@mui/material';
-import Collapse from '@mui/material/Collapse';
 import { common } from '@mui/material/colors';
 import Container from '@mui/material/Container';
 import Divider from '@mui/material/Divider';
@@ -85,8 +85,6 @@ export default function Filter(props) {
   };
 
   const changedState = JSON.stringify(value) !== JSON.stringify(initialState);
-
-  props.searchSuperhero(value);
 
   return (
     <Collapse in={props.openFilter}>

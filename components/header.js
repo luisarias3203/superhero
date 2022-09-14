@@ -142,7 +142,7 @@ export default function Header(props) {
           )}
         </Toolbar>
       </Container>
-      <Filter openFilter={openFilter} searchSuperhero={props.searchSuperhero} />
+      {router.pathname == '/search' && <Filter openFilter={openFilter} />}
       <CustomDrawer anchor="left" open={openDrawer} hideBackdrop={true}>
         <CustomLink
           href="/search"
