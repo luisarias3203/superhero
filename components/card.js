@@ -106,7 +106,7 @@ export default function CustomCard(props) {
         alt={props.superhero.name}
       />
       <CustomCardContent expanded={expanded.toString()}>
-        <CustomLink href={`/details/${props.superhero.id}`} variant="text">
+        <CustomLink href={`details/${props.superhero.slug}`} variant="text">
           <Typography
             variant="h2"
             sx={{ mb: 3, width: '100%', color: common.white }}

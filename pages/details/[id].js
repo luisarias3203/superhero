@@ -40,16 +40,15 @@ const ImageBox = styled(Box)(({ theme, expanded }) => ({
 
 export default function HeroDetail() {
   const [superheroDetail, setSuperheroDetail] = useState();
-
   const router = useRouter();
-  const { id } = router.query;
-  const requestParams = `/get/${id}`;
 
   useEffect(() => {
+    if (!router.isReady) return;
+    const requestParams = `/getBySlug/${router.query.id}`;
     Superhero.search(requestParams).then((superheroes) => {
-      setSuperheroDetail(superheroes);
+      setSuperheroDetail(superheroes[0]);
     });
-  }, []);
+  }, [router.isReady]);
 
   return (
     <Layout>
@@ -206,7 +205,8 @@ export default function HeroDetail() {
                           Height:
                         </Typography>
                         <Typography variant="body1" component="span" ml={2}>
-                          {`${superheroDetail.appearance.height[0].value} /
+                          {superheroDetail.appearance.height &&
+                            `${superheroDetail.appearance.height[0].value} /
                             ${superheroDetail.appearance.height[1].value}`}
                         </Typography>
                       </Box>
@@ -221,7 +221,8 @@ export default function HeroDetail() {
                           Weight:
                         </Typography>
                         <Typography variant="body1" component="span" ml={2}>
-                          {`${superheroDetail.appearance.weight[1].value} /
+                          {superheroDetail.appearance.weight &&
+                            `${superheroDetail.appearance.weight[1].value} /
                             ${superheroDetail.appearance.weight[0].value}`}
                         </Typography>
                       </Box>
@@ -290,9 +291,10 @@ export default function HeroDetail() {
                     Aliases:
                   </Typography>
                   <Typography variant="body1" component="span" ml={2}>
-                    {superheroDetail.biography.aliases
-                      .map((item) => item.value)
-                      .join(', ')}
+                    {superheroDetail.biography.aliases &&
+                      superheroDetail.biography.aliases
+                        .map((item) => item.value)
+                        .join(', ')}
                   </Typography>
                 </Box>
                 <Box mb={2} display="flex">
