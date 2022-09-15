@@ -17,6 +17,7 @@ import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import NativeSelect from '@mui/material/NativeSelect';
 import React, { useEffect, useState } from 'react';
+import Superhero from '../pages/api/superheroADK';
 import theme from '../styles/theme';
 
 const powerStatsOptions = [
@@ -74,11 +75,13 @@ export default function Filter(props) {
     }));
   };
 
+  const requestParams = '/getAll?page=0&limit=8';
   useEffect(() => {
+    Superhero.search(requestParams, value);
     const clearButton = document.querySelector('#clear-filter');
     const filterOptions = document.querySelector('#filter-options');
     if (clearButton && filterOptions) filterOptions.prepend(clearButton);
-  }, []);
+  }, [value]);
 
   const clearFilter = () => {
     setValue(initialState);
