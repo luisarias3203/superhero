@@ -45,9 +45,11 @@ export default function HeroDetail() {
   useEffect(() => {
     if (!router.isReady) return;
     const requestParams = `/getBySlug/${router.query.id}`;
-    Superhero.search(requestParams).then((superheroes) => {
+    const results = async () => {
+      const superheroes = await Superhero.search(requestParams);
       setSuperheroDetail(superheroes);
-    });
+    };
+    results();
   }, [router.isReady]);
 
   return (
@@ -68,6 +70,7 @@ export default function HeroDetail() {
               objectFit="cover"
               quality={100}
               alt={superheroDetail.name}
+              priority
             />
             <ImageBox>
               <Typography

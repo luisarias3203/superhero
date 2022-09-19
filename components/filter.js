@@ -59,9 +59,14 @@ export default function Filter(props) {
     }));
   };
 
-  const requestParams = '/getAll?page=0&limit=8';
   useEffect(() => {
-    Superhero.search(requestParams, value);
+    let page = 0;
+    const results = async () => {
+      await Superhero.search(`/getAll?`, page, value);
+    };
+
+    results();
+
     const clearButton = document.querySelector('#clear-filter');
     const filterOptions = document.querySelector('#filter-options');
     if (clearButton && filterOptions) filterOptions.prepend(clearButton);
