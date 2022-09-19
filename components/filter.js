@@ -29,49 +29,33 @@ const powerStatsOptions = [
   'combat',
 ];
 
-// Convert an Array's Values to Object Keys (intelligence:{max: 100, min: 0})
-const powerStatsValues = powerStatsOptions.reduce(
-  (previousValue, currentValue) => {
-    return {
-      ...previousValue,
-      [currentValue]: {
-        min: 0,
-        max: 100,
-      },
-    };
-  },
-  {}
-);
-
 const initialState = {
   keyword: '',
   gender: '',
   alignment: '',
-  powerStats: [],
-  ...powerStatsValues,
 };
 
 export default function Filter(props) {
   const [value, setValue] = useState(initialState);
+  const [powerStats, setPowerStats] = useState([]);
 
-  const handleInputSelect = ({ target }, newValue) => {
+  const handleState = ({ target }, autocompleteValue) => {
     const { value, name } = target;
+
+    let autocompleteName;
+    if (target.querySelector('input') != null) {
+      autocompleteName = target.querySelector('input').name;
+    }
+
     setValue((prev) => ({
       ...prev,
       ...(name && { [name]: value }),
-      ...(newValue && { powerStats: newValue }),
-    }));
-  };
-
-  const handleSlider = ({ target }) => {
-    const { value, name } = target;
-
-    setValue((prev) => ({
-      ...prev,
-      [name]: {
-        min: value[0],
-        max: value[1],
-      },
+      ...(autocompleteName && {
+        [autocompleteName]: {
+          min: autocompleteValue[0],
+          max: autocompleteValue[1],
+        },
+      }),
     }));
   };
 
@@ -83,11 +67,9 @@ export default function Filter(props) {
     if (clearButton && filterOptions) filterOptions.prepend(clearButton);
   }, [value]);
 
-  const clearFilter = () => {
-    setValue(initialState);
-  };
-
-  const changedState = JSON.stringify(value) !== JSON.stringify(initialState);
+  const changedState =
+    JSON.stringify(value) !== JSON.stringify(initialState) ||
+    JSON.stringify(powerStats) !== JSON.stringify([]);
 
   return (
     <Collapse in={props.openFilter}>
@@ -99,7 +81,10 @@ export default function Filter(props) {
             display: { xs: 'none', md: 'inline-flex' },
           }}
           startIcon={<Close />}
-          onClick={clearFilter}
+          onClick={() => {
+            setValue(initialState);
+            setPowerStats([]);
+          }}
         >
           Clear Filters
         </Button>
@@ -118,7 +103,7 @@ export default function Filter(props) {
                 name="keyword"
                 fullWidth
                 value={value.keyword}
-                onChange={handleInputSelect}
+                onChange={handleState}
               />
             </FormControl>
           </Grid>
@@ -131,11 +116,12 @@ export default function Filter(props) {
                 id="gender"
                 name="gender"
                 value={value.gender}
-                onChange={handleInputSelect}
+                onChange={handleState}
               >
                 <option value="">Gender</option>
                 <option value="Female">Female</option>
                 <option value="Male">Male</option>
+                <option value="-">Undefined</option>
               </NativeSelect>
             </FormControl>
           </Grid>
@@ -148,11 +134,12 @@ export default function Filter(props) {
                 id="alignment"
                 name="alignment"
                 value={value.alignment}
-                onChange={handleInputSelect}
+                onChange={handleState}
               >
                 <option value="">Alignment</option>
                 <option value="Good">Good</option>
                 <option value="Bad">Bad</option>
+                <option value="Neutral">Neutral</option>
               </NativeSelect>
             </FormControl>
           </Grid>
@@ -162,14 +149,36 @@ export default function Filter(props) {
                 Powerstats
               </InputLabel>
               <Autocomplete
-                sx={{ textTransform: 'capitalize' }}
+                sx={{
+                  textTransform: 'capitalize',
+                  path: {
+                    pointerEvents: 'none',
+                  },
+                }}
                 multiple
                 id="powerStats"
                 options={powerStatsOptions}
                 disableClearable
-                value={value.powerStats}
-                onChange={handleInputSelect}
-                ChipProps={{ deleteIcon: <Close /> }}
+                value={powerStats}
+                onChange={(event, autocompleteValue) => {
+                  setPowerStats(autocompleteValue);
+                }}
+                ChipProps={{
+                  deleteIcon: <Close />,
+                  onDelete: (event) => {
+                    const power = event.target.previousSibling.innerHTML;
+
+                    let copyObject = { ...value };
+                    delete copyObject[power];
+                    setValue(copyObject);
+
+                    let copyArray = [...powerStats];
+                    copyArray = copyArray.filter(
+                      (current) => current !== power
+                    );
+                    setPowerStats(copyArray);
+                  },
+                }}
                 renderInput={(params) => (
                   <TextField {...params} variant="standard" name="powerStats" />
                 )}
@@ -178,7 +187,7 @@ export default function Filter(props) {
           </Grid>
           <Grid item xs={12} lg={4}>
             <Grid container columnSpacing={15} rowSpacing={8}>
-              {value.powerStats.map((stat, index) => (
+              {powerStats.map((stat, index) => (
                 <Fade in={true} key={index}>
                   <Grid item xs={12} sm={3} md={3} lg={6}>
                     <FormControl fullWidth>
@@ -197,7 +206,7 @@ export default function Filter(props) {
                         defaultValue={[0, 100]}
                         min={0}
                         max={100}
-                        onChange={handleSlider}
+                        onChangeCommitted={handleState}
                         valueLabelDisplay="auto"
                         sx={{
                           marginLeft: 'auto',

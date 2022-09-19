@@ -6,6 +6,7 @@ const endPoint = '/superhero';
 const Superhero = {
   search: async (requestParams, ...options) => {
     const urlToFetch = `${baseUrl}${endPoint}${requestParams}`;
+    console.log(options[0]);
     try {
       let response;
       if (requestParams == '/getAll?page=0&limit=8') {

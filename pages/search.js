@@ -9,12 +9,17 @@ import Superhero from './api/superheroADK';
 function Search() {
   const [superheroInfo, setSuperheroInfo] = useState([]);
   const requestParams = '/getAll?page=0&limit=8';
+  const [isLoading, setLoading] = useState(false);
 
   useEffect(() => {
+    setLoading(true);
     Superhero.search(requestParams).then((superheroes) => {
       setSuperheroInfo(superheroes.data);
     });
   }, []);
+
+  // if (isLoading) return <p>Loading...</p>;
+  // if (!superheroList) return <p>No data</p>;
 
   return (
     <Layout>

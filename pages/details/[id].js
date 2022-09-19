@@ -46,7 +46,7 @@ export default function HeroDetail() {
     if (!router.isReady) return;
     const requestParams = `/getBySlug/${router.query.id}`;
     Superhero.search(requestParams).then((superheroes) => {
-      setSuperheroDetail(superheroes[0]);
+      setSuperheroDetail(superheroes);
     });
   }, [router.isReady]);
 
