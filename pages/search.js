@@ -8,12 +8,14 @@ import Superhero from './api/superheroADK';
 
 function Search() {
   const [superheroInfo, setSuperheroInfo] = useState([]);
-  const requestParams = '/getAll?page=0&limit=8';
+  let page = 0;
 
   useEffect(() => {
-    Superhero.search(requestParams).then((superheroes) => {
+    const results = async () => {
+      const superheroes = await Superhero.search(`/getAll?`, page);
       setSuperheroInfo(superheroes.data);
-    });
+    };
+    results();
   }, []);
 
   return (

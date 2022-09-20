@@ -12,28 +12,28 @@ function MyApp({ Component, pageProps }) {
         <meta name="description" content="Superhero App" />
         <link rel="icon" href="/favicon.ico" />
         <link
-          rel="preload"
+          rel="prefetch"
           href="/fonts/typography/HelveticaNeueRegular.woff2"
           as="font"
-          crossOrigin=""
+          crossOrigin
         />
         <link
-          rel="preload"
+          rel="prefetch"
           href="/fonts/typography/HelveticaNeueBold.woff2"
           as="font"
-          crossOrigin=""
+          crossOrigin
         />
         <link
-          rel="preload"
+          rel="prefetch"
           href="/fonts/typography/ObelixProBold.woff2"
           as="font"
-          crossOrigin=""
+          crossOrigin
         />
         <link
-          rel="preload"
+          rel="prefetch"
           href="/fonts/typography/ObelixProRegular.woff2"
           as="font"
-          crossOrigin=""
+          crossOrigin
         />
       </Head>
       <ThemeProvider theme={theme}>

@@ -12,6 +12,16 @@ import CustomLink from '../components/link';
 import BgCard from '../public/images/bg-card.svg';
 import CustomSwitch from './switch';
 
+const CustomCardName = styled(Typography)(({ theme, expanded }) => ({
+  whiteSpace: 'nowrap',
+  overflow: 'hidden',
+  textOverflow: 'ellipsis',
+  marginBottom: '3px',
+  padding: 0,
+  width: '100%',
+  color: common.white,
+}));
+
 const CustomCardContent = styled(Box)(({ theme, expanded }) => ({
   display: 'flex',
   flexWrap: 'wrap',
@@ -20,7 +30,7 @@ const CustomCardContent = styled(Box)(({ theme, expanded }) => ({
   color: common.white,
   position: 'relative',
   textAlign: 'center',
-  padding: '16px 16px 40px',
+  padding: '16px 10px 40px',
   zIndex: 1,
   minHeight: 400,
   borderStyle: 'solid',
@@ -107,12 +117,7 @@ export default function CustomCard(props) {
       />
       <CustomCardContent expanded={expanded.toString()}>
         <CustomLink href={`details/${props.superhero.slug}`} variant="text">
-          <Typography
-            variant="h2"
-            sx={{ mb: 3, width: '100%', color: common.white }}
-          >
-            {props.superhero.name}
-          </Typography>
+          <CustomCardName variant="h2">{props.superhero.name}</CustomCardName>
         </CustomLink>
         <CustomSwitch />
         <Collapse in={expanded}>

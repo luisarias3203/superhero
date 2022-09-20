@@ -4,11 +4,14 @@ const baseUrl = 'https://superhero-api.adkalpha.com';
 const endPoint = '/superhero';
 
 const Superhero = {
-  search: async (requestParams, ...options) => {
-    const urlToFetch = `${baseUrl}${endPoint}${requestParams}`;
+  search: async (requestParams, pageValue, ...options) => {
+    let urlToFetch = `${baseUrl}${endPoint}${requestParams}`;
     try {
       let response;
-      if (requestParams == '/getAll?page=0&limit=8') {
+      if (requestParams == '/getAll?') {
+        let page = `page=${pageValue}&`;
+        const limit = `limit=8`;
+        urlToFetch = `${urlToFetch}${page}${limit}`;
         response = await fetch(urlToFetch, {
           headers: {
             apiKey: `${process.env.API_KEY}`,
@@ -18,7 +21,8 @@ const Superhero = {
           method: 'POST',
           body: JSON.stringify(options[0]),
         });
-      } else {
+      }
+      if (requestParams.includes('/getBySlug')) {
         response = await fetch(urlToFetch, {
           headers: {
             apiKey: `${process.env.API_KEY}`,
@@ -28,12 +32,14 @@ const Superhero = {
         });
       }
 
-      // console.log(response);
-      if (response.ok) {
-        const jsonResponse = await response.json();
+      if (typeof response !== 'undefined') {
+        // console.log(response);
+        if (response.ok) {
+          const jsonResponse = await response.json();
 
-        console.log(jsonResponse);
-        return jsonResponse;
+          console.log(jsonResponse);
+          return jsonResponse;
+        }
       }
     } catch (error) {
       console.log(error);
