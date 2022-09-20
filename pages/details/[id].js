@@ -45,11 +45,10 @@ export default function HeroDetail() {
   useEffect(() => {
     if (!router.isReady) return;
     const requestParams = `/getBySlug/${router.query.id}`;
-    const results = async () => {
+    (async () => {
       const superheroes = await Superhero.search(requestParams);
       setSuperheroDetail(superheroes);
-    };
-    results();
+    })();
   }, [router.isReady]);
 
   return (

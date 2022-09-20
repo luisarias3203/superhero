@@ -3,7 +3,7 @@ import { common } from '@mui/material/colors';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import Switch from '@mui/material/Switch';
-import React from 'react';
+import React, { useState } from 'react';
 
 const StyleSwitch = styled(Switch)(({ theme }) => ({
   padding: 8,
@@ -52,11 +52,33 @@ const StyleSwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
-function CustomSwitch({ label, labelPlacement, color }) {
+let myTeam = [];
+
+function CustomSwitch({ label, labelPlacement, color, superhero }) {
+  const [checked, setChecked] = useState(false);
+
+  const handleChange = (event) => {
+    setChecked(event.target.checked);
+    if (event.target.checked) {
+      myTeam.push(superhero);
+    } else {
+      let copy = [...myTeam];
+      copy = copy.filter((current) => current != superhero);
+      myTeam = copy;
+    }
+    console.log(myTeam);
+  };
+
   return (
     <FormGroup row sx={{ mb: 1, justifyContent: 'center', width: '100%' }}>
       <FormControlLabel
-        control={<StyleSwitch color={color} />}
+        control={
+          <StyleSwitch
+            color={color}
+            checked={checked}
+            onChange={handleChange}
+          />
+        }
         label={label}
         labelPlacement={labelPlacement}
       />

@@ -11,11 +11,10 @@ function Search() {
   let page = 0;
 
   useEffect(() => {
-    const results = async () => {
+    (async () => {
       const superheroes = await Superhero.search(`/getAll?`, page);
       setSuperheroInfo(superheroes.data);
-    };
-    results();
+    })();
   }, []);
 
   return (

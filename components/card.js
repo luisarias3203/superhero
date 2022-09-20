@@ -34,6 +34,7 @@ const CustomCardContent = styled(Box)(({ theme, expanded }) => ({
   zIndex: 1,
   minHeight: 400,
   borderStyle: 'solid',
+  borderColor: '#f8f8f8',
   borderWidth: '4px',
   transition: theme.transitions.create('border', {
     duration: theme.transitions.duration.complex,
@@ -106,6 +107,11 @@ export default function CustomCard(props) {
         background: 'transparent',
         boxShadow: 'none',
         position: 'relative',
+        '& > span': {
+          maxHeight: 'calc(100% - 8px)',
+          maxWidth: 'calc(100% - 8px)',
+          margin: 'auto !important',
+        },
       }}
     >
       <Image
@@ -114,12 +120,13 @@ export default function CustomCard(props) {
         objectFit="cover"
         quality={100}
         alt={props.superhero.name}
+        priority
       />
       <CustomCardContent expanded={expanded.toString()}>
         <CustomLink href={`details/${props.superhero.slug}`} variant="text">
           <CustomCardName variant="h2">{props.superhero.name}</CustomCardName>
         </CustomLink>
-        <CustomSwitch />
+        <CustomSwitch superhero={props.superhero} />
         <Collapse in={expanded}>
           <Typography variant="h3" component="p" mb={2.5}>
             Intelligence : {props.superhero.powerstats.intelligence}
