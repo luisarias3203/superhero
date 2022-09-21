@@ -118,12 +118,15 @@ export default function CustomCard(props) {
         src={props.superhero.images.md}
         layout="fill"
         objectFit="cover"
-        quality={100}
         alt={props.superhero.name}
         priority
       />
       <CustomCardContent expanded={expanded.toString()}>
-        <CustomLink href={`details/${props.superhero.slug}`} variant="text">
+        <CustomLink
+          href={`details/${props.superhero.slug}`}
+          variant="text"
+          sx={{ width: '100%' }}
+        >
           <CustomCardName variant="h3">{props.superhero.name}</CustomCardName>
         </CustomLink>
         <CustomSwitch superhero={props.superhero} switchState={props.switch} />
