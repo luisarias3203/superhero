@@ -86,7 +86,7 @@ export default function HeroDetail() {
             <Container maxWidth="false" sx={{ padding: { md: '75px 50px' } }}>
               <Grid container>
                 <Grid item xs={12} lg={6} mb={12}>
-                  <Typography variant="h2" component="h2" mb={7}>
+                  <Typography variant="h3" component="h2" mb={7}>
                     Powerstats
                   </Typography>
                   <Grid container>
@@ -169,7 +169,7 @@ export default function HeroDetail() {
                   </Grid>
                 </Grid>
                 <Grid item xs={12} lg={6} mb={12}>
-                  <Typography variant="h2" component="h2" mb={7}>
+                  <Typography variant="h3" component="h2" mb={7}>
                     Appearance
                   </Typography>
                   <Grid container>
@@ -257,7 +257,7 @@ export default function HeroDetail() {
                 </Grid>
               </Grid>
               <Box mb={5}>
-                <Typography variant="h2" component="h2" mb={7}>
+                <Typography variant="h3" component="h2" mb={7}>
                   Biography
                 </Typography>
                 <Box mb={2} display="flex">
@@ -330,7 +330,7 @@ export default function HeroDetail() {
                 </Box>
               </Box>
               <Box mb={8}>
-                <Typography variant="h2" component="h2" mb={7}>
+                <Typography variant="h3" component="h2" mb={7}>
                   Work
                 </Typography>
                 <Box mb={2} display="flex">

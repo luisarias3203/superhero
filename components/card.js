@@ -124,26 +124,26 @@ export default function CustomCard(props) {
       />
       <CustomCardContent expanded={expanded.toString()}>
         <CustomLink href={`details/${props.superhero.slug}`} variant="text">
-          <CustomCardName variant="h2">{props.superhero.name}</CustomCardName>
+          <CustomCardName variant="h3">{props.superhero.name}</CustomCardName>
         </CustomLink>
-        <CustomSwitch superhero={props.superhero} />
+        <CustomSwitch superhero={props.superhero} switchState={props.switch} />
         <Collapse in={expanded}>
-          <Typography variant="h3" component="p" mb={2.5}>
+          <Typography variant="h4" component="p" mb={2.5}>
             Intelligence : {props.superhero.powerstats.intelligence}
           </Typography>
-          <Typography variant="h3" component="p" mb={2.5}>
+          <Typography variant="h4" component="p" mb={2.5}>
             strength : {props.superhero.powerstats.strength}
           </Typography>
-          <Typography variant="h3" component="p" mb={2.5}>
+          <Typography variant="h4" component="p" mb={2.5}>
             Speed : {props.superhero.powerstats.speed}
           </Typography>
-          <Typography variant="h3" component="p" mb={2.5}>
+          <Typography variant="h4" component="p" mb={2.5}>
             Durability : {props.superhero.powerstats.durability}
           </Typography>
-          <Typography variant="h3" component="p" mb={2.5}>
+          <Typography variant="h4" component="p" mb={2.5}>
             Power : {props.superhero.powerstats.power}
           </Typography>
-          <Typography variant="h3" component="p" mb={2.5}>
+          <Typography variant="h4" component="p" mb={2.5}>
             combat : {props.superhero.powerstats.combat}
           </Typography>
         </Collapse>

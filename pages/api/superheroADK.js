@@ -37,7 +37,7 @@ const Superhero = {
         if (response.ok) {
           const jsonResponse = await response.json();
 
-          // console.log(jsonResponse);
+          console.log(jsonResponse);
           return jsonResponse;
         }
       }

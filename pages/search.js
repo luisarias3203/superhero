@@ -25,7 +25,7 @@ function Search() {
           {superheroInfo.map((superhero, index) => {
             return (
               <Grid item xs={12} sm={6} lg={3} key={index}>
-                <CustomCard superhero={superhero} />
+                <CustomCard superhero={superhero} switch={false} />
               </Grid>
             );
           })}

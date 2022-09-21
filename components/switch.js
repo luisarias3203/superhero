@@ -3,7 +3,9 @@ import { common } from '@mui/material/colors';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import Switch from '@mui/material/Switch';
+import { Box } from '@mui/system';
 import React, { useState } from 'react';
+import CustomModal from './modal';
 
 const StyleSwitch = styled(Switch)(({ theme }) => ({
   padding: 8,
@@ -54,35 +56,61 @@ const StyleSwitch = styled(Switch)(({ theme }) => ({
 
 let myTeam = [];
 
-function CustomSwitch({ label, labelPlacement, color, superhero }) {
-  const [checked, setChecked] = useState(false);
+function CustomSwitch({
+  label,
+  labelPlacement,
+  color,
+  superhero,
+  switchState,
+}) {
+  const [checked, setChecked] = useState(switchState);
+  const [openModal, setOpenModal] = useState(false);
+
+  const handleModal = (open) => {
+    setOpenModal(open);
+  };
 
   const handleChange = (event) => {
-    setChecked(event.target.checked);
     if (event.target.checked) {
+      if (
+        myTeam.length >= 1 &&
+        myTeam[0].biography.alignment != superhero.biography.alignment
+      ) {
+        handleModal(true);
+        return;
+      }
+      if (myTeam.length >= 8) {
+        handleModal(true);
+        return;
+      }
       myTeam.push(superhero);
     } else {
       let copy = [...myTeam];
       copy = copy.filter((current) => current != superhero);
       myTeam = copy;
     }
-    console.log(myTeam);
+    setChecked(!checked);
   };
 
   return (
-    <FormGroup row sx={{ mb: 1, justifyContent: 'center', width: '100%' }}>
-      <FormControlLabel
-        control={
-          <StyleSwitch
-            color={color}
-            checked={checked}
-            onChange={handleChange}
-          />
-        }
-        label={label}
-        labelPlacement={labelPlacement}
-      />
-    </FormGroup>
+    <Box>
+      <FormGroup row sx={{ mb: 1, justifyContent: 'center', width: '100%' }}>
+        <FormControlLabel
+          control={
+            <StyleSwitch
+              color={color}
+              checked={checked}
+              onChange={handleChange}
+            />
+          }
+          label={label}
+          labelPlacement={labelPlacement}
+        />
+      </FormGroup>
+      {openModal && (
+        <CustomModal openModal={openModal} handleModal={handleModal} />
+      )}
+    </Box>
   );
 }
 

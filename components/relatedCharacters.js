@@ -6,7 +6,7 @@ import theme from '../styles/theme';
 function RelatedCharacters() {
   return (
     <Box>
-      <Typography variant="h2" component="h2" mb={7}>
+      <Typography variant="h3" component="h2" mb={7}>
         Related Characters
       </Typography>
       <Box>
