@@ -11,11 +11,10 @@ function Search() {
   let page = 0;
 
   useEffect(() => {
-    const results = async () => {
+    (async () => {
       const superheroes = await Superhero.search(`/getAll?`, page);
       setSuperheroInfo(superheroes.data);
-    };
-    results();
+    })();
   }, []);
 
   return (
@@ -26,7 +25,7 @@ function Search() {
           {superheroInfo.map((superhero, index) => {
             return (
               <Grid item xs={12} sm={6} lg={3} key={index}>
-                <CustomCard superhero={superhero} />
+                <CustomCard superhero={superhero} switch={false} />
               </Grid>
             );
           })}

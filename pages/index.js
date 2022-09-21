@@ -39,6 +39,7 @@ export default function Home() {
           objectFit="cover"
           quality={100}
           alt="blue background"
+          priority
         />
       </Box>
       <Container maxWidth="lg" align="center">

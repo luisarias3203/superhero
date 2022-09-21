@@ -3,7 +3,9 @@ import { common } from '@mui/material/colors';
 import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import Switch from '@mui/material/Switch';
-import React from 'react';
+import { Box } from '@mui/system';
+import React, { useState } from 'react';
+import CustomModal from './modal';
 
 const StyleSwitch = styled(Switch)(({ theme }) => ({
   padding: 8,
@@ -52,15 +54,72 @@ const StyleSwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
-function CustomSwitch({ label, labelPlacement, color }) {
+let myTeam = [];
+
+function CustomSwitch({
+  label,
+  labelPlacement,
+  color,
+  superhero,
+  switchState,
+}) {
+  const [checked, setChecked] = useState(switchState);
+  const [openModal, setOpenModal] = useState(false);
+  const [modalText, setModalText] = useState({});
+
+  const handleModal = (open) => {
+    setOpenModal(open);
+  };
+
+  const handleChange = (event) => {
+    if (event.target.checked) {
+      if (
+        myTeam.length >= 1 &&
+        myTeam[0].biography.alignment != superhero.biography.alignment
+      ) {
+        handleModal(true);
+        setModalText({
+          title: `Sorry! It looks like you started making a team of ${myTeam[0].biography.alignment.toLowerCase()} Superheros`,
+          paragraph: `You can’t add a ${superhero.biography.alignment.toLowerCase()} Superhero to a ${myTeam[0].biography.alignment.toLowerCase()} team!`,
+        });
+        return;
+      }
+      if (myTeam.length >= 8) {
+        handleModal(true);
+        setModalText({
+          title: 'Oops! You have too many team members',
+          paragraph: 'You may only select 8 team members at a time.',
+        });
+        return;
+      }
+      myTeam.push(superhero);
+    } else {
+      let copy = [...myTeam];
+      copy = copy.filter((current) => current != superhero);
+      myTeam = copy;
+    }
+    setChecked(!checked);
+  };
+
   return (
-    <FormGroup row sx={{ mb: 1, justifyContent: 'center', width: '100%' }}>
-      <FormControlLabel
-        control={<StyleSwitch color={color} />}
-        label={label}
-        labelPlacement={labelPlacement}
-      />
-    </FormGroup>
+    <Box>
+      <FormGroup row sx={{ mb: 1, justifyContent: 'center', width: '100%' }}>
+        <FormControlLabel
+          control={
+            <StyleSwitch
+              color={color}
+              checked={checked}
+              onChange={handleChange}
+            />
+          }
+          label={label}
+          labelPlacement={labelPlacement}
+        />
+      </FormGroup>
+      {openModal && (
+        <CustomModal modalText={modalText} handleModal={handleModal} />
+      )}
+    </Box>
   );
 }
 
