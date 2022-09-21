@@ -47,10 +47,10 @@ const CustomModal = (props) => {
           variant="h2"
           sx={{ textTransform: 'uppercase', marginBottom: '22px' }}
         >
-          Oops! You have too many team members
+          {props.modalText.title}
         </Typography>
         <Typography id="modal-modal-description" variant="body2">
-          You may only select 8 team members at a time.
+          {props.modalText.paragraph}
         </Typography>
       </Box>
     </Modal>

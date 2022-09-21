@@ -65,6 +65,7 @@ function CustomSwitch({
 }) {
   const [checked, setChecked] = useState(switchState);
   const [openModal, setOpenModal] = useState(false);
+  const [modalText, setModalText] = useState({});
 
   const handleModal = (open) => {
     setOpenModal(open);
@@ -77,10 +78,18 @@ function CustomSwitch({
         myTeam[0].biography.alignment != superhero.biography.alignment
       ) {
         handleModal(true);
+        setModalText({
+          title: `Sorry! It looks like you started making a team of ${myTeam[0].biography.alignment.toLowerCase()} Superheros`,
+          paragraph: `You can’t add a ${superhero.biography.alignment.toLowerCase()} Superhero to a ${myTeam[0].biography.alignment.toLowerCase()} team!`,
+        });
         return;
       }
       if (myTeam.length >= 8) {
         handleModal(true);
+        setModalText({
+          title: 'Oops! You have too many team members',
+          paragraph: 'You may only select 8 team members at a time.',
+        });
         return;
       }
       myTeam.push(superhero);
@@ -108,7 +117,7 @@ function CustomSwitch({
         />
       </FormGroup>
       {openModal && (
-        <CustomModal openModal={openModal} handleModal={handleModal} />
+        <CustomModal modalText={modalText} handleModal={handleModal} />
       )}
     </Box>
   );
