@@ -9,9 +9,8 @@ const Superhero = {
     try {
       let response;
       if (requestParams == '/getAll?') {
-        let page = `page=${pageValue}&`;
-        const limit = `limit=8`;
-        urlToFetch = `${urlToFetch}${page}${limit}`;
+        let page = `page=${pageValue}`;
+        urlToFetch = `${urlToFetch}${page}`;
         response = await fetch(urlToFetch, {
           headers: {
             apiKey: `${process.env.API_KEY}`,
