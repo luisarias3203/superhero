@@ -102,8 +102,15 @@ function CustomSwitch({
   };
 
   return (
-    <Box>
-      <FormGroup row sx={{ mb: 1, justifyContent: 'center', width: '100%' }}>
+    <Box sx={{ width: '100%' }}>
+      <FormGroup
+        row
+        sx={{
+          mb: 1,
+          justifyContent: 'center',
+          width: '100%',
+        }}
+      >
         <FormControlLabel
           control={
             <StyleSwitch
@@ -114,6 +121,9 @@ function CustomSwitch({
           }
           label={label}
           labelPlacement={labelPlacement}
+          sx={{
+            margin: 0,
+          }}
         />
       </FormGroup>
       {openModal && (

@@ -2,6 +2,7 @@ import { alpha, Box, Grid, styled, Typography } from '@mui/material';
 import { common } from '@mui/material/colors';
 import { Container } from '@mui/system';
 import Image from 'next/image';
+import { useRouter } from 'next/router';
 import React from 'react';
 import Layout from '../../components/layout';
 // import RelatedCharacters from '../../components/relatedCharacters';
@@ -39,6 +40,16 @@ const ImageBox = styled(Box)(({ theme, expanded }) => ({
 }));
 
 export default function HeroDetail({ superhero }) {
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return (
+      <Typography variant="h4" component="h2" mt={30} textAlign="center">
+        Loading
+      </Typography>
+    );
+  }
+
   return (
     <Layout>
       <TextureBg orange />
@@ -50,7 +61,7 @@ export default function HeroDetail({ superhero }) {
               xs={12}
               md={5}
               sx={{
-                marginBottom: '10px',
+                marginBottom: '30px',
                 position: 'relative',
                 [theme.breakpoints.up('md')]: {
                   minHeight: 'calc(100vh - 115px)',
@@ -334,7 +345,7 @@ export default function HeroDetail({ superhero }) {
                 </Box>
               )}
               {superhero.work && (
-                <Box mb={8}>
+                <Box>
                   <Typography variant="h3" component="h2" mb={7}>
                     Work
                   </Typography>
@@ -386,7 +397,7 @@ export async function getStaticPaths() {
 
   return {
     paths,
-    fallback: false,
+    fallback: true,
   };
 }
 

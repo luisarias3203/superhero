@@ -30,7 +30,7 @@ const CustomCardContent = styled(Box)(({ theme, expanded }) => ({
   color: common.white,
   position: 'relative',
   textAlign: 'center',
-  padding: '16px 10px 40px',
+  padding: '16px 10px 45px',
   zIndex: 1,
   minHeight: 400,
   borderStyle: 'solid',
@@ -78,7 +78,7 @@ const CustomCardContent = styled(Box)(({ theme, expanded }) => ({
 }));
 
 const CustomCardButton = styled(IconButton)(({ theme, expanded }) => ({
-  bottom: 10,
+  bottom: 15,
   color: common.white,
   left: 0,
   marginLeft: 'auto',
