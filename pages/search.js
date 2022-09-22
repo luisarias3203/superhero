@@ -27,7 +27,7 @@ function Search() {
 
   const getSuperheroes = async () => {
     setLoading(true);
-    let response = await Superhero.search(`/getAll?`, pageNum);
+    const response = await Superhero.search(`/getAll?`, `${pageNum}&limit=8`);
     let all = new Set([...superheroes, ...response.data]);
     setSuperheroes([...all]);
     setTotalPages(response.totalPages);
