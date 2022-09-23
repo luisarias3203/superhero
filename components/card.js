@@ -22,7 +22,7 @@ const CustomCardName = styled(Typography)(({ theme, expanded }) => ({
   color: common.white,
 }));
 
-const CustomCardContent = styled(Box)(({ theme, expanded }) => ({
+const CustomCardContent = styled(Box)(({ theme, expanded, selected }) => ({
   display: 'flex',
   flexWrap: 'wrap',
   justifyContent: 'center',
@@ -34,14 +34,11 @@ const CustomCardContent = styled(Box)(({ theme, expanded }) => ({
   zIndex: 1,
   minHeight: 400,
   borderStyle: 'solid',
-  borderColor: '#f8f8f8',
   borderWidth: '4px',
+  borderColor: selected ? `${theme.palette.secondary.main}` : '#f8f8f8',
   transition: theme.transitions.create('border', {
     duration: theme.transitions.duration.complex,
   }),
-  '&:hover': {
-    borderColor: expanded === 'false' ? `${theme.palette.secondary.main}` : '',
-  },
   '&:after': {
     background: `linear-gradient(180deg, transparent 0%, ${alpha(
       common.black,
@@ -96,9 +93,14 @@ const CustomCardButton = styled(IconButton)(({ theme, expanded }) => ({
 
 export default function CustomCard(props) {
   const [expanded, setExpanded] = useState(false);
+  const [selected, setSelected] = useState(false);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
+  };
+
+  const handleSwitch = (check) => {
+    setSelected(check);
   };
 
   return (
@@ -121,7 +123,10 @@ export default function CustomCard(props) {
         alt={props.superhero.name}
         priority
       />
-      <CustomCardContent expanded={expanded.toString()}>
+      <CustomCardContent
+        expanded={expanded.toString()}
+        selected={selected ? true : false}
+      >
         <CustomLink
           href={`details/${props.superhero.slug}`}
           variant="text"
@@ -129,7 +134,7 @@ export default function CustomCard(props) {
         >
           <CustomCardName variant="h3">{props.superhero.name}</CustomCardName>
         </CustomLink>
-        <CustomSwitch superhero={props.superhero} switchState={props.switch} />
+        <CustomSwitch superhero={props.superhero} handleSwitch={handleSwitch} />
         <Collapse in={expanded}>
           <Typography variant="h4" component="p" mb={2.5}>
             Intelligence : {props.superhero.powerstats.intelligence}

@@ -61,9 +61,9 @@ function CustomSwitch({
   labelPlacement,
   color,
   superhero,
-  switchState,
+  handleSwitch,
 }) {
-  const [checked, setChecked] = useState(switchState);
+  const [checked, setChecked] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [modalText, setModalText] = useState({});
 
@@ -99,6 +99,7 @@ function CustomSwitch({
       myTeam = copy;
     }
     setChecked(!checked);
+    handleSwitch(!checked);
   };
 
   return (

@@ -85,7 +85,7 @@ export default function HeroDetail({ superhero }) {
                 >
                   {superhero.name}
                 </Typography>
-                <CustomSwitch />
+                <CustomSwitch superhero={superhero} />
               </ImageBox>
             </Grid>
           )}
