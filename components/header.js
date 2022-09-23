@@ -2,14 +2,13 @@ import styled from '@emotion/styled';
 import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
 import FilterListOutlinedIcon from '@mui/icons-material/FilterListOutlined';
 import SortRoundedIcon from '@mui/icons-material/SortRounded';
-import { Button, Toolbar } from '@mui/material';
+import { Button, Toolbar, Typography } from '@mui/material';
 import AppBar from '@mui/material/AppBar';
 import Box from '@mui/material/Box';
 import { common } from '@mui/material/colors';
 import Container from '@mui/material/Container';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
-import Typography from '@mui/material/Typography';
 import { useRouter } from 'next/router';
 import React, { useState } from 'react';
 import CustomLink from '../components/link';
@@ -21,6 +20,7 @@ const CustomHeader = styled(AppBar)(({ theme }) => ({
   backgroundColor: common.white,
   left: 0,
   boxShadow: '0 2px 4px 0 rgba(176,176,176,0.5)',
+  zIndex: theme.zIndex.modal,
 }));
 
 const Logo = styled(Box)(({ theme }) => ({
@@ -41,12 +41,51 @@ const Logo = styled(Box)(({ theme }) => ({
 }));
 
 const CustomDrawer = styled(Drawer)(({ theme }) => ({
-  top: '57px',
+  top: '55px',
   width: '100%',
   '& .MuiDrawer-paper': {
+    alignItems: 'center',
     boxShadow: 'none',
-    top: '57px',
+    top: '55px',
     width: '100%',
+  },
+}));
+
+const links = [
+  {
+    text: 'Superheroes',
+    href: '/search',
+  },
+  {
+    text: 'My Team',
+    href: '/my-team',
+  },
+];
+
+const Link = styled(CustomLink)(({ theme }) => ({
+  color: common.black,
+  textTransform: 'none',
+  borderRadius: 0,
+  marginTop: '40px',
+  padding: 0,
+  '&:after': {
+    backgroundColor: theme.palette.primary.main,
+    content: '""',
+    height: '3px',
+    marginLeft: 'auto',
+    marginRight: 'auto',
+    position: 'absolute',
+    left: 0,
+    right: 0,
+    bottom: '-8px',
+    width: '100%',
+  },
+  [theme.breakpoints.up('md')]: {
+    marginRight: '30px',
+    marginTop: 0,
+    '&:after': {
+      width: 'calc(100% - 20px)',
+    },
   },
 }));
 
@@ -101,30 +140,22 @@ export default function Header(props) {
             </CustomLink>
           </Logo>
           <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-            <CustomLink
-              href="/search"
-              sx={{ padding: '5px 12px' }}
-              variant="text"
-            >
-              <Typography
-                variant="body2"
-                sx={{ color: common.black, textTransform: 'none' }}
-              >
-                Superheroes
-              </Typography>
-            </CustomLink>
-            <CustomLink
-              href="/my-team"
-              sx={{ padding: '5px 12px' }}
-              variant="text"
-            >
-              <Typography
-                variant="body2"
-                sx={{ color: common.black, textTransform: 'none' }}
-              >
-                My Team
-              </Typography>
-            </CustomLink>
+            {links.map((item) => {
+              return (
+                <Link
+                  href={item.href}
+                  key={item.text}
+                  variant="text"
+                  sx={{
+                    '&:after': {
+                      display: router.pathname == item.href ? 'block' : 'none',
+                    },
+                  }}
+                >
+                  <Typography variant="body2">{item.text}</Typography>
+                </Link>
+              );
+            })}
           </Box>
           {router.pathname == '/search' && (
             <Box sx={{ marginLeft: 'auto' }} id="filter-options">
@@ -144,30 +175,22 @@ export default function Header(props) {
       </Container>
       {router.pathname == '/search' && <Filter openFilter={openFilter} />}
       <CustomDrawer anchor="left" open={openDrawer} hideBackdrop={true}>
-        <CustomLink
-          href="/search"
-          sx={{ padding: '10px', marginTop: '20px' }}
-          variant="text"
-        >
-          <Typography
-            variant="body2"
-            sx={{ color: common.black, textTransform: 'none' }}
-          >
-            Superheroes
-          </Typography>
-        </CustomLink>
-        <CustomLink
-          href="/my-team"
-          sx={{ padding: '10px', marginTop: '20px' }}
-          variant="text"
-        >
-          <Typography
-            variant="body2"
-            sx={{ color: common.black, textTransform: 'none' }}
-          >
-            My Team
-          </Typography>
-        </CustomLink>
+        {links.map((item) => {
+          return (
+            <Link
+              href={item.href}
+              key={item.text}
+              variant="text"
+              sx={{
+                '&:after': {
+                  display: router.pathname == item.href ? 'block' : 'none',
+                },
+              }}
+            >
+              <Typography variant="body2">{item.text}</Typography>
+            </Link>
+          );
+        })}
       </CustomDrawer>
     </CustomHeader>
   );
