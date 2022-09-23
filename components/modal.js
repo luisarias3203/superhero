@@ -2,6 +2,7 @@ import { Close } from '@mui/icons-material';
 import { Box, IconButton, Typography } from '@mui/material';
 import Modal from '@mui/material/Modal';
 import React, { useState } from 'react';
+import theme from '../styles/theme';
 
 const CustomModal = (props) => {
   const [open, setOpen] = useState(true);
@@ -24,11 +25,13 @@ const CustomModal = (props) => {
           top: '50%',
           left: '50%',
           transform: 'translate(-50%, -50%)',
-          width: 600,
+          maxWidth: 500,
+          width: '90%',
           bgcolor: 'background.paper',
           borderRadius: '2px',
           p: '120px 55px',
           textAlign: 'center',
+          [theme.breakpoints.up('md')]: { maxWidth: 600, width: '80%' },
         }}
       >
         <IconButton
