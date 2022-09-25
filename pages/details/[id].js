@@ -387,20 +387,25 @@ export default function HeroDetail({ superhero }) {
 }
 
 export async function getStaticPaths() {
-  const superheroes = await Superhero.search(`/getAll?`, '0&limit=0');
-
-  if (superheroes.data !== undefined) {
-    const paths = superheroes.data.map((superhero) => {
-      return {
-        params: { id: `${superhero.slug}` },
-      };
-    });
-
+  if (process.env.SKIP_BUILD_STATIC_GENERATION) {
     return {
-      paths,
-      fallback: true,
+      paths: [],
+      fallback: 'blocking',
     };
   }
+
+  const superheroes = await Superhero.search(`/getAll?`, '0&limit=0');
+
+  const paths = superheroes.data.map((superhero) => {
+    return {
+      params: { id: `${superhero.slug}` },
+    };
+  });
+
+  return {
+    paths,
+    fallback: true,
+  };
 }
 
 export async function getStaticProps({ params }) {
