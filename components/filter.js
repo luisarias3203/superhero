@@ -16,8 +16,9 @@ import Grid from '@mui/material/Grid';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import NativeSelect from '@mui/material/NativeSelect';
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import Superhero from '../pages/api/superheroADK';
+import { allSuperheroes } from '../pages/_app';
 import theme from '../styles/theme';
 
 const powerStatsOptions = [
@@ -38,6 +39,8 @@ const initialState = {
 export default function Filter(props) {
   const [value, setValue] = useState(initialState);
   const [powerStats, setPowerStats] = useState([]);
+  const { results, myTeam } = useContext(allSuperheroes);
+  const [resultsState, setResultsState] = results;
 
   const handleState = ({ target }, autocompleteValue) => {
     const { value, name } = target;
@@ -60,11 +63,17 @@ export default function Filter(props) {
   };
 
   useEffect(() => {
-    let page = 0;
     const results = async () => {
-      await Superhero.search(`/getAll?`, page, value);
-    };
+      const response = await Superhero.search(
+        `/getAll?`,
+        `${0}&limit=0`,
+        value
+      );
 
+      console.log(response);
+
+      setResultsState(response);
+    };
     results();
 
     const clearButton = document.querySelector('#clear-filter');

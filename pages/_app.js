@@ -1,10 +1,15 @@
 import { ThemeProvider } from '@emotion/react';
 import CssBaseline from '@mui/material/CssBaseline';
 import Head from 'next/head';
-import React from 'react';
+import React, { useState } from 'react';
 import theme from '../styles/theme';
 
+export const allSuperheroes = React.createContext();
+
 function MyApp({ Component, pageProps }) {
+  const [results, setResults] = useState({});
+  const [myTeam, setMyTeam] = useState([]);
+
   return (
     <>
       <Head>
@@ -38,7 +43,14 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <Component {...pageProps} />
+        <allSuperheroes.Provider
+          value={{
+            results: [results, setResults],
+            myTeam: [myTeam, setMyTeam],
+          }}
+        >
+          <Component {...pageProps} />
+        </allSuperheroes.Provider>
       </ThemeProvider>
     </>
   );
