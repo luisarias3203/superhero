@@ -13,6 +13,7 @@ const nextConfig = {
   env: {
     API_KEY: process.env.API_KEY,
   },
+  outputFileTracing: false,
 };
 
 module.exports = nextConfig;
