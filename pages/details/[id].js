@@ -388,7 +388,8 @@ export default function HeroDetail({ superhero }) {
 
 export async function getStaticPaths() {
   const superheroes = await Superhero.search(`/getAll?`, '0&limit=0');
-  const data = superheroes.data;
+
+  const data = superheroes.data ? superheroes.data : [];
 
   const paths = data.map((superhero) => {
     return {
@@ -397,7 +398,7 @@ export async function getStaticPaths() {
   });
 
   return {
-    paths,
+    paths: paths,
     fallback: true,
   };
 }
