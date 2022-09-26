@@ -388,26 +388,18 @@ export default function HeroDetail({ superhero }) {
 
 export async function getStaticPaths() {
   const superheroes = await Superhero.search(`/getAll?`, '0&limit=0');
+  const data = superheroes.data;
 
-  if (superheroes) {
-    const data = superheroes.data;
-
-    const paths = data.map((superhero) => {
-      return {
-        params: { id: `${superhero.slug}` },
-      };
-    });
-
+  const paths = data.map((superhero) => {
     return {
-      paths,
-      fallback: true,
+      params: { id: `${superhero.slug}` },
     };
-  } else {
-    return {
-      paths: [],
-      fallback: true,
-    };
-  }
+  });
+
+  return {
+    paths,
+    fallback: true,
+  };
 }
 
 export async function getStaticProps({ params }) {
