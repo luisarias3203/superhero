@@ -402,6 +402,11 @@ export async function getStaticPaths() {
       paths,
       fallback: true,
     };
+  } else {
+    return {
+      paths: [],
+      fallback: true,
+    };
   }
 }
 
