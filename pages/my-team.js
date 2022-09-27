@@ -1,16 +1,14 @@
 import { Box, Container, Grid, Typography } from '@mui/material';
-import React, { useState } from 'react';
+import React, { useContext } from 'react';
 import CustomCard from '../components/card';
 import Layout from '../components/layout';
 import CustomLink from '../components/link';
 import { TextureBg } from '../components/texture';
 import theme from '../styles/theme';
+import { superheroesInfo } from './_app';
 
 export default function Team() {
-  const [myTeam, setMyTeam] = useState([]);
-  // useEffect(() => {
-  //   setMyTeam();
-  // }, []);
+  const { myTeam, setMyTeam } = useContext(superheroesInfo);
 
   return (
     <Layout>

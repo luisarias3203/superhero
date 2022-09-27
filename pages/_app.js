@@ -4,11 +4,12 @@ import Head from 'next/head';
 import React, { useState } from 'react';
 import theme from '../styles/theme';
 
-export const allSuperheroes = React.createContext();
+export const superheroesInfo = React.createContext();
 
 function MyApp({ Component, pageProps }) {
-  const [results, setResults] = useState({});
+  const [searchParams, setSearchParams] = useState();
   const [myTeam, setMyTeam] = useState([]);
+  const [currentPage, setCurrentPage] = useState(0);
 
   return (
     <>
@@ -43,14 +44,18 @@ function MyApp({ Component, pageProps }) {
       </Head>
       <ThemeProvider theme={theme}>
         <CssBaseline />
-        <allSuperheroes.Provider
+        <superheroesInfo.Provider
           value={{
-            results: [results, setResults],
-            myTeam: [myTeam, setMyTeam],
+            searchParams,
+            setSearchParams,
+            myTeam,
+            setMyTeam,
+            currentPage,
+            setCurrentPage,
           }}
         >
           <Component {...pageProps} />
-        </allSuperheroes.Provider>
+        </superheroesInfo.Provider>
       </ThemeProvider>
     </>
   );
