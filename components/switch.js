@@ -4,7 +4,8 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import Switch from '@mui/material/Switch';
 import { Box } from '@mui/system';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { superheroesInfo } from '../pages/_app';
 import CustomModal from './modal';
 
 const StyleSwitch = styled(Switch)(({ theme }) => ({
@@ -54,8 +55,6 @@ const StyleSwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
-let myTeam = [];
-
 function CustomSwitch({
   label,
   labelPlacement,
@@ -66,13 +65,26 @@ function CustomSwitch({
   const [checked, setChecked] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [modalText, setModalText] = useState({});
+  const { myTeam, setMyTeam } = useContext(superheroesInfo);
 
   const handleModal = (open) => {
     setOpenModal(open);
   };
 
+  useEffect(() => {
+    const isSelected = myTeam.some((item) => {
+      if (item.name === superhero.name) {
+        return true;
+      }
+      return false;
+    });
+    setChecked(isSelected);
+    if (handleSwitch) handleSwitch(isSelected);
+  }, [myTeam]);
+
   const handleChange = (event) => {
     if (event.target.checked) {
+      // Add superhero to myTeam
       if (
         myTeam.length >= 1 &&
         myTeam[0].biography.alignment != superhero.biography.alignment
@@ -92,14 +104,11 @@ function CustomSwitch({
         });
         return;
       }
-      myTeam.push(superhero);
+      setMyTeam((prev) => [...prev, superhero]);
     } else {
-      let copy = [...myTeam];
-      copy = copy.filter((current) => current != superhero);
-      myTeam = copy;
+      // Remove superhero from myTeam
+      setMyTeam(myTeam.filter((current) => current.name != superhero.name));
     }
-    setChecked(!checked);
-    handleSwitch(!checked);
   };
 
   return (
