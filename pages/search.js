@@ -1,4 +1,4 @@
-import { Typography } from '@mui/material';
+import { Fade, Typography } from '@mui/material';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import React, { useEffect, useRef, useState } from 'react';
@@ -62,9 +62,25 @@ function Search() {
         <Grid container columnSpacing={18} rowSpacing={13}>
           {superheroes.map((superhero, index) => {
             return (
-              <Grid item xs={12} sm={6} lg={3} key={index} ref={setLastElement}>
-                <CustomCard superhero={superhero} />
-              </Grid>
+              <Fade
+                in
+                key={index}
+                easing="ease-out"
+                style={{
+                  transitionDuration: '200ms',
+                }}
+              >
+                <Grid
+                  item
+                  xs={12}
+                  sm={6}
+                  lg={3}
+                  key={index}
+                  ref={setLastElement}
+                >
+                  <CustomCard superhero={superhero} />
+                </Grid>
+              </Fade>
             );
           })}
         </Grid>

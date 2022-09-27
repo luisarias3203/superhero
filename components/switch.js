@@ -55,21 +55,11 @@ const StyleSwitch = styled(Switch)(({ theme }) => ({
   },
 }));
 
-function CustomSwitch({
-  label,
-  labelPlacement,
-  color,
-  superhero,
-  handleSwitch,
-}) {
+function CustomSwitch({ label, labelPlacement, color, superhero }) {
   const [checked, setChecked] = useState(false);
   const [openModal, setOpenModal] = useState(false);
   const [modalText, setModalText] = useState({});
   const { myTeam, setMyTeam } = useContext(superheroesInfo);
-
-  const handleModal = (open) => {
-    setOpenModal(open);
-  };
 
   useEffect(() => {
     const isSelected = myTeam.some((item) => {
@@ -79,8 +69,11 @@ function CustomSwitch({
       return false;
     });
     setChecked(isSelected);
-    if (handleSwitch) handleSwitch(isSelected);
   }, [myTeam]);
+
+  const handleModal = (open) => {
+    setOpenModal(open);
+  };
 
   const handleChange = (event) => {
     if (event.target.checked) {

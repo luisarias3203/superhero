@@ -7,8 +7,9 @@ import { common } from '@mui/material/colors';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
-import React, { useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import CustomLink from '../components/link';
+import { superheroesInfo } from '../pages/_app';
 import BgCard from '../public/images/bg-card.svg';
 import CustomSwitch from './switch';
 
@@ -91,16 +92,23 @@ const CustomCardButton = styled(IconButton)(({ theme, expanded }) => ({
   }),
 }));
 
-export default function CustomCard(props) {
+export default function CustomCard({ superhero }) {
   const [expanded, setExpanded] = useState(false);
   const [selected, setSelected] = useState(false);
+  const { myTeam, setMyTeam } = useContext(superheroesInfo);
+
+  useEffect(() => {
+    const isSelected = myTeam.some((item) => {
+      if (item.name === superhero.name) {
+        return true;
+      }
+      return false;
+    });
+    setSelected(isSelected);
+  }, [myTeam]);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
-  };
-
-  const handleSwitch = (check) => {
-    setSelected(check);
   };
 
   return (
@@ -117,10 +125,10 @@ export default function CustomCard(props) {
       }}
     >
       <Image
-        src={props.superhero.images.md}
+        src={superhero.images.md}
         layout="fill"
         objectFit="cover"
-        alt={props.superhero.name}
+        alt={superhero.name}
         priority
       />
       <CustomCardContent
@@ -128,31 +136,31 @@ export default function CustomCard(props) {
         selected={selected ? true : false}
       >
         <CustomLink
-          href={`details/${props.superhero.slug}`}
+          href={`details/${superhero.slug}`}
           variant="text"
           sx={{ width: '100%' }}
         >
-          <CustomCardName variant="h3">{props.superhero.name}</CustomCardName>
+          <CustomCardName variant="h3">{superhero.name}</CustomCardName>
         </CustomLink>
-        <CustomSwitch superhero={props.superhero} handleSwitch={handleSwitch} />
+        <CustomSwitch superhero={superhero} />
         <Collapse in={expanded}>
           <Typography variant="h4" component="p" mb={2.5}>
-            Intelligence : {props.superhero.powerstats.intelligence}
+            Intelligence : {superhero.powerstats.intelligence}
           </Typography>
           <Typography variant="h4" component="p" mb={2.5}>
-            strength : {props.superhero.powerstats.strength}
+            strength : {superhero.powerstats.strength}
           </Typography>
           <Typography variant="h4" component="p" mb={2.5}>
-            Speed : {props.superhero.powerstats.speed}
+            Speed : {superhero.powerstats.speed}
           </Typography>
           <Typography variant="h4" component="p" mb={2.5}>
-            Durability : {props.superhero.powerstats.durability}
+            Durability : {superhero.powerstats.durability}
           </Typography>
           <Typography variant="h4" component="p" mb={2.5}>
-            Power : {props.superhero.powerstats.power}
+            Power : {superhero.powerstats.power}
           </Typography>
           <Typography variant="h4" component="p" mb={2.5}>
-            combat : {props.superhero.powerstats.combat}
+            combat : {superhero.powerstats.combat}
           </Typography>
         </Collapse>
         <CustomCardButton
