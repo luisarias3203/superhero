@@ -16,8 +16,8 @@ import Grid from '@mui/material/Grid';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import NativeSelect from '@mui/material/NativeSelect';
-import React, { useContext, useEffect, useState } from 'react';
-import { superheroesInfo } from '../pages/_app';
+import React, { useContext, useEffect } from 'react';
+import { initialState, superheroesInfo } from '../pages/_app';
 import theme from '../styles/theme';
 
 const powerStatsOptions = [
@@ -29,15 +29,7 @@ const powerStatsOptions = [
   'combat',
 ];
 
-const initialState = {
-  keyword: '',
-  gender: '',
-  alignment: '',
-};
-
 export default function Filter(props) {
-  const [value, setValue] = useState(initialState);
-  const [powerStats, setPowerStats] = useState([]);
   const { searchParams, setSearchParams, currentPage, setCurrentPage } =
     useContext(superheroesInfo);
 
@@ -49,7 +41,7 @@ export default function Filter(props) {
       autocompleteName = target.querySelector('input').name;
     }
 
-    setValue((prev) => ({
+    setSearchParams((prev) => ({
       ...prev,
       ...(name && { [name]: value }),
       ...(autocompleteName && {
@@ -63,15 +55,13 @@ export default function Filter(props) {
   };
 
   useEffect(() => {
-    setSearchParams(value);
     const clearButton = document.querySelector('#clear-filter');
     const filterOptions = document.querySelector('#filter-options');
     if (clearButton && filterOptions) filterOptions.prepend(clearButton);
-  }, [value]);
+  }, [searchParams]);
 
   const changedState =
-    JSON.stringify(value) !== JSON.stringify(initialState) ||
-    JSON.stringify(powerStats) !== JSON.stringify([]);
+    JSON.stringify(searchParams) !== JSON.stringify(initialState);
 
   return (
     <Collapse in={props.openFilter}>
@@ -84,8 +74,7 @@ export default function Filter(props) {
           }}
           startIcon={<Close />}
           onClick={() => {
-            setValue(initialState);
-            setPowerStats([]);
+            setSearchParams(initialState);
           }}
         >
           Clear Filters
@@ -104,7 +93,7 @@ export default function Filter(props) {
                 id="keyword"
                 name="keyword"
                 fullWidth
-                value={value.keyword}
+                value={searchParams.keyword}
                 onChange={handleState}
               />
             </FormControl>
@@ -117,7 +106,7 @@ export default function Filter(props) {
               <NativeSelect
                 id="gender"
                 name="gender"
-                value={value.gender}
+                value={searchParams.gender}
                 onChange={handleState}
               >
                 <option value="">Gender</option>
@@ -135,7 +124,7 @@ export default function Filter(props) {
               <NativeSelect
                 id="alignment"
                 name="alignment"
-                value={value.alignment}
+                value={searchParams.alignment}
                 onChange={handleState}
               >
                 <option value="">Alignment</option>
@@ -161,24 +150,30 @@ export default function Filter(props) {
                 id="powerStats"
                 options={powerStatsOptions}
                 disableClearable
-                value={powerStats}
-                onChange={(event, autocompleteValue) => {
-                  setPowerStats(autocompleteValue);
+                value={searchParams.powerStats}
+                onChange={(e, value) => {
+                  setSearchParams((prev) => ({
+                    ...prev,
+                    ['powerStats']: value,
+                  }));
                 }}
                 ChipProps={{
                   deleteIcon: <Close />,
                   onDelete: (event) => {
                     const power = event.target.previousSibling.innerHTML;
 
-                    let copyObject = { ...value };
+                    // Delete slider value
+                    let copyObject = { ...searchParams };
                     delete copyObject[power];
-                    setValue(copyObject);
+                    setSearchParams(copyObject);
 
-                    let copyArray = [...powerStats];
-                    copyArray = copyArray.filter(
-                      (current) => current !== power
-                    );
-                    setPowerStats(copyArray);
+                    // Delete autocomplete value
+                    setSearchParams((prev) => ({
+                      ...prev,
+                      ['powerStats']: searchParams.powerStats.filter(
+                        (current) => current !== power
+                      ),
+                    }));
                   },
                 }}
                 renderInput={(params) => (
@@ -189,7 +184,7 @@ export default function Filter(props) {
           </Grid>
           <Grid item xs={12} lg={4}>
             <Grid container columnSpacing={15} rowSpacing={8}>
-              {powerStats.map((stat, index) => (
+              {searchParams.powerStats.map((stat, index) => (
                 <Fade in={true} key={index}>
                   <Grid item xs={12} sm={3} md={3} lg={6}>
                     <FormControl fullWidth>
@@ -204,7 +199,7 @@ export default function Filter(props) {
                       <Slider
                         aria-labelledby={stat}
                         name={stat}
-                        value={value.index}
+                        value={searchParams.stat}
                         defaultValue={[0, 100]}
                         min={0}
                         max={100}

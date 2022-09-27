@@ -6,8 +6,15 @@ import theme from '../styles/theme';
 
 export const superheroesInfo = React.createContext();
 
+export const initialState = {
+  keyword: '',
+  gender: '',
+  alignment: '',
+  powerStats: [],
+};
+
 function MyApp({ Component, pageProps }) {
-  const [searchParams, setSearchParams] = useState();
+  const [searchParams, setSearchParams] = useState(initialState);
   const [myTeam, setMyTeam] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
 

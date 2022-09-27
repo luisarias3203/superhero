@@ -1,18 +1,20 @@
 import { Fade, Typography } from '@mui/material';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useRef, useState } from 'react';
 import CustomCard from '../components/card';
 import Layout from '../components/layout';
 import { TextureBg } from '../components/texture';
 import Superhero from './api/superheroADK';
+import { superheroesInfo } from './_app';
 
 function Search() {
   const [loading, setLoading] = useState(true);
   const [superheroes, setSuperheroes] = useState([]);
-  const [pageNum, setPageNum] = useState(0);
   const [lastElement, setLastElement] = useState(null);
   const [totalPages, setTotalPages] = useState(1);
+  const { searchParams, setSearchParams, currentPage, setCurrentPage } =
+    useContext(superheroesInfo);
 
   const observer = useRef();
 
@@ -20,14 +22,18 @@ function Search() {
     observer.current = new IntersectionObserver((entries) => {
       const first = entries[0];
       if (first.isIntersecting) {
-        setPageNum((no) => no + 1);
+        setCurrentPage((no) => no + 1);
       }
     });
   }, []);
 
   const getSuperheroes = async () => {
     setLoading(true);
-    const response = await Superhero.search(`/getAll?`, `${pageNum}&limit=8`);
+    const response = await Superhero.search(
+      `/getAll?`,
+      `${currentPage}&limit=8`,
+      searchParams
+    );
     let all = new Set([...superheroes, ...response.data]);
     setSuperheroes([...all]);
     setTotalPages(response.totalPages);
@@ -35,10 +41,10 @@ function Search() {
   };
 
   useEffect(() => {
-    if (pageNum <= totalPages) {
+    if (currentPage <= totalPages) {
       getSuperheroes();
     }
-  }, [pageNum]);
+  }, [currentPage]);
 
   useEffect(() => {
     const currentElement = lastElement;
@@ -90,7 +96,7 @@ function Search() {
           </Typography>
         )}
 
-        {pageNum - 1 === totalPages && (
+        {currentPage - 1 === totalPages && (
           <Typography variant="h4" component="h2" mt={30} textAlign="center">
             The End
           </Typography>
