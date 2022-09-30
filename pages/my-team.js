@@ -1,4 +1,4 @@
-import { Box, Container, Fade, Grid, Typography } from '@mui/material';
+import { Box, Container, Grid, Typography } from '@mui/material';
 import React, { useContext } from 'react';
 import CustomCard from '../components/card';
 import Layout from '../components/layout';
@@ -18,19 +18,9 @@ export default function Team() {
           <Grid container columnSpacing={18} rowSpacing={13}>
             {myTeam.map((superhero, index) => {
               return (
-                <Fade
-                  in
-                  key={index}
-                  easing="ease-out"
-                  style={{
-                    transitionDelay: `${index * 100}ms`,
-                    transitionDuration: '200ms',
-                  }}
-                >
-                  <Grid item xs={12} sm={6} lg={3} key={index}>
-                    <CustomCard superhero={superhero} switch={true} />
-                  </Grid>
-                </Fade>
+                <Grid item xs={12} sm={6} lg={3} key={index}>
+                  <CustomCard superhero={superhero} switch={true} />
+                </Grid>
               );
             })}
           </Grid>

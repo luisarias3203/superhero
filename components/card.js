@@ -99,7 +99,9 @@ export default function CustomCard({ superhero }) {
 
   useEffect(() => {
     const isSelected = myTeam.some((item) => {
-      if (item.name === superhero.name) {
+      if (item.id === superhero.id) {
+        console.log('item.id', item.id);
+        console.log('superhero.id', superhero.id);
         return true;
       }
       return false;
@@ -143,26 +145,28 @@ export default function CustomCard({ superhero }) {
           <CustomCardName variant="h3">{superhero.name}</CustomCardName>
         </CustomLink>
         <CustomSwitch superhero={superhero} />
-        <Collapse in={expanded}>
-          <Typography variant="h4" component="p" mb={2.5}>
-            Intelligence : {superhero.powerstats.intelligence}
-          </Typography>
-          <Typography variant="h4" component="p" mb={2.5}>
-            strength : {superhero.powerstats.strength}
-          </Typography>
-          <Typography variant="h4" component="p" mb={2.5}>
-            Speed : {superhero.powerstats.speed}
-          </Typography>
-          <Typography variant="h4" component="p" mb={2.5}>
-            Durability : {superhero.powerstats.durability}
-          </Typography>
-          <Typography variant="h4" component="p" mb={2.5}>
-            Power : {superhero.powerstats.power}
-          </Typography>
-          <Typography variant="h4" component="p" mb={2.5}>
-            combat : {superhero.powerstats.combat}
-          </Typography>
-        </Collapse>
+        {superhero.powerstats && (
+          <Collapse in={expanded}>
+            <Typography variant="h4" component="p" mb={2.5}>
+              Intelligence : {superhero.powerstats.intelligence || '-'}
+            </Typography>
+            <Typography variant="h4" component="p" mb={2.5}>
+              strength : {superhero.powerstats.strength || '-'}
+            </Typography>
+            <Typography variant="h4" component="p" mb={2.5}>
+              Speed : {superhero.powerstats.speed || '-'}
+            </Typography>
+            <Typography variant="h4" component="p" mb={2.5}>
+              Durability : {superhero.powerstats.durability || '-'}
+            </Typography>
+            <Typography variant="h4" component="p" mb={2.5}>
+              Power : {superhero.powerstats.power || '-'}
+            </Typography>
+            <Typography variant="h4" component="p" mb={2.5}>
+              combat : {superhero.powerstats.combat || '-'}
+            </Typography>
+          </Collapse>
+        )}
         <CustomCardButton
           expanded={expanded.toString()}
           onClick={handleExpandClick}

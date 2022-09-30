@@ -30,8 +30,7 @@ const powerStatsOptions = [
 ];
 
 export default function Filter(props) {
-  const { searchParams, setSearchParams, currentPage, setCurrentPage } =
-    useContext(superheroesInfo);
+  const { searchParams, setSearchParams } = useContext(superheroesInfo);
 
   const handleState = ({ target }, autocompleteValue) => {
     const { value, name } = target;
@@ -51,7 +50,6 @@ export default function Filter(props) {
         },
       }),
     }));
-    setCurrentPage(0);
   };
 
   useEffect(() => {
@@ -195,6 +193,7 @@ export default function Filter(props) {
                         sx={{ mb: 4, textTransform: 'capitalize' }}
                       >
                         {stat}
+                        {searchParams.stat}
                       </Typography>
                       <Slider
                         aria-labelledby={stat}

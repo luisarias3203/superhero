@@ -63,7 +63,7 @@ function CustomSwitch({ label, labelPlacement, color, superhero }) {
 
   useEffect(() => {
     const isSelected = myTeam.some((item) => {
-      if (item.name === superhero.name) {
+      if (item.id === superhero.id) {
         return true;
       }
       return false;

@@ -16,7 +16,6 @@ export const initialState = {
 function MyApp({ Component, pageProps }) {
   const [searchParams, setSearchParams] = useState(initialState);
   const [myTeam, setMyTeam] = useState([]);
-  const [currentPage, setCurrentPage] = useState(0);
 
   return (
     <>
@@ -57,8 +56,6 @@ function MyApp({ Component, pageProps }) {
             setSearchParams,
             myTeam,
             setMyTeam,
-            currentPage,
-            setCurrentPage,
           }}
         >
           <Component {...pageProps} />

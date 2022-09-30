@@ -1,106 +1,97 @@
-import { Fade, Typography } from '@mui/material';
+import { Box, Button, Typography } from '@mui/material';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import React, { useContext, useEffect, useRef, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import useSWR from 'swr';
 import CustomCard from '../components/card';
 import Layout from '../components/layout';
 import { TextureBg } from '../components/texture';
-import Superhero from './api/superheroADK';
+// import Superhero from './api/superheroADK';
+import { baseUrl, endPoint } from './api/superheroADK';
 import { superheroesInfo } from './_app';
 
 function Search() {
-  const [loading, setLoading] = useState(true);
+  const { searchParams, setSearchParams } = useContext(superheroesInfo);
   const [superheroes, setSuperheroes] = useState([]);
-  const [lastElement, setLastElement] = useState(null);
-  const [totalPages, setTotalPages] = useState(1);
-  const { searchParams, setSearchParams, currentPage, setCurrentPage } =
-    useContext(superheroesInfo);
+  const [limit, setLimit] = useState(8);
+  let currentPage = limit / 8 - 1;
 
-  const observer = useRef();
+  const params = `/getAll?page=0&limit=${limit}`;
+  const url = `${baseUrl}${endPoint}${params}`;
 
-  useEffect(() => {
-    observer.current = new IntersectionObserver((entries) => {
-      const first = entries[0];
-      if (first.isIntersecting) {
-        setCurrentPage((no) => no + 1);
-      }
+  const fetcher = async (url, searchParams) => {
+    // console.log(searchParams);
+    const response = await fetch(url, {
+      headers: {
+        apiKey: `${process.env.API_KEY}`,
+        'Content-Type': 'application/json',
+      },
+      mode: 'cors',
+      method: 'POST',
+      body: JSON.stringify(searchParams),
     });
-  }, []);
+    if (response.ok) {
+      const jsonResponse = await response.json();
+      // console.log('jsonResponse', jsonResponse);
+      return jsonResponse;
+    }
+  };
 
-  const getSuperheroes = async () => {
-    setLoading(true);
-    const response = await Superhero.search(
-      `/getAll?`,
-      `${currentPage}&limit=8`,
-      searchParams
-    );
-    let all = new Set([...superheroes, ...response.data]);
-    setSuperheroes([...all]);
-    setTotalPages(response.totalPages);
-    setLoading(false);
+  const { data } = useSWR([url, searchParams], fetcher);
+
+  const handleLimit = () => {
+    setLimit(limit + 8);
   };
 
   useEffect(() => {
-    if (currentPage <= totalPages) {
-      getSuperheroes();
+    if (data) {
+      setSuperheroes(data.data);
     }
-  }, [currentPage]);
+  }, [data]);
 
   useEffect(() => {
-    const currentElement = lastElement;
-    const currentObserver = observer.current;
-
-    if (currentElement) {
-      currentObserver.observe(currentElement);
-    }
-
-    return () => {
-      if (currentElement) {
-        currentObserver.unobserve(currentElement);
-      }
-    };
-  }, [lastElement]);
+    setLimit(8);
+  }, [searchParams]);
 
   return (
     <Layout>
       <TextureBg />
       <Container maxWidth="lg" sx={{ pt: '50px', pb: '250px' }}>
         <Grid container columnSpacing={18} rowSpacing={13}>
-          {superheroes.map((superhero, index) => {
-            return (
-              <Fade
-                in
-                key={index}
-                easing="ease-out"
-                style={{
-                  transitionDuration: '200ms',
-                }}
-              >
-                <Grid
-                  item
-                  xs={12}
-                  sm={6}
-                  lg={3}
-                  key={index}
-                  ref={setLastElement}
-                >
+          {superheroes &&
+            superheroes.map((superhero, index) => {
+              return (
+                <Grid item xs={12} sm={6} lg={3} key={superhero.id}>
                   <CustomCard superhero={superhero} />
                 </Grid>
-              </Fade>
-            );
-          })}
+              );
+            })}
         </Grid>
-        {loading && (
-          <Typography variant="h4" component="h2" mt={30} textAlign="center">
-            Loading
-          </Typography>
-        )}
 
-        {currentPage - 1 === totalPages && (
-          <Typography variant="h4" component="h2" mt={30} textAlign="center">
-            The End
-          </Typography>
-        )}
+        <Box textAlign="center">
+          {data && currentPage < data.totalPages - 1 && (
+            <Button
+              variant="contained"
+              color="secondary"
+              size="large"
+              onClick={handleLimit}
+              sx={{ mt: '50px' }}
+            >
+              Load More
+            </Button>
+          )}
+          {!data && (
+            <Typography variant="h4" component="h2" mt={30}>
+              Loading
+            </Typography>
+          )}
+
+          {data && currentPage >= data.totalPages - 1 && (
+            <Typography variant="h4" component="h2" mt={30}>
+              The End
+            </Typography>
+          )}
+        </Box>
       </Container>
     </Layout>
   );
