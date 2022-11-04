@@ -1,7 +1,7 @@
 import { Close } from '@mui/icons-material';
 import { Box, IconButton, Typography } from '@mui/material';
 import Modal from '@mui/material/Modal';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import theme from '../styles/theme';
 
 const CustomModal = (props) => {

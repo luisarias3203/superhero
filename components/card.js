@@ -7,7 +7,7 @@ import { common } from '@mui/material/colors';
 import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import CustomLink from '../components/link';
 import { superheroesInfo } from '../pages/_app';
 import BgCard from '../public/images/bg-card.svg';
@@ -95,7 +95,7 @@ const CustomCardButton = styled(IconButton)(({ theme, expanded }) => ({
 export default function CustomCard({ superhero }) {
   const [expanded, setExpanded] = useState(false);
   const [selected, setSelected] = useState(false);
-  const { myTeam, setMyTeam } = useContext(superheroesInfo);
+  const { myTeam } = useContext(superheroesInfo);
 
   useEffect(() => {
     const isSelected = myTeam.some((item) => {
@@ -133,10 +133,7 @@ export default function CustomCard({ superhero }) {
         alt={superhero.name}
         priority
       />
-      <CustomCardContent
-        expanded={expanded.toString()}
-        selected={selected ? true : false}
-      >
+      <CustomCardContent expanded={expanded.toString()} selected={!!selected}>
         <CustomLink
           href={`details/${superhero.slug}`}
           variant="text"

@@ -1,7 +1,7 @@
 import { Box, Button, Typography } from '@mui/material';
 import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import useSWR from 'swr';
 import CustomCard from '../components/card';
 import Layout from '../components/layout';
@@ -11,10 +11,10 @@ import { baseUrl, endPoint } from './api/superheroADK';
 import { superheroesInfo } from './_app';
 
 function Search() {
-  const { searchParams, setSearchParams } = useContext(superheroesInfo);
+  const { searchParams } = useContext(superheroesInfo);
   const [superheroes, setSuperheroes] = useState([]);
   const [limit, setLimit] = useState(8);
-  let currentPage = limit / 8 - 1;
+  const currentPage = limit / 8 - 1;
 
   const params = `/getAll?page=0&limit=${limit}`;
   const url = `${baseUrl}${endPoint}${params}`;

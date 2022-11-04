@@ -16,7 +16,7 @@ import Grid from '@mui/material/Grid';
 import Input from '@mui/material/Input';
 import InputLabel from '@mui/material/InputLabel';
 import NativeSelect from '@mui/material/NativeSelect';
-import React, { useContext, useEffect } from 'react';
+import { useContext, useEffect } from 'react';
 import { initialState, superheroesInfo } from '../pages/_app';
 import theme from '../styles/theme';
 
@@ -36,7 +36,7 @@ export default function Filter(props) {
     const { value, name } = target;
 
     let autocompleteName;
-    if (target.querySelector('input') != null) {
+    if (target.querySelector('input') !== null) {
       autocompleteName = target.querySelector('input').name;
     }
 
@@ -152,7 +152,7 @@ export default function Filter(props) {
                 onChange={(e, value) => {
                   setSearchParams((prev) => ({
                     ...prev,
-                    ['powerStats']: value,
+                    powerStats: value,
                   }));
                 }}
                 ChipProps={{
@@ -161,14 +161,14 @@ export default function Filter(props) {
                     const power = event.target.previousSibling.innerHTML;
 
                     // Delete slider value
-                    let copyObject = { ...searchParams };
+                    const copyObject = { ...searchParams };
                     delete copyObject[power];
                     setSearchParams(copyObject);
 
                     // Delete autocomplete value
                     setSearchParams((prev) => ({
                       ...prev,
-                      ['powerStats']: searchParams.powerStats.filter(
+                      powerStats: searchParams.powerStats.filter(
                         (current) => current !== power
                       ),
                     }));

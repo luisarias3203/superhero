@@ -1,5 +1,4 @@
 import { Container, Typography } from '@mui/material';
-import React from 'react';
 import Layout from '../components/layout';
 import CustomLink from '../components/link';
 import { TextureBg } from '../components/texture';

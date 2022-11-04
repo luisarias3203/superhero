@@ -8,8 +8,8 @@ const Superhero = {
     let urlToFetch = `${baseUrl}${endPoint}${requestParams}`;
     try {
       let response;
-      if (requestParams == '/getAll?') {
-        let page = `page=${pageValue}`;
+      if (requestParams === '/getAll?') {
+        const page = `page=${pageValue}`;
         urlToFetch = `${urlToFetch}${page}`;
         response = await fetch(urlToFetch, {
           headers: {

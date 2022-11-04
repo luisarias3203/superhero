@@ -1,5 +1,5 @@
 import { Box, Container, Grid, Typography } from '@mui/material';
-import React, { useContext } from 'react';
+import { useContext } from 'react';
 import CustomCard from '../components/card';
 import Layout from '../components/layout';
 import CustomLink from '../components/link';
@@ -8,7 +8,7 @@ import theme from '../styles/theme';
 import { superheroesInfo } from './_app';
 
 export default function Team() {
-  const { myTeam, setMyTeam } = useContext(superheroesInfo);
+  const { myTeam } = useContext(superheroesInfo);
 
   return (
     <Layout>

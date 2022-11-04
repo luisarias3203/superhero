@@ -10,7 +10,7 @@ import Container from '@mui/material/Container';
 import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import { useRouter } from 'next/router';
-import React, { useState } from 'react';
+import { useState } from 'react';
 import CustomLink from '../components/link';
 import theme from '../styles/theme';
 import Filter from './filter';
@@ -148,7 +148,7 @@ export default function Header(props) {
                   variant="text"
                   sx={{
                     '&:after': {
-                      display: router.pathname == item.href ? 'block' : 'none',
+                      display: router.pathname === item.href ? 'block' : 'none',
                     },
                   }}
                 >
@@ -157,7 +157,7 @@ export default function Header(props) {
               );
             })}
           </Box>
-          {router.pathname == '/search' && (
+          {router.pathname === '/search' && (
             <Box sx={{ marginLeft: 'auto' }} id="filter-options">
               <Button
                 variant={openFilter ? 'contained' : 'outlined'}
@@ -173,7 +173,7 @@ export default function Header(props) {
           )}
         </Toolbar>
       </Container>
-      {router.pathname == '/search' && <Filter openFilter={openFilter} />}
+      {router.pathname === '/search' && <Filter openFilter={openFilter} />}
       <CustomDrawer anchor="left" open={openDrawer} hideBackdrop={true}>
         {links.map((item) => {
           return (
@@ -183,7 +183,7 @@ export default function Header(props) {
               variant="text"
               sx={{
                 '&:after': {
-                  display: router.pathname == item.href ? 'block' : 'none',
+                  display: router.pathname === item.href ? 'block' : 'none',
                 },
               }}
             >

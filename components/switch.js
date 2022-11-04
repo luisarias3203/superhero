@@ -4,7 +4,7 @@ import FormControlLabel from '@mui/material/FormControlLabel';
 import FormGroup from '@mui/material/FormGroup';
 import Switch from '@mui/material/Switch';
 import { Box } from '@mui/system';
-import React, { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
 import { superheroesInfo } from '../pages/_app';
 import CustomModal from './modal';
 
@@ -80,7 +80,7 @@ function CustomSwitch({ label, labelPlacement, color, superhero }) {
       // Add superhero to myTeam
       if (
         myTeam.length >= 1 &&
-        myTeam[0].biography.alignment != superhero.biography.alignment
+        myTeam[0].biography.alignment !== superhero.biography.alignment
       ) {
         handleModal(true);
         setModalText({
@@ -100,7 +100,7 @@ function CustomSwitch({ label, labelPlacement, color, superhero }) {
       setMyTeam((prev) => [...prev, superhero]);
     } else {
       // Remove superhero from myTeam
-      setMyTeam(myTeam.filter((current) => current.name != superhero.name));
+      setMyTeam(myTeam.filter((current) => current.name !== superhero.name));
     }
   };
 

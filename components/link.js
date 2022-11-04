@@ -1,6 +1,6 @@
 import Button from '@mui/material/Button';
 import NextLink from 'next/link';
-import React, { forwardRef } from 'react';
+import { forwardRef } from 'react';
 
 const CustomLink = forwardRef(function Link(
   { href, prefetch, replace, scroll, shallow, locale, ...props },

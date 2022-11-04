@@ -1,6 +1,5 @@
 import { Avatar, Box, Grid, Typography } from '@mui/material';
 import NextLink from 'next/link';
-import React from 'react';
 import theme from '../styles/theme';
 
 function RelatedCharacters() {

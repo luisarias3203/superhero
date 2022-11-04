@@ -4,7 +4,6 @@ import Grid from '@mui/material/Grid';
 import Slide from '@mui/material/Slide';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
-import React from 'react';
 import CustomLink from '../components/link';
 import BlueBg from '../public/images/blue-background.png';
 import DC from '../public/images/dc-comics.png';
