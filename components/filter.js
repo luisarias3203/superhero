@@ -183,7 +183,7 @@ export default function Filter(props) {
           <Grid item xs={12} lg={4}>
             <Grid container columnSpacing={15} rowSpacing={8}>
               {searchParams.powerStats.map((stat, index) => (
-                <Fade in={true} key={index}>
+                <Fade in key={index}>
                   <Grid item xs={12} sm={3} md={3} lg={6}>
                     <FormControl fullWidth>
                       <Typography

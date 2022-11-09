@@ -100,8 +100,6 @@ export default function CustomCard({ superhero }) {
   useEffect(() => {
     const isSelected = myTeam.some((item) => {
       if (item.id === superhero.id) {
-        console.log('item.id', item.id);
-        console.log('superhero.id', superhero.id);
         return true;
       }
       return false;
@@ -133,7 +131,10 @@ export default function CustomCard({ superhero }) {
         alt={superhero.name}
         priority
       />
-      <CustomCardContent expanded={expanded.toString()} selected={!!selected}>
+      <CustomCardContent
+        expanded={expanded.toString()}
+        selected={Boolean(selected)}
+      >
         <CustomLink
           href={`details/${superhero.slug}`}
           variant="text"

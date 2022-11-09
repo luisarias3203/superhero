@@ -51,7 +51,7 @@ export default function Home() {
           <Grid item xs={12} lg={6}>
             <Slide
               direction="down"
-              in={true}
+              in
               easing={{ enter: theme.transitions.easing.easeOut }}
               timeout={1000}
               sx={{

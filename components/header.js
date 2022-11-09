@@ -174,7 +174,7 @@ export default function Header(props) {
         </Toolbar>
       </Container>
       {router.pathname === '/search' && <Filter openFilter={openFilter} />}
-      <CustomDrawer anchor="left" open={openDrawer} hideBackdrop={true}>
+      <CustomDrawer anchor="left" open={openDrawer} hideBackdrop>
         {links.map((item) => {
           return (
             <Link

@@ -9,6 +9,7 @@ module.exports = {
     },
   },
   extends: [
+    'next/core-web-vitals',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
     'standard',
