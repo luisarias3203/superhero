@@ -1,5 +1,6 @@
 import { ThemeProvider } from '@emotion/react';
 import CssBaseline from '@mui/material/CssBaseline';
+import { Analytics } from '@vercel/analytics/react';
 import Head from 'next/head';
 import React, { useState } from 'react';
 import theme from '../styles/theme';
@@ -61,6 +62,7 @@ function MyApp({ Component, pageProps }) {
           <Component {...pageProps} />
         </superheroesInfo.Provider>
       </ThemeProvider>
+      <Analytics />
     </>
   );
 }
