@@ -22,30 +22,30 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <title>Superhero App</title>
-        <meta name="description" content="Superhero App" />
-        <link rel="icon" href="/favicon.ico" />
+        <meta name='description' content='Superhero App' />
+        <link rel='icon' href='/favicon.ico' />
         <link
-          rel="prefetch"
-          href="/fonts/typography/HelveticaNeueRegular.woff2"
-          as="font"
+          rel='prefetch'
+          href='/fonts/typography/HelveticaNeueRegular.woff2'
+          as='font'
           crossOrigin
         />
         <link
-          rel="prefetch"
-          href="/fonts/typography/HelveticaNeueBold.woff2"
-          as="font"
+          rel='prefetch'
+          href='/fonts/typography/HelveticaNeueBold.woff2'
+          as='font'
           crossOrigin
         />
         <link
-          rel="prefetch"
-          href="/fonts/typography/ObelixProBold.woff2"
-          as="font"
+          rel='prefetch'
+          href='/fonts/typography/ObelixProBold.woff2'
+          as='font'
           crossOrigin
         />
         <link
-          rel="prefetch"
-          href="/fonts/typography/ObelixProRegular.woff2"
-          as="font"
+          rel='prefetch'
+          href='/fonts/typography/ObelixProRegular.woff2'
+          as='font'
           crossOrigin
         />
       </Head>

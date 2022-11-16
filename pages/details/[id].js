@@ -10,7 +10,7 @@ import { TextureBg } from '../../components/texture';
 import theme from '../../styles/theme';
 import Superhero from '../api/superheroADK';
 
-const ImageBox = styled(Box)(({ theme, expanded }) => ({
+const ImageBox = styled(Box)(() => ({
   display: 'flex',
   flexWrap: 'wrap',
   justifyContent: 'center',
@@ -43,7 +43,7 @@ export default function HeroDetail({ superhero }) {
 
   if (router.isFallback) {
     return (
-      <Typography variant="h4" component="h2" mt={30} textAlign="center">
+      <Typography variant='h4' component='h2' mt={30} textAlign='center'>
         Loading
       </Typography>
     );
@@ -70,17 +70,17 @@ export default function HeroDetail({ superhero }) {
             >
               <Image
                 src={superhero.images.lg}
-                layout="fill"
-                objectFit="cover"
+                layout='fill'
+                objectFit='cover'
                 quality={100}
                 alt={superhero.name}
                 priority
               />
               <ImageBox>
                 <Typography
-                  variant="caption"
+                  variant='caption'
                   sx={{ mb: 3, width: '100%' }}
-                  component="h2"
+                  component='h2'
                 >
                   {superhero.name}
                 </Typography>
@@ -89,86 +89,86 @@ export default function HeroDetail({ superhero }) {
             </Grid>
           )}
           <Grid item xs={12} md={7} mb={{ xs: 20, md: 0 }}>
-            <Container maxWidth="false" sx={{ padding: { md: '75px 50px' } }}>
+            <Container maxWidth='false' sx={{ padding: { md: '75px 50px' } }}>
               <Grid container>
                 {superhero.powerstats && (
                   <Grid item xs={12} lg={6} mb={12}>
-                    <Typography variant="h3" component="h2" mb={7}>
+                    <Typography variant='h3' component='h2' mb={7}>
                       Powerstats
                     </Typography>
                     <Grid container>
                       <Grid item xs={6}>
-                        <Box mb={2} display="flex">
+                        <Box mb={2} display='flex'>
                           <Typography
-                            variant="body1"
-                            component="strong"
-                            fontWeight="bold"
+                            variant='body1'
+                            component='strong'
+                            fontWeight='bold'
                           >
                             Intelligence:
                           </Typography>
-                          <Typography variant="body1" component="span" ml={2}>
+                          <Typography variant='body1' component='span' ml={2}>
                             {superhero.powerstats.intelligence}
                           </Typography>
                         </Box>
-                        <Box mb={2} display="flex">
+                        <Box mb={2} display='flex'>
                           <Typography
-                            variant="body1"
-                            component="strong"
-                            fontWeight="bold"
+                            variant='body1'
+                            component='strong'
+                            fontWeight='bold'
                           >
                             Strength:
                           </Typography>
-                          <Typography variant="body1" component="span" ml={2}>
+                          <Typography variant='body1' component='span' ml={2}>
                             {superhero.powerstats.strength}
                           </Typography>
                         </Box>
-                        <Box mb={2} display="flex">
+                        <Box mb={2} display='flex'>
                           <Typography
-                            variant="body1"
-                            component="strong"
-                            fontWeight="bold"
+                            variant='body1'
+                            component='strong'
+                            fontWeight='bold'
                           >
                             Speed:
                           </Typography>
-                          <Typography variant="body1" component="span" ml={2}>
+                          <Typography variant='body1' component='span' ml={2}>
                             {superhero.powerstats.speed}
                           </Typography>
                         </Box>
                       </Grid>
                       <Grid item xs={6}>
-                        <Box mb={2} display="flex">
+                        <Box mb={2} display='flex'>
                           <Typography
-                            variant="body1"
-                            component="strong"
-                            fontWeight="bold"
+                            variant='body1'
+                            component='strong'
+                            fontWeight='bold'
                           >
                             Durability:
                           </Typography>
-                          <Typography variant="body1" component="span" ml={2}>
+                          <Typography variant='body1' component='span' ml={2}>
                             {superhero.powerstats.durability}
                           </Typography>
                         </Box>
-                        <Box mb={2} display="flex">
+                        <Box mb={2} display='flex'>
                           <Typography
-                            variant="body1"
-                            component="strong"
-                            fontWeight="bold"
+                            variant='body1'
+                            component='strong'
+                            fontWeight='bold'
                           >
                             Power:
                           </Typography>
-                          <Typography variant="body1" component="span" ml={2}>
+                          <Typography variant='body1' component='span' ml={2}>
                             {superhero.powerstats.power}
                           </Typography>
                         </Box>
-                        <Box mb={2} display="flex">
+                        <Box mb={2} display='flex'>
                           <Typography
-                            variant="body1"
-                            component="strong"
-                            fontWeight="bold"
+                            variant='body1'
+                            component='strong'
+                            fontWeight='bold'
                           >
                             Combat:
                           </Typography>
-                          <Typography variant="body1" component="span" ml={2}>
+                          <Typography variant='body1' component='span' ml={2}>
                             {superhero.powerstats.combat}
                           </Typography>
                         </Box>
@@ -178,44 +178,44 @@ export default function HeroDetail({ superhero }) {
                 )}
                 {superhero.appearance && (
                   <Grid item xs={12} lg={6} mb={12}>
-                    <Typography variant="h3" component="h2" mb={7}>
+                    <Typography variant='h3' component='h2' mb={7}>
                       Appearance
                     </Typography>
                     <Grid container>
                       <Grid item xs={6}>
-                        <Box mb={2} display="flex">
+                        <Box mb={2} display='flex'>
                           <Typography
-                            variant="body1"
-                            component="strong"
-                            fontWeight="bold"
+                            variant='body1'
+                            component='strong'
+                            fontWeight='bold'
                           >
                             Gender:
                           </Typography>
-                          <Typography variant="body1" component="span" ml={2}>
+                          <Typography variant='body1' component='span' ml={2}>
                             {superhero.appearance.gender}
                           </Typography>
                         </Box>
-                        <Box mb={2} display="flex">
+                        <Box mb={2} display='flex'>
                           <Typography
-                            variant="body1"
-                            component="strong"
-                            fontWeight="bold"
+                            variant='body1'
+                            component='strong'
+                            fontWeight='bold'
                           >
                             Race:
                           </Typography>
-                          <Typography variant="body1" component="span" ml={2}>
+                          <Typography variant='body1' component='span' ml={2}>
                             {superhero.appearance.race || '-'}
                           </Typography>
                         </Box>
-                        <Box mb={2} display="flex">
+                        <Box mb={2} display='flex'>
                           <Typography
-                            variant="body1"
-                            component="strong"
-                            fontWeight="bold"
+                            variant='body1'
+                            component='strong'
+                            fontWeight='bold'
                           >
                             Height:
                           </Typography>
-                          <Typography variant="body1" component="span" ml={2}>
+                          <Typography variant='body1' component='span' ml={2}>
                             {superhero.appearance.height.length > 1
                               ? `${superhero.appearance.height[0].value} /
                             ${superhero.appearance.height[1].value}`
@@ -224,42 +224,42 @@ export default function HeroDetail({ superhero }) {
                         </Box>
                       </Grid>
                       <Grid item xs={6}>
-                        <Box mb={2} display="flex">
+                        <Box mb={2} display='flex'>
                           <Typography
-                            variant="body1"
-                            component="strong"
-                            fontWeight="bold"
+                            variant='body1'
+                            component='strong'
+                            fontWeight='bold'
                           >
                             Weight:
                           </Typography>
-                          <Typography variant="body1" component="span" ml={2}>
+                          <Typography variant='body1' component='span' ml={2}>
                             {superhero.appearance.weight.length > 1
                               ? `${superhero.appearance.weight[0].value} /
                             ${superhero.appearance.weight[1].value}`
                               : `${superhero.appearance.weight[0].value}`}
                           </Typography>
                         </Box>
-                        <Box mb={2} display="flex">
+                        <Box mb={2} display='flex'>
                           <Typography
-                            variant="body1"
-                            component="strong"
-                            fontWeight="bold"
+                            variant='body1'
+                            component='strong'
+                            fontWeight='bold'
                           >
                             Eye Color:
                           </Typography>
-                          <Typography variant="body1" component="span" ml={2}>
+                          <Typography variant='body1' component='span' ml={2}>
                             {superhero.appearance.eyeColor}
                           </Typography>
                         </Box>
-                        <Box mb={2} display="flex">
+                        <Box mb={2} display='flex'>
                           <Typography
-                            variant="body1"
-                            component="strong"
-                            fontWeight="bold"
+                            variant='body1'
+                            component='strong'
+                            fontWeight='bold'
                           >
                             Hair Color:
                           </Typography>
-                          <Typography variant="body1" component="span" ml={2}>
+                          <Typography variant='body1' component='span' ml={2}>
                             {superhero.appearance.hairColor}
                           </Typography>
                         </Box>
@@ -270,71 +270,71 @@ export default function HeroDetail({ superhero }) {
               </Grid>
               {superhero.biography && (
                 <Box mb={5}>
-                  <Typography variant="h3" component="h2" mb={7}>
+                  <Typography variant='h3' component='h2' mb={7}>
                     Biography
                   </Typography>
-                  <Box mb={2} display="flex">
+                  <Box mb={2} display='flex'>
                     <Typography
-                      variant="body1"
-                      component="strong"
-                      fontWeight="bold"
+                      variant='body1'
+                      component='strong'
+                      fontWeight='bold'
                     >
                       Full Name:
                     </Typography>
-                    <Typography variant="body1" component="span" ml={2}>
+                    <Typography variant='body1' component='span' ml={2}>
                       {superhero.biography.fullName || superhero.name}
                     </Typography>
                   </Box>
-                  <Box mb={2} display="flex">
+                  <Box mb={2} display='flex'>
                     <Typography
-                      variant="body1"
-                      component="strong"
-                      fontWeight="bold"
+                      variant='body1'
+                      component='strong'
+                      fontWeight='bold'
                     >
                       Alter Egos:
                     </Typography>
-                    <Typography variant="body1" component="span" ml={2}>
+                    <Typography variant='body1' component='span' ml={2}>
                       {superhero.biography.alterEgos}
                     </Typography>
                   </Box>
-                  <Box mb={2} display="flex">
+                  <Box mb={2} display='flex'>
                     <Typography
-                      variant="body1"
-                      component="strong"
-                      fontWeight="bold"
+                      variant='body1'
+                      component='strong'
+                      fontWeight='bold'
                     >
                       Aliases:
                     </Typography>
-                    <Typography variant="body1" component="span" ml={2}>
+                    <Typography variant='body1' component='span' ml={2}>
                       {superhero.biography.aliases &&
                         superhero.biography.aliases
-                          .map((item) => item.value)
+                          .map(item => item.value)
                           .join(', ')}
                     </Typography>
                   </Box>
-                  <Box mb={2} display="flex">
+                  <Box mb={2} display='flex'>
                     <Typography
-                      variant="body1"
-                      component="strong"
-                      fontWeight="bold"
+                      variant='body1'
+                      component='strong'
+                      fontWeight='bold'
                     >
                       Place of Birth:
                     </Typography>
-                    <Typography variant="body1" component="span" ml={2}>
+                    <Typography variant='body1' component='span' ml={2}>
                       {superhero.biography.placeOfBirth}
                     </Typography>
                   </Box>
-                  <Box mb={2} display="flex">
+                  <Box mb={2} display='flex'>
                     <Typography
-                      variant="body1"
-                      component="strong"
-                      fontWeight="bold"
+                      variant='body1'
+                      component='strong'
+                      fontWeight='bold'
                     >
                       Alignment:
                     </Typography>
                     <Typography
-                      variant="body1"
-                      component="span"
+                      variant='body1'
+                      component='span'
                       ml={2}
                       sx={{ textTransform: 'capitalize' }}
                     >
@@ -345,30 +345,30 @@ export default function HeroDetail({ superhero }) {
               )}
               {superhero.work && (
                 <Box>
-                  <Typography variant="h3" component="h2" mb={7}>
+                  <Typography variant='h3' component='h2' mb={7}>
                     Work
                   </Typography>
-                  <Box mb={2} display="flex">
+                  <Box mb={2} display='flex'>
                     <Typography
-                      variant="body1"
-                      component="strong"
-                      fontWeight="bold"
+                      variant='body1'
+                      component='strong'
+                      fontWeight='bold'
                     >
                       Occupation:
                     </Typography>
-                    <Typography variant="body1" component="span" ml={2}>
+                    <Typography variant='body1' component='span' ml={2}>
                       {superhero.work.occupation}
                     </Typography>
                   </Box>
-                  <Box mb={2} display="flex">
+                  <Box mb={2} display='flex'>
                     <Typography
-                      variant="body1"
-                      component="strong"
-                      fontWeight="bold"
+                      variant='body1'
+                      component='strong'
+                      fontWeight='bold'
                     >
                       Base:
                     </Typography>
-                    <Typography variant="body1" component="span" ml={2}>
+                    <Typography variant='body1' component='span' ml={2}>
                       {superhero.work.base}
                     </Typography>
                   </Box>
@@ -390,7 +390,7 @@ export async function getStaticPaths() {
 
   const data = superheroes.data ? superheroes.data : [];
 
-  const paths = data.map((superhero) => {
+  const paths = data.map(superhero => {
     return {
       params: { id: `${superhero.slug}` },
     };

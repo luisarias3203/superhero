@@ -16,8 +16,8 @@ const CustomModal = (props) => {
     <Modal
       onClose={handleClose}
       open={open}
-      aria-labelledby="modal-modal-title"
-      aria-describedby="modal-modal-description"
+      aria-labelledby='modal-modal-title'
+      aria-describedby='modal-modal-description'
     >
       <Box
         sx={{
@@ -35,7 +35,7 @@ const CustomModal = (props) => {
         }}
       >
         <IconButton
-          aria-label="Close modal"
+          aria-label='Close modal'
           onClick={handleClose}
           sx={{
             position: 'absolute',
@@ -46,13 +46,13 @@ const CustomModal = (props) => {
           <Close sx={{ fontSize: 26 }} />
         </IconButton>
         <Typography
-          id="modal-modal-title"
-          variant="h2"
+          id='modal-modal-title'
+          variant='h2'
           sx={{ textTransform: 'uppercase', marginBottom: '22px' }}
         >
           {props.modalText.title}
         </Typography>
-        <Typography id="modal-modal-description" variant="body2">
+        <Typography id='modal-modal-description' variant='body2'>
           {props.modalText.paragraph}
         </Typography>
       </Box>

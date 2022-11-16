@@ -40,7 +40,7 @@ const Logo = styled(Box)(({ theme }) => ({
   },
 }));
 
-const CustomDrawer = styled(Drawer)(({ theme }) => ({
+const CustomDrawer = styled(Drawer)(() => ({
   top: '55px',
   width: '100%',
   '& .MuiDrawer-paper': {
@@ -89,7 +89,7 @@ const Link = styled(CustomLink)(({ theme }) => ({
   },
 }));
 
-export default function Header(props) {
+export default function Header() {
   const [openDrawer, setOpenDrawer] = useState(false);
   const [openFilter, setOpenFilter] = useState(false);
   const router = useRouter();
@@ -105,32 +105,32 @@ export default function Header(props) {
   };
 
   return (
-    <CustomHeader position="sticky">
-      <Container maxWidth="xl" component="nav">
-        <Toolbar variant="dense" sx={{ padding: { xs: '10px 0', md: 0 } }}>
+    <CustomHeader position='sticky'>
+      <Container maxWidth='xl' component='nav'>
+        <Toolbar variant='dense' sx={{ padding: { xs: '10px 0', md: 0 } }}>
           <IconButton
-            aria-label="open drawer"
+            aria-label='open drawer'
             onClick={handleOpenDrawer}
             sx={{ display: { md: 'none' }, color: common.black, padding: 0 }}
           >
             {openDrawer ? (
-              <CloseRoundedIcon fontSize="large" />
+              <CloseRoundedIcon fontSize='large' />
             ) : (
-              <SortRoundedIcon fontSize="large" />
+              <SortRoundedIcon fontSize='large' />
             )}
           </IconButton>
           <Logo>
             <CustomLink
-              href="/"
+              href='/'
               sx={{
                 color: common.black,
                 padding: 0,
               }}
-              variant="text"
+              variant='text'
             >
               <Typography
-                variant="h2"
-                component="h1"
+                variant='h2'
+                component='h1'
                 sx={{
                   [theme.breakpoints.down('md')]: { fontSize: '16px' },
                 }}
@@ -140,28 +140,28 @@ export default function Header(props) {
             </CustomLink>
           </Logo>
           <Box sx={{ display: { xs: 'none', md: 'block' } }}>
-            {links.map((item) => {
+            {links.map(item => {
               return (
                 <Link
                   href={item.href}
                   key={item.text}
-                  variant="text"
+                  variant='text'
                   sx={{
                     '&:after': {
                       display: router.pathname === item.href ? 'block' : 'none',
                     },
                   }}
                 >
-                  <Typography variant="body2">{item.text}</Typography>
+                  <Typography variant='body2'>{item.text}</Typography>
                 </Link>
               );
             })}
           </Box>
           {router.pathname === '/search' && (
-            <Box sx={{ marginLeft: 'auto' }} id="filter-options">
+            <Box sx={{ marginLeft: 'auto' }} id='filter-options'>
               <Button
                 variant={openFilter ? 'contained' : 'outlined'}
-                color="secondary"
+                color='secondary'
                 onClick={handleOpenFilter}
               >
                 <FilterListOutlinedIcon
@@ -174,20 +174,20 @@ export default function Header(props) {
         </Toolbar>
       </Container>
       {router.pathname === '/search' && <Filter openFilter={openFilter} />}
-      <CustomDrawer anchor="left" open={openDrawer} hideBackdrop>
-        {links.map((item) => {
+      <CustomDrawer anchor='left' open={openDrawer} hideBackdrop>
+        {links.map(item => {
           return (
             <Link
               href={item.href}
               key={item.text}
-              variant="text"
+              variant='text'
               sx={{
                 '&:after': {
                   display: router.pathname === item.href ? 'block' : 'none',
                 },
               }}
             >
-              <Typography variant="body2">{item.text}</Typography>
+              <Typography variant='body2'>{item.text}</Typography>
             </Link>
           );
         })}

@@ -35,12 +35,12 @@ export default function Filter(props) {
   const handleState = ({ target }, autocompleteValue) => {
     const { value, name } = target;
 
-    let autocompleteName;
-    if (target.querySelector('input') !== null) {
-      autocompleteName = target.querySelector('input').name;
-    }
+    const autocompleteName =
+      target.querySelector('input') !== null
+        ? target.querySelector('input').name
+        : null;
 
-    setSearchParams((prev) => ({
+    setSearchParams(prev => ({
       ...prev,
       ...(name && { [name]: value }),
       ...(autocompleteName && {
@@ -63,9 +63,9 @@ export default function Filter(props) {
 
   return (
     <Collapse in={props.openFilter}>
-      <Fade in={changedState} id="clear-filter">
+      <Fade in={changedState} id='clear-filter'>
         <Button
-          variant="text"
+          variant='text'
           sx={{
             color: common.black,
             display: { xs: 'none', md: 'inline-flex' },
@@ -78,18 +78,18 @@ export default function Filter(props) {
           Clear Filters
         </Button>
       </Fade>
-      <Divider variant="dashed" />
-      <Container maxWidth="xl" sx={{ paddingTop: 18, paddingBottom: 18 }}>
+      <Divider variant='dashed' />
+      <Container maxWidth='xl' sx={{ paddingTop: 18, paddingBottom: 18 }}>
         <Grid container columnSpacing={15} rowSpacing={8}>
           <Grid item xs={12} sm={6} md={3} lg={2}>
             <FormControl fullWidth>
-              <InputLabel id="keyword" shrink>
+              <InputLabel id='keyword' shrink>
                 Keyword
               </InputLabel>
               <Input
-                placeholder="Keyword"
-                id="keyword"
-                name="keyword"
+                placeholder='Keyword'
+                id='keyword'
+                name='keyword'
                 fullWidth
                 value={searchParams.keyword}
                 onChange={handleState}
@@ -98,43 +98,43 @@ export default function Filter(props) {
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={2}>
             <FormControl fullWidth>
-              <InputLabel htmlFor="gender" shrink>
+              <InputLabel htmlFor='gender' shrink>
                 Gender
               </InputLabel>
               <NativeSelect
-                id="gender"
-                name="gender"
+                id='gender'
+                name='gender'
                 value={searchParams.gender}
                 onChange={handleState}
               >
-                <option value="">Gender</option>
-                <option value="Female">Female</option>
-                <option value="Male">Male</option>
-                <option value="-">Undefined</option>
+                <option value=''>Gender</option>
+                <option value='Female'>Female</option>
+                <option value='Male'>Male</option>
+                <option value='-'>Undefined</option>
               </NativeSelect>
             </FormControl>
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={2}>
             <FormControl fullWidth>
-              <InputLabel htmlFor="alignment" shrink>
+              <InputLabel htmlFor='alignment' shrink>
                 Alignment
               </InputLabel>
               <NativeSelect
-                id="alignment"
-                name="alignment"
+                id='alignment'
+                name='alignment'
                 value={searchParams.alignment}
                 onChange={handleState}
               >
-                <option value="">Alignment</option>
-                <option value="Good">Good</option>
-                <option value="Bad">Bad</option>
-                <option value="Neutral">Neutral</option>
+                <option value=''>Alignment</option>
+                <option value='Good'>Good</option>
+                <option value='Bad'>Bad</option>
+                <option value='Neutral'>Neutral</option>
               </NativeSelect>
             </FormControl>
           </Grid>
           <Grid item xs={12} sm={6} md={3} lg={2}>
             <FormControl fullWidth>
-              <InputLabel htmlFor="powerStats" shrink>
+              <InputLabel htmlFor='powerStats' shrink>
                 Powerstats
               </InputLabel>
               <Autocomplete
@@ -145,19 +145,19 @@ export default function Filter(props) {
                   },
                 }}
                 multiple
-                id="powerStats"
+                id='powerStats'
                 options={powerStatsOptions}
                 disableClearable
                 value={searchParams.powerStats}
-                onChange={(e, value) => {
-                  setSearchParams((prev) => ({
+                onChange={value => {
+                  setSearchParams(prev => ({
                     ...prev,
                     powerStats: value,
                   }));
                 }}
                 ChipProps={{
                   deleteIcon: <Close />,
-                  onDelete: (event) => {
+                  onDelete: event => {
                     const power = event.target.previousSibling.innerHTML;
 
                     // Delete slider value
@@ -166,16 +166,16 @@ export default function Filter(props) {
                     setSearchParams(copyObject);
 
                     // Delete autocomplete value
-                    setSearchParams((prev) => ({
+                    setSearchParams(prev => ({
                       ...prev,
                       powerStats: searchParams.powerStats.filter(
-                        (current) => current !== power
+                        current => current !== power
                       ),
                     }));
                   },
                 }}
-                renderInput={(params) => (
-                  <TextField {...params} variant="standard" name="powerStats" />
+                renderInput={params => (
+                  <TextField {...params} variant='standard' name='powerStats' />
                 )}
               />
             </FormControl>
@@ -188,8 +188,8 @@ export default function Filter(props) {
                     <FormControl fullWidth>
                       <Typography
                         id={stat}
-                        variant="body1"
-                        component="p"
+                        variant='body1'
+                        component='p'
                         sx={{ mb: 4, textTransform: 'capitalize' }}
                       >
                         {stat}
@@ -203,7 +203,7 @@ export default function Filter(props) {
                         min={0}
                         max={100}
                         onChangeCommitted={handleState}
-                        valueLabelDisplay="auto"
+                        valueLabelDisplay='auto'
                         sx={{
                           marginLeft: 'auto',
                           marginRight: 'auto',

@@ -8,7 +8,7 @@ import { useContext, useEffect, useState } from 'react';
 import { superheroesInfo } from '../pages/_app';
 import CustomModal from './modal';
 
-const StyleSwitch = styled(Switch)(({ theme }) => ({
+const StyleSwitch = styled(Switch)(() => ({
   padding: 8,
   '& .MuiSwitch-switchBase': {
     padding: 8,
@@ -62,20 +62,20 @@ function CustomSwitch({ label, labelPlacement, color, superhero }) {
   const { myTeam, setMyTeam } = useContext(superheroesInfo);
 
   useEffect(() => {
-    const isSelected = myTeam.some((item) => {
+    const isSelected = myTeam.some(item => {
       if (item.id === superhero.id) {
         return true;
       }
       return false;
     });
     setChecked(isSelected);
-  }, [myTeam]);
+  }, [myTeam, superhero.id]);
 
-  const handleModal = (open) => {
+  const handleModal = open => {
     setOpenModal(open);
   };
 
-  const handleChange = (event) => {
+  const handleChange = event => {
     if (event.target.checked) {
       // Add superhero to myTeam
       if (
@@ -97,10 +97,10 @@ function CustomSwitch({ label, labelPlacement, color, superhero }) {
         });
         return;
       }
-      setMyTeam((prev) => [...prev, superhero]);
+      setMyTeam(prev => [...prev, superhero]);
     } else {
       // Remove superhero from myTeam
-      setMyTeam(myTeam.filter((current) => current.name !== superhero.name));
+      setMyTeam(myTeam.filter(current => current.name !== superhero.name));
     }
   };
 

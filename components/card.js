@@ -13,7 +13,7 @@ import { superheroesInfo } from '../pages/_app';
 import BgCard from '../public/images/bg-card.svg';
 import CustomSwitch from './switch';
 
-const CustomCardName = styled(Typography)(({ theme, expanded }) => ({
+const CustomCardName = styled(Typography)(() => ({
   whiteSpace: 'nowrap',
   overflow: 'hidden',
   textOverflow: 'ellipsis',
@@ -98,14 +98,14 @@ export default function CustomCard({ superhero }) {
   const { myTeam } = useContext(superheroesInfo);
 
   useEffect(() => {
-    const isSelected = myTeam.some((item) => {
+    const isSelected = myTeam.some(item => {
       if (item.id === superhero.id) {
         return true;
       }
       return false;
     });
     setSelected(isSelected);
-  }, [myTeam]);
+  }, [myTeam, superhero.id]);
 
   const handleExpandClick = () => {
     setExpanded(!expanded);
@@ -126,8 +126,8 @@ export default function CustomCard({ superhero }) {
     >
       <Image
         src={superhero.images.md}
-        layout="fill"
-        objectFit="cover"
+        layout='fill'
+        objectFit='cover'
         alt={superhero.name}
         priority
       />
@@ -137,30 +137,30 @@ export default function CustomCard({ superhero }) {
       >
         <CustomLink
           href={`details/${superhero.slug}`}
-          variant="text"
+          variant='text'
           sx={{ width: '100%' }}
         >
-          <CustomCardName variant="h3">{superhero.name}</CustomCardName>
+          <CustomCardName variant='h3'>{superhero.name}</CustomCardName>
         </CustomLink>
         <CustomSwitch superhero={superhero} />
         {superhero.powerstats && (
           <Collapse in={expanded}>
-            <Typography variant="h4" component="p" mb={2.5}>
+            <Typography variant='h4' component='p' mb={2.5}>
               Intelligence : {superhero.powerstats.intelligence || '-'}
             </Typography>
-            <Typography variant="h4" component="p" mb={2.5}>
+            <Typography variant='h4' component='p' mb={2.5}>
               strength : {superhero.powerstats.strength || '-'}
             </Typography>
-            <Typography variant="h4" component="p" mb={2.5}>
+            <Typography variant='h4' component='p' mb={2.5}>
               Speed : {superhero.powerstats.speed || '-'}
             </Typography>
-            <Typography variant="h4" component="p" mb={2.5}>
+            <Typography variant='h4' component='p' mb={2.5}>
               Durability : {superhero.powerstats.durability || '-'}
             </Typography>
-            <Typography variant="h4" component="p" mb={2.5}>
+            <Typography variant='h4' component='p' mb={2.5}>
               Power : {superhero.powerstats.power || '-'}
             </Typography>
-            <Typography variant="h4" component="p" mb={2.5}>
+            <Typography variant='h4' component='p' mb={2.5}>
               combat : {superhero.powerstats.combat || '-'}
             </Typography>
           </Collapse>
@@ -168,11 +168,11 @@ export default function CustomCard({ superhero }) {
         <CustomCardButton
           expanded={expanded.toString()}
           onClick={handleExpandClick}
-          aria-label="Show more"
-          size="large"
+          aria-label='Show more'
+          size='large'
           aria-expanded={expanded}
         >
-          <ExpandCircleDownOutlined fontSize="inherit" />
+          <ExpandCircleDownOutlined fontSize='inherit' />
         </CustomCardButton>
       </CustomCardContent>
     </Card>

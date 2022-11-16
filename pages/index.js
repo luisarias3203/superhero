@@ -34,23 +34,23 @@ export default function Home() {
       >
         <Image
           src={BlueBg}
-          layout="fill"
-          objectFit="cover"
+          layout='fill'
+          objectFit='cover'
           quality={100}
-          alt="blue background"
+          alt='blue background'
           priority
         />
       </Box>
-      <Container maxWidth="lg" align="center">
-        <Grid container columnSpacing={0} alignItems="center">
+      <Container maxWidth='lg' align='center'>
+        <Grid container columnSpacing={0} alignItems='center'>
           <Grid item xs={12} lg={6} mb={{ xs: 10, lg: 0 }}>
             <Box width={{ xs: 180, lg: '100%' }}>
-              <Image src={DC} alt="DC Comics" />
+              <Image src={DC} alt='DC Comics' />
             </Box>
           </Grid>
           <Grid item xs={12} lg={6}>
             <Slide
-              direction="down"
+              direction='down'
               in
               easing={{ enter: theme.transitions.easing.easeOut }}
               timeout={1000}
@@ -67,18 +67,18 @@ export default function Home() {
               }}
             >
               <Box>
-                <Image src={SpiderMan} alt="Spider man" />
+                <Image src={SpiderMan} alt='Spider man' />
               </Box>
             </Slide>
             <Box>
-              <Typography variant="h1" mb={15} color="white">
+              <Typography variant='h1' mb={15} color='white'>
                 Create Your own Team of Superheroes
               </Typography>
               <CustomLink
-                href="/search"
-                variant="contained"
-                color="secondary"
-                size="large"
+                href='/search'
+                variant='contained'
+                color='secondary'
+                size='large'
               >
                 Enter
               </CustomLink>

@@ -56,10 +56,10 @@ function Search() {
   return (
     <Layout>
       <TextureBg />
-      <Container maxWidth="lg" sx={{ pt: '50px', pb: '250px' }}>
+      <Container maxWidth='lg' sx={{ pt: '50px', pb: '250px' }}>
         <Grid container columnSpacing={18} rowSpacing={13}>
           {superheroes &&
-            superheroes.map((superhero, index) => {
+            superheroes.map(superhero => {
               return (
                 <Grid item xs={12} sm={6} lg={3} key={superhero.id}>
                   <CustomCard superhero={superhero} />
@@ -68,12 +68,12 @@ function Search() {
             })}
         </Grid>
 
-        <Box textAlign="center">
+        <Box textAlign='center'>
           {data && currentPage < data.totalPages - 1 && (
             <Button
-              variant="contained"
-              color="secondary"
-              size="large"
+              variant='contained'
+              color='secondary'
+              size='large'
               onClick={handleLimit}
               sx={{ mt: '50px' }}
             >
@@ -81,13 +81,13 @@ function Search() {
             </Button>
           )}
           {!data && (
-            <Typography variant="h4" component="h2" mt={30}>
+            <Typography variant='h4' component='h2' mt={30}>
               Loading
             </Typography>
           )}
 
           {data && currentPage >= data.totalPages - 1 && (
-            <Typography variant="h4" component="h2" mt={30}>
+            <Typography variant='h4' component='h2' mt={30}>
               The End
             </Typography>
           )}
