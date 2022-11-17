@@ -5,31 +5,30 @@ export const endPoint = '/superhero';
 
 const Superhero = {
   search: async (requestParams, pageValue, ...options) => {
-    let urlToFetch = `${baseUrl}${endPoint}${requestParams}`;
+    const page = `page=${pageValue}`;
+    const urlToFetch =
+      requestParams === '/getAll?'
+        ? `${baseUrl}${endPoint}${requestParams}${page}`
+        : `${baseUrl}${endPoint}${requestParams}`;
     try {
-      let response;
-      if (requestParams === '/getAll?') {
-        const page = `page=${pageValue}`;
-        urlToFetch = `${urlToFetch}${page}`;
-        response = await fetch(urlToFetch, {
-          headers: {
-            apiKey: `${process.env.API_KEY}`,
-            'Content-Type': 'application/json',
-          },
-          mode: 'cors',
-          method: 'POST',
-          body: JSON.stringify(options[0]),
-        });
-      }
-      if (requestParams.includes('/getBySlug')) {
-        response = await fetch(urlToFetch, {
-          headers: {
-            apiKey: `${process.env.API_KEY}`,
-          },
-          mode: 'cors',
-          method: 'GET',
-        });
-      }
+      const response =
+        requestParams === '/getAll?'
+          ? await fetch(urlToFetch, {
+              headers: {
+                apiKey: `${process.env.API_KEY}`,
+                'Content-Type': 'application/json',
+              },
+              mode: 'cors',
+              method: 'POST',
+              body: JSON.stringify(options[0]),
+            })
+          : await fetch(urlToFetch, {
+              headers: {
+                apiKey: `${process.env.API_KEY}`,
+              },
+              mode: 'cors',
+              method: 'GET',
+            });
 
       if (typeof response !== 'undefined') {
         // console.log(response);

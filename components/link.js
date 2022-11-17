@@ -3,7 +3,7 @@ import NextLink from 'next/link';
 import { forwardRef } from 'react';
 
 const CustomLink = forwardRef(function Link(
-  { href, prefetch, replace, scroll, shallow, locale, ...props },
+  { href, replace, scroll, shallow, locale, ...props },
   ref
 ) {
   return (
@@ -13,6 +13,7 @@ const CustomLink = forwardRef(function Link(
       scroll={scroll}
       shallow={shallow}
       locale={locale}
+      ref={ref}
       passHref
     >
       <Button {...props} />

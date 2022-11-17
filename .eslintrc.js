@@ -10,10 +10,13 @@ module.exports = {
   },
   extends: [
     'next/core-web-vitals',
+    'standard',
+    'eslint:recommended',
+    'plugin:react-hooks/recommended',
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
-    'standard',
-    'eslint-config-prettier',
+    'plugin:jsx-a11y/recommended',
+    'plugin:prettier/recommended',
   ],
   parserOptions: {
     ecmaFeatures: {
@@ -22,8 +25,16 @@ module.exports = {
     ecmaVersion: 'latest',
     sourceType: 'module',
   },
-  plugins: ['react'],
+  plugins: ['react', 'jsx-a11y'],
   rules: {
     'react/prop-types': 'off',
+    'init-declarations': ['error', 'always'],
+    'no-unused-vars': ['error', { args: 'all' }],
+    'react/jsx-boolean-value': ['error', 'never'],
+    'react/no-unused-state': 'error',
+    'no-confusing-arrow': [
+      'error',
+      { allowParens: true, onlyOneSimpleParam: false },
+    ],
   },
 };

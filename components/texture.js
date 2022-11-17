@@ -4,8 +4,9 @@ import OrangeTexture from '../public/images/orange-texture-dots.svg';
 import theme from '../styles/theme';
 
 export const TextureBg = styled.div`
-  background-image: url(${(props) =>
-    props.orange ? OrangeTexture.src : BlueTexture.src});
+  background-image: url(${props => {
+    return props.orange ? OrangeTexture.src : BlueTexture.src;
+  }});
   background-color: #f8f8f8;
   background-repeat: no-repeat;
   background-position: 0;
