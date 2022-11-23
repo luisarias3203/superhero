@@ -22,7 +22,23 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <title>Superhero App</title>
-        <meta name='description' content='Superhero App' />
+        <meta name='author' content='Luis Alexander Arias Aguirre' />
+        <meta name='rating' content='safe for kids' />
+        <meta name='language' content='english' />
+        <meta name='title' content='Superhero App' />
+        <meta
+          name='description'
+          content='The website allows a Superhero Leader (Anonymous User) to create a team of super hero&#39;s based on specific qualities such as strength, speed, super power etc. Once the team has been created, the Superhero Lead can take their team and rule the world!'
+        />
+        <meta property='og:title' content='Superhero App' />
+        <meta property='og:type' content='website' />
+        <meta property='og:image' content='../public/images/dc-comics.png' />
+        <meta property='og:url' content='https://luis-superhero.vercel.app/' />
+        <meta
+          property='og:description'
+          content='The website allows a Superhero Leader (Anonymous User) to create a team of super hero&#39;s based on specific qualities such as strength, speed, super power etc. Once the team has been created, the Superhero Lead can take their team and rule the world!'
+        />
+        <meta property='og:site_name' content='Superhero App' />
         <link rel='icon' href='/favicon.ico' />
         <link
           rel='prefetch'
