@@ -4,7 +4,7 @@ import Grid from '@mui/material/Grid';
 import Slide from '@mui/material/Slide';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
-import CustomLink from '../components/link';
+import CustomLink from '../components/Link';
 import BlueBg from '../public/images/blue-background.png';
 import DC from '../public/images/dc-comics.png';
 import SpiderMan from '../public/images/spider-man.png';

@@ -6,7 +6,7 @@ import Switch from '@mui/material/Switch';
 import { Box } from '@mui/system';
 import { useContext, useEffect, useState } from 'react';
 import { superheroesInfo } from '../pages/_app';
-import CustomModal from './modal';
+import CustomModal from './Modal';
 
 const StyleSwitch = styled(Switch)(() => ({
   padding: 8,

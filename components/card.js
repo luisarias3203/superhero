@@ -8,10 +8,10 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import Image from 'next/image';
 import { useContext, useEffect, useState } from 'react';
-import CustomLink from '../components/link';
 import { superheroesInfo } from '../pages/_app';
 import BgCard from '../public/images/bg-card.svg';
-import CustomSwitch from './switch';
+import CustomLink from './Link';
+import CustomSwitch from './Switch';
 
 const CustomCardName = styled(Typography)(() => ({
   whiteSpace: 'nowrap',

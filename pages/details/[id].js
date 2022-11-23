@@ -3,9 +3,9 @@ import { common } from '@mui/material/colors';
 import { Container } from '@mui/system';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import Layout from '../../components/layout';
-import CustomSwitch from '../../components/switch';
-import { TextureBg } from '../../components/texture';
+import Layout from '../../components/Layout';
+import CustomSwitch from '../../components/Switch';
+import { TextureBg } from '../../components/Texture';
 import theme from '../../styles/theme';
 import Superhero from '../api/superheroADK';
 

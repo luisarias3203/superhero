@@ -11,9 +11,9 @@ import Drawer from '@mui/material/Drawer';
 import IconButton from '@mui/material/IconButton';
 import { useRouter } from 'next/router';
 import { useState } from 'react';
-import CustomLink from '../components/link';
 import theme from '../styles/theme';
-import Filter from './filter';
+import Filter from './Filter';
+import CustomLink from './Link';
 
 const CustomHeader = styled(AppBar)(({ theme }) => ({
   color: common.black,

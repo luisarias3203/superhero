@@ -1,7 +1,7 @@
 import { Container, Typography } from '@mui/material';
-import Layout from '../components/layout';
-import CustomLink from '../components/link';
-import { TextureBg } from '../components/texture';
+import Layout from '../components/Layout';
+import CustomLink from '../components/Link';
+import { TextureBg } from '../components/Texture';
 
 export default function Custom404() {
   return (

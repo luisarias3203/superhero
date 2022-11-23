@@ -1,9 +1,9 @@
 import { Box, Container, Grid, Typography } from '@mui/material';
 import { useContext } from 'react';
-import CustomCard from '../components/card';
-import Layout from '../components/layout';
-import CustomLink from '../components/link';
-import { TextureBg } from '../components/texture';
+import CustomCard from '../components/Card';
+import Layout from '../components/Layout';
+import CustomLink from '../components/Link';
+import { TextureBg } from '../components/Texture';
 import theme from '../styles/theme';
 import { superheroesInfo } from './_app';
 

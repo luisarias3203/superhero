@@ -3,10 +3,9 @@ import Container from '@mui/material/Container';
 import Grid from '@mui/material/Grid';
 import { useContext, useEffect, useState } from 'react';
 import useSWR from 'swr';
-import CustomCard from '../components/card';
-import Layout from '../components/layout';
-import { TextureBg } from '../components/texture';
-// import Superhero from './api/superheroADK';
+import CustomCard from '../components/Card';
+import Layout from '../components/Layout';
+import { TextureBg } from '../components/Texture';
 import { baseUrl, endPoint } from './api/superheroADK';
 import { superheroesInfo } from './_app';
 
