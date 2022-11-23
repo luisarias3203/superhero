@@ -140,7 +140,9 @@ export default function CustomCard({ superhero }) {
           variant='text'
           sx={{ width: '100%' }}
         >
-          <CustomCardName variant='h3'>{superhero.name}</CustomCardName>
+          <CustomCardName variant='h3' component='h2'>
+            {superhero.name}
+          </CustomCardName>
         </CustomLink>
         <CustomSwitch superhero={superhero} />
         {superhero.powerstats && (

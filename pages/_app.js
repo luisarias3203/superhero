@@ -32,7 +32,7 @@ function MyApp({ Component, pageProps }) {
         />
         <meta property='og:title' content='Superhero App' />
         <meta property='og:type' content='website' />
-        <meta property='og:image' content='../public/images/dc-comics.png' />
+        <meta property='og:image' content='favicon.ico' />
         <meta property='og:url' content='https://luis-superhero.vercel.app/' />
         <meta
           property='og:description'
