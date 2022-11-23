@@ -16,10 +16,10 @@ export default function Team() {
       <Container maxWidth='lg' sx={{ pt: '50px', pb: '50px' }}>
         {myTeam.length ? (
           <Grid container columnSpacing={18} rowSpacing={13}>
-            {myTeam.map((superhero, index) => {
+            {myTeam.map(superhero => {
               return (
-                <Grid item xs={12} sm={6} lg={3} key={index}>
-                  <CustomCard superhero={superhero} switch />
+                <Grid item xs={12} sm={6} lg={3} key={superhero}>
+                  <CustomCard superhero={superhero.id} switch />
                 </Grid>
               );
             })}

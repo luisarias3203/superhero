@@ -36,5 +36,6 @@ module.exports = {
       'error',
       { allowParens: true, onlyOneSimpleParam: false },
     ],
+    'react/no-array-index-key': 'error',
   },
 };

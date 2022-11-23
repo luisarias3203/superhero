@@ -4,7 +4,7 @@ import Modal from '@mui/material/Modal';
 import { useState } from 'react';
 import theme from '../styles/theme';
 
-const CustomModal = props => {
+function CustomModal(props) {
   const [open, setOpen] = useState(true);
 
   const handleClose = () => {
@@ -58,6 +58,6 @@ const CustomModal = props => {
       </Box>
     </Modal>
   );
-};
+}
 
 export default CustomModal;
