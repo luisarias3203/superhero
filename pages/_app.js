@@ -25,7 +25,7 @@ function MyApp({ Component, pageProps }) {
         <meta
           name='keywords'
           content='Marvel, DC, comics, search superheroes, compare superheroes, Luis Alexander Arias Aguirre, create a team of superheroes, Superhero App'
-        ></meta>
+        />
         <meta name='author' content='Luis Alexander Arias Aguirre' />
         <meta name='rating' content='safe for kids' />
         <meta name='language' content='english' />
