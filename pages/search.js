@@ -87,7 +87,7 @@ function Search() {
 
           {data && currentPage >= data.totalPages - 1 && (
             <Typography variant='h4' component='h2' mt={30}>
-              The End
+              End
             </Typography>
           )}
         </Box>

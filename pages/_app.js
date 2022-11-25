@@ -22,6 +22,10 @@ function MyApp({ Component, pageProps }) {
     <>
       <Head>
         <title>Superhero App</title>
+        <meta
+          name='keywords'
+          content='Marvel, DC, comics, search superheroes, compare superheroes, Luis Alexander Arias Aguirre, create a team of superheroes, Superhero App'
+        ></meta>
         <meta name='author' content='Luis Alexander Arias Aguirre' />
         <meta name='rating' content='safe for kids' />
         <meta name='language' content='english' />
@@ -40,6 +44,9 @@ function MyApp({ Component, pageProps }) {
         />
         <meta property='og:site_name' content='Superhero App' />
         <link rel='icon' href='/favicon.ico' />
+        <link rel='manifest' href='/manifest.json' />
+        <link rel='apple-touch-icon' href='/icons/icon-192x192.png' />
+        <meta name='theme-color' content='#0084FF' />
         <link
           rel='prefetch'
           href='/fonts/typography/HelveticaNeueRegular.woff2'
