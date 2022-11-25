@@ -18,8 +18,8 @@ export default function Team() {
           <Grid container columnSpacing={18} rowSpacing={13}>
             {myTeam.map(superhero => {
               return (
-                <Grid item xs={12} sm={6} lg={3} key={superhero}>
-                  <CustomCard superhero={superhero.id} switch />
+                <Grid item xs={12} sm={6} lg={3} key={superhero.id}>
+                  <CustomCard superhero={superhero} switch />
                 </Grid>
               );
             })}
