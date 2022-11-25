@@ -43,10 +43,6 @@ function MyApp({ Component, pageProps }) {
           content='The website allows a Superhero Leader (Anonymous User) to create a team of super hero&#39;s based on specific qualities such as strength, speed, super power etc. Once the team has been created, the Superhero Lead can take their team and rule the world!'
         />
         <meta property='og:site_name' content='Superhero App' />
-        <link rel='icon' href='/favicon.ico' />
-        <link rel='manifest' href='/manifest.json' />
-        <link rel='apple-touch-icon' href='/icons/icon-192x192.png' />
-        <meta name='theme-color' content='#0084FF' />
         <link
           rel='prefetch'
           href='/fonts/typography/HelveticaNeueRegular.woff2'
