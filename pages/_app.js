@@ -1,22 +1,22 @@
-import { ThemeProvider } from '@emotion/react';
-import CssBaseline from '@mui/material/CssBaseline';
-import { Analytics } from '@vercel/analytics/react';
-import Head from 'next/head';
-import React, { useState } from 'react';
-import theme from '../styles/theme';
+import { ThemeProvider } from '@emotion/react'
+import CssBaseline from '@mui/material/CssBaseline'
+import { Analytics } from '@vercel/analytics/react'
+import Head from 'next/head'
+import React, { useState } from 'react'
+import theme from '../styles/theme'
 
-export const superheroesInfo = React.createContext();
+export const superheroesInfo = React.createContext()
 
 export const initialState = {
   keyword: '',
   gender: '',
   alignment: '',
-  powerStats: [],
-};
+  powerStats: []
+}
 
-function MyApp({ Component, pageProps }) {
-  const [searchParams, setSearchParams] = useState(initialState);
-  const [myTeam, setMyTeam] = useState([]);
+function MyApp ({ Component, pageProps }) {
+  const [searchParams, setSearchParams] = useState(initialState)
+  const [myTeam, setMyTeam] = useState([])
 
   return (
     <>
@@ -75,7 +75,7 @@ function MyApp({ Component, pageProps }) {
             searchParams,
             setSearchParams,
             myTeam,
-            setMyTeam,
+            setMyTeam
           }}
         >
           <Component {...pageProps} />
@@ -83,7 +83,7 @@ function MyApp({ Component, pageProps }) {
       </ThemeProvider>
       <Analytics />
     </>
-  );
+  )
 }
 
-export default MyApp;
+export default MyApp

@@ -1,13 +1,13 @@
-import { alpha, Box, Grid, styled, Typography } from '@mui/material';
-import { common } from '@mui/material/colors';
-import { Container } from '@mui/system';
-import Image from 'next/image';
-import { useRouter } from 'next/router';
-import Layout from '../../components/Layout';
-import CustomSwitch from '../../components/Switch';
-import { TextureBg } from '../../components/Texture';
-import theme from '../../styles/theme';
-import Superhero from '../api/superheroADK';
+import { alpha, Box, Grid, styled, Typography } from '@mui/material'
+import { common } from '@mui/material/colors'
+import { Container } from '@mui/system'
+import Image from 'next/image'
+import { useRouter } from 'next/router'
+import Layout from '../../components/Layout'
+import CustomSwitch from '../../components/Switch'
+import { TextureBg } from '../../components/Texture'
+import theme from '../../styles/theme'
+import Superhero from '../api/superheroADK'
 
 const ImageBox = styled(Box)(() => ({
   display: 'flex',
@@ -33,19 +33,19 @@ const ImageBox = styled(Box)(() => ({
     zIndex: -1,
     width: '100%',
     height: '300px',
-    content: "''",
-  },
-}));
+    content: "''"
+  }
+}))
 
-export default function HeroDetail({ superhero }) {
-  const router = useRouter();
+export default function HeroDetail ({ superhero }) {
+  const router = useRouter()
 
   if (router.isFallback) {
     return (
       <Typography variant='h4' component='h2' mt={30} textAlign='center'>
         Loading
       </Typography>
-    );
+    )
   }
 
   return (
@@ -63,8 +63,8 @@ export default function HeroDetail({ superhero }) {
                 position: 'relative',
                 [theme.breakpoints.up('md')]: {
                   minHeight: 'calc(100vh - 115px)',
-                  marginBottom: 0,
-                },
+                  marginBottom: 0
+                }
               }}
             >
               <Image
@@ -378,32 +378,32 @@ export default function HeroDetail({ superhero }) {
         </Grid>
       )}
     </Layout>
-  );
+  )
 }
 
-export async function getStaticPaths() {
-  const superheroes = await Superhero.search(`/getAll?`, '0&limit=0');
+export async function getStaticPaths () {
+  const superheroes = await Superhero.search('/getAll?', '0&limit=0')
 
-  const data = superheroes.data ? superheroes.data : [];
+  const data = superheroes.data ? superheroes.data : []
 
   const paths = data.map(superhero => {
     return {
-      params: { id: `${superhero.slug}` },
-    };
-  });
+      params: { id: `${superhero.slug}` }
+    }
+  })
 
   return {
     paths,
-    fallback: false,
-  };
+    fallback: false
+  }
 }
 
-export async function getStaticProps({ params }) {
-  const superhero = await Superhero.search(`/getBySlug/${params.id}`);
+export async function getStaticProps ({ params }) {
+  const superhero = await Superhero.search(`/getBySlug/${params.id}`)
 
   return {
     props: {
-      superhero,
-    },
-  };
+      superhero
+    }
+  }
 }

@@ -1,11 +1,11 @@
-import styled from '@emotion/styled';
-import BlueTexture from '../public/images/blue-texture-dots.svg';
-import OrangeTexture from '../public/images/orange-texture-dots.svg';
-import theme from '../styles/theme';
+import styled from '@emotion/styled'
+import BlueTexture from '../public/images/blue-texture-dots.svg'
+import OrangeTexture from '../public/images/orange-texture-dots.svg'
+import theme from '../styles/theme'
 
 export const TextureBg = styled.div`
   background-image: url(${props => {
-    return props.orange ? OrangeTexture.src : BlueTexture.src;
+    return props.orange ? OrangeTexture.src : BlueTexture.src
   }});
   background-color: #f8f8f8;
   background-repeat: no-repeat;
@@ -24,4 +24,4 @@ export const TextureBg = styled.div`
     background-size: cover;
     background-position: 40vw 0vw;
   }
-`;
+`

@@ -1,9 +1,9 @@
-import { Container, Typography } from '@mui/material';
-import Layout from '../components/Layout';
-import CustomLink from '../components/Link';
-import { TextureBg } from '../components/Texture';
+import { Container, Typography } from '@mui/material'
+import Layout from '../components/Layout'
+import CustomLink from '../components/Link'
+import { TextureBg } from '../components/Texture'
 
-export default function Custom404() {
+export default function Custom404 () {
   return (
     <Layout>
       <TextureBg />
@@ -19,5 +19,5 @@ export default function Custom404() {
         </CustomLink>
       </Container>
     </Layout>
-  );
+  )
 }

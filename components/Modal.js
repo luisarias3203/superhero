@@ -1,16 +1,16 @@
-import { Close } from '@mui/icons-material';
-import { Box, IconButton, Typography } from '@mui/material';
-import Modal from '@mui/material/Modal';
-import { useState } from 'react';
-import theme from '../styles/theme';
+import { Close } from '@mui/icons-material'
+import { Box, IconButton, Typography } from '@mui/material'
+import Modal from '@mui/material/Modal'
+import { useState } from 'react'
+import theme from '../styles/theme'
 
-function CustomModal(props) {
-  const [open, setOpen] = useState(true);
+function CustomModal (props) {
+  const [open, setOpen] = useState(true)
 
   const handleClose = () => {
-    setOpen(false);
-    props.handleModal(false);
-  };
+    setOpen(false)
+    props.handleModal(false)
+  }
 
   return (
     <Modal
@@ -31,7 +31,7 @@ function CustomModal(props) {
           borderRadius: '2px',
           p: '120px 55px',
           textAlign: 'center',
-          [theme.breakpoints.up('md')]: { maxWidth: 600, width: '80%' },
+          [theme.breakpoints.up('md')]: { maxWidth: 600, width: '80%' }
         }}
       >
         <IconButton
@@ -40,7 +40,7 @@ function CustomModal(props) {
           sx={{
             position: 'absolute',
             right: '15px',
-            top: '15px',
+            top: '15px'
           }}
         >
           <Close sx={{ fontSize: 26 }} />
@@ -57,7 +57,7 @@ function CustomModal(props) {
         </Typography>
       </Box>
     </Modal>
-  );
+  )
 }
 
-export default CustomModal;
+export default CustomModal
