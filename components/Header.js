@@ -1,27 +1,27 @@
-import styled from '@emotion/styled';
-import CloseRoundedIcon from '@mui/icons-material/CloseRounded';
-import FilterListOutlinedIcon from '@mui/icons-material/FilterListOutlined';
-import SortRoundedIcon from '@mui/icons-material/SortRounded';
-import { Button, Toolbar, Typography } from '@mui/material';
-import AppBar from '@mui/material/AppBar';
-import Box from '@mui/material/Box';
-import { common } from '@mui/material/colors';
-import Container from '@mui/material/Container';
-import Drawer from '@mui/material/Drawer';
-import IconButton from '@mui/material/IconButton';
-import { useRouter } from 'next/router';
-import { useState } from 'react';
-import theme from '../styles/theme';
-import Filter from './Filter';
-import CustomLink from './Link';
+import styled from '@emotion/styled'
+import CloseRoundedIcon from '@mui/icons-material/CloseRounded'
+import FilterListOutlinedIcon from '@mui/icons-material/FilterListOutlined'
+import SortRoundedIcon from '@mui/icons-material/SortRounded'
+import { Button, Toolbar, Typography } from '@mui/material'
+import AppBar from '@mui/material/AppBar'
+import Box from '@mui/material/Box'
+import { common } from '@mui/material/colors'
+import Container from '@mui/material/Container'
+import Drawer from '@mui/material/Drawer'
+import IconButton from '@mui/material/IconButton'
+import { useRouter } from 'next/router'
+import { useState } from 'react'
+import theme from '../styles/theme'
+import Filter from './Filter'
+import CustomLink from './Link'
 
 const CustomHeader = styled(AppBar)(({ theme }) => ({
   color: common.black,
   backgroundColor: common.white,
   left: 0,
   boxShadow: '0 2px 4px 0 rgba(176,176,176,0.5)',
-  zIndex: theme.zIndex.modal,
-}));
+  zIndex: theme.zIndex.modal
+}))
 
 const Logo = styled(Box)(({ theme }) => ({
   bottom: 0,
@@ -36,9 +36,9 @@ const Logo = styled(Box)(({ theme }) => ({
   [theme.breakpoints.up('md')]: {
     margin: '0 40px 0 0',
     position: 'static',
-    width: 'auto',
-  },
-}));
+    width: 'auto'
+  }
+}))
 
 const CustomDrawer = styled(Drawer)(() => ({
   top: '55px',
@@ -47,20 +47,20 @@ const CustomDrawer = styled(Drawer)(() => ({
     alignItems: 'center',
     boxShadow: 'none',
     top: '55px',
-    width: '100%',
-  },
-}));
+    width: '100%'
+  }
+}))
 
 const links = [
   {
     text: 'Superheroes',
-    href: '/search',
+    href: '/search'
   },
   {
     text: 'My Team',
-    href: '/my-team',
-  },
-];
+    href: '/my-team'
+  }
+]
 
 const Link = styled(CustomLink)(({ theme }) => ({
   color: common.black,
@@ -78,31 +78,31 @@ const Link = styled(CustomLink)(({ theme }) => ({
     left: 0,
     right: 0,
     bottom: '-8px',
-    width: '100%',
+    width: '100%'
   },
   [theme.breakpoints.up('md')]: {
     marginRight: '30px',
     marginTop: 0,
     '&:after': {
-      width: 'calc(100% - 20px)',
-    },
-  },
-}));
+      width: 'calc(100% - 20px)'
+    }
+  }
+}))
 
-export default function Header() {
-  const [openDrawer, setOpenDrawer] = useState(false);
-  const [openFilter, setOpenFilter] = useState(false);
-  const router = useRouter();
+export default function Header () {
+  const [openDrawer, setOpenDrawer] = useState(false)
+  const [openFilter, setOpenFilter] = useState(false)
+  const router = useRouter()
 
   const handleOpenDrawer = () => {
-    setOpenDrawer(!openDrawer);
-    if (openFilter) setOpenFilter(false);
-  };
+    setOpenDrawer(!openDrawer)
+    if (openFilter) setOpenFilter(false)
+  }
 
   const handleOpenFilter = () => {
-    setOpenFilter(!openFilter);
-    if (openDrawer) setOpenDrawer(false);
-  };
+    setOpenFilter(!openFilter)
+    if (openDrawer) setOpenDrawer(false)
+  }
 
   return (
     <CustomHeader position='sticky'>
@@ -113,18 +113,20 @@ export default function Header() {
             onClick={handleOpenDrawer}
             sx={{ display: { md: 'none' }, color: common.black, padding: 0 }}
           >
-            {openDrawer ? (
-              <CloseRoundedIcon fontSize='large' />
-            ) : (
-              <SortRoundedIcon fontSize='large' />
-            )}
+            {openDrawer
+              ? (
+                <CloseRoundedIcon fontSize='large' />
+                )
+              : (
+                <SortRoundedIcon fontSize='large' />
+                )}
           </IconButton>
           <Logo>
             <CustomLink
               href='/'
               sx={{
                 color: common.black,
-                padding: 0,
+                padding: 0
               }}
               variant='text'
             >
@@ -132,7 +134,7 @@ export default function Header() {
                 variant='h2'
                 component='h1'
                 sx={{
-                  [theme.breakpoints.down('md')]: { fontSize: '16px' },
+                  [theme.breakpoints.down('md')]: { fontSize: '16px' }
                 }}
               >
                 SuperSearch
@@ -148,13 +150,13 @@ export default function Header() {
                   variant='text'
                   sx={{
                     '&:after': {
-                      display: router.pathname === item.href ? 'block' : 'none',
-                    },
+                      display: router.pathname === item.href ? 'block' : 'none'
+                    }
                   }}
                 >
                   <Typography variant='body2'>{item.text}</Typography>
                 </Link>
-              );
+              )
             })}
           </Box>
           {router.pathname === '/search' && (
@@ -183,15 +185,15 @@ export default function Header() {
               variant='text'
               sx={{
                 '&:after': {
-                  display: router.pathname === item.href ? 'block' : 'none',
-                },
+                  display: router.pathname === item.href ? 'block' : 'none'
+                }
               }}
             >
               <Typography variant='body2'>{item.text}</Typography>
             </Link>
-          );
+          )
         })}
       </CustomDrawer>
     </CustomHeader>
-  );
+  )
 }

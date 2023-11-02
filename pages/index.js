@@ -1,16 +1,16 @@
-import Box from '@mui/material/Box';
-import Container from '@mui/material/Container';
-import Grid from '@mui/material/Grid';
-import Slide from '@mui/material/Slide';
-import Typography from '@mui/material/Typography';
-import Image from 'next/image';
-import CustomLink from '../components/Link';
-import BlueBg from '../public/images/blue-background.png';
-import DC from '../public/images/dc-comics.png';
-import SpiderMan from '../public/images/spider-man.png';
-import theme from '../styles/theme';
+import Box from '@mui/material/Box'
+import Container from '@mui/material/Container'
+import Grid from '@mui/material/Grid'
+import Slide from '@mui/material/Slide'
+import Typography from '@mui/material/Typography'
+import Image from 'next/image'
+import CustomLink from '../components/Link'
+import BlueBg from '../public/images/blue-background.png'
+import DC from '../public/images/dc-comics.png'
+import SpiderMan from '../public/images/spider-man.png'
+import theme from '../styles/theme'
 
-export default function Home() {
+export default function Home () {
   return (
     <Box
       sx={{
@@ -18,7 +18,7 @@ export default function Home() {
         pb: 7,
         pt: 15,
         position: 'relative',
-        [theme.breakpoints.up('lg')]: { pt: 17, pb: 0 },
+        [theme.breakpoints.up('lg')]: { pt: 17, pb: 0 }
       }}
     >
       <Box
@@ -29,7 +29,7 @@ export default function Home() {
           position: 'absolute',
           right: 0,
           top: 0,
-          zIndex: -1,
+          zIndex: -1
         }}
       >
         <Image
@@ -62,8 +62,8 @@ export default function Home() {
                 [theme.breakpoints.up('lg')]: {
                   right: '14%',
                   top: -94,
-                  width: 390,
-                },
+                  width: 390
+                }
               }}
             >
               <Box>
@@ -87,5 +87,5 @@ export default function Home() {
         </Grid>
       </Container>
     </Box>
-  );
+  )
 }
