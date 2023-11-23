@@ -1,22 +1,22 @@
-import { alpha, createTheme } from '@mui/material'
-import { common } from '@mui/material/colors'
-import { createBreakpoints } from '@mui/system'
+import { alpha, createTheme } from '@mui/material';
+import { common } from '@mui/material/colors';
+import { createBreakpoints } from '@mui/system';
 
-const breakpoints = createBreakpoints({})
+const breakpoints = createBreakpoints({});
 
 const theme = createTheme({
   palette: {
     primary: {
       main: '#0084FF',
-      light: '#91D5FF'
+      light: '#91D5FF',
     },
     secondary: {
       main: '#F9873D',
-      light: '#EB6E1C'
+      light: '#EB6E1C',
     },
     text: {
-      primary: common.black
-    }
+      primary: common.black,
+    },
   },
   spacing: 2,
   typography: {
@@ -24,7 +24,7 @@ const theme = createTheme({
       'HelveticaNeueRegular',
       'HelveticaNeueBold',
       'ObelixProBold',
-      'ObelixProRegular'
+      'ObelixProRegular',
     ].join(','),
     h1: {
       fontFamily: 'ObelixProBold',
@@ -32,38 +32,38 @@ const theme = createTheme({
       lineHeight: 1.375,
       letterSpacing: 0,
       [breakpoints.up('lg')]: {
-        fontSize: 40
-      }
+        fontSize: 40,
+      },
     },
     h2: {
       fontFamily: 'ObelixProRegular',
       fontSize: 24,
       lineHeight: 1.45,
-      letterSpacing: 0
+      letterSpacing: 0,
     },
     h3: {
       fontFamily: 'ObelixProBold',
       fontSize: 20,
       lineHeight: 1.75,
-      letterSpacing: 0
+      letterSpacing: 0,
     },
     h4: {
       fontFamily: 'ObelixProBold',
       fontSize: 16,
       lineHeight: 2.18,
-      letterSpacing: 0
+      letterSpacing: 0,
     },
     body1: {
       fontFamily: 'HelveticaNeueRegular',
       fontSize: 14,
       lineHeight: 1.5714,
-      letterSpacing: 0
+      letterSpacing: 0,
     },
     body2: {
       fontFamily: 'HelveticaNeueRegular',
       fontSize: 18,
       lineHeight: 1.333,
-      letterSpacing: 0
+      letterSpacing: 0,
     },
     caption: {
       fontFamily: 'ObelixProBold',
@@ -71,9 +71,9 @@ const theme = createTheme({
       lineHeight: 1.4,
       letterSpacing: 0,
       [breakpoints.up('md')]: {
-        fontSize: 40
-      }
-    }
+        fontSize: 40,
+      },
+    },
   },
   components: {
     MuiCssBaseline: {
@@ -106,7 +106,7 @@ const theme = createTheme({
           src: local('ObelixProRegular'),
             url(/fonts/typography/ObelixProRegular.woff2) format('woff2');
         }
-      `
+      `,
     },
     MuiButton: {
       styleOverrides: {
@@ -114,8 +114,8 @@ const theme = createTheme({
           boxShadow: 'none',
           letterSpacing: 0,
           '&:hover': {
-            boxShadow: 'none'
-          }
+            boxShadow: 'none',
+          },
         },
         sizeMedium: {
           minWidth: '60px',
@@ -123,30 +123,30 @@ const theme = createTheme({
           textTransform: 'none',
           [breakpoints.up('md')]: {
             minWidth: '64px',
-            padding: '4px 10px'
-          }
+            padding: '4px 10px',
+          },
         },
         sizeLarge: {
           borderRadius: 0,
           fontFamily: 'ObelixProBold',
           fontSize: 24,
           lineHeight: 1.4167,
-          padding: '10px 32px'
+          padding: '10px 32px',
         },
         containedSecondary: {
           color: common.white,
           '&:hover': {
-            backgroundColor: '#EB6E1C'
-          }
+            backgroundColor: '#EB6E1C',
+          },
         },
         outlinedSecondary: {
-          borderColor: '#EB6E1C'
+          borderColor: '#EB6E1C',
         },
         startIcon: {
           marginLeft: 0,
-          marginRight: '4px'
-        }
-      }
+          marginRight: '4px',
+        },
+      },
     },
     MuiContainer: {
       styleOverrides: {
@@ -155,46 +155,46 @@ const theme = createTheme({
           paddingRight: 15,
           [breakpoints.up('sm')]: {
             paddingLeft: 50,
-            paddingRight: 50
+            paddingRight: 50,
           },
           [breakpoints.up('lg')]: {
             paddingLeft: 30,
-            paddingRight: 30
+            paddingRight: 30,
           },
           [breakpoints.up('xl')]: {
             paddingLeft: 0,
-            paddingRight: 0
-          }
+            paddingRight: 0,
+          },
         },
         maxWidthXl: {
           [breakpoints.up('xl')]: {
-            maxWidth: 1350
-          }
+            maxWidth: 1350,
+          },
         },
         maxWidthLg: {
           [breakpoints.up('xl')]: {
-            maxWidth: 1200
-          }
-        }
-      }
+            maxWidth: 1200,
+          },
+        },
+      },
     },
     MuiToolbar: {
       styleOverrides: {
         dense: {
           minHeight: 55,
           [breakpoints.up('md')]: {
-            minHeight: 115
-          }
-        }
-      }
+            minHeight: 115,
+          },
+        },
+      },
     },
     MuiDivider: {
       styleOverrides: {
         dashed: {
           borderColor: '#E9E9E9',
-          borderStyle: 'dashed'
-        }
-      }
+          borderStyle: 'dashed',
+        },
+      },
     },
     MuiInputLabel: {
       styleOverrides: {
@@ -205,10 +205,10 @@ const theme = createTheme({
           position: 'relative',
           transform: 'none',
           '&.Mui-focused': {
-            color: alpha(common.black, 0.85)
-          }
-        }
-      }
+            color: alpha(common.black, 0.85),
+          },
+        },
+      },
     },
     MuiInput: {
       styleOverrides: {
@@ -218,27 +218,27 @@ const theme = createTheme({
           padding: '5px 12px',
           transition: 'border-color 300ms cubic-bezier(0.4, 0, 0.2, 1)',
           '&:after, &:before': {
-            display: 'none'
+            display: 'none',
           },
           'label + &': {
-            marginTop: 0
+            marginTop: 0,
           },
           '&.MuiNativeSelect-root': {
-            color: alpha(common.black, 0.65)
+            color: alpha(common.black, 0.65),
           },
           '&.Mui-focused': {
-            borderColor: common.black
-          }
+            borderColor: common.black,
+          },
         },
         input: {
           height: 'auto',
           lineHeight: 1.57,
           padding: 0,
           '&:placeholder': {
-            color: alpha(common.black, 0.25)
-          }
-        }
-      }
+            color: alpha(common.black, 0.25),
+          },
+        },
+      },
     },
     MuiSlider: {
       styleOverrides: {
@@ -246,7 +246,7 @@ const theme = createTheme({
           color: '#91D5FF',
           height: 4,
           paddingBottom: 4,
-          paddingTop: 4
+          paddingTop: 4,
         },
         thumb: {
           backgroundColor: common.white,
@@ -254,15 +254,15 @@ const theme = createTheme({
           height: 14,
           width: 14,
           '&:hover': {
-            borderColor: '#0084FF'
-          }
+            borderColor: '#0084FF',
+          },
         },
         track: {
-          height: 4
+          height: 4,
         },
         rail: {
           color: alpha(common.black, 0.15),
-          height: 4
+          height: 4,
         },
         valueLabel: {
           backgroundColor: '#595959',
@@ -271,36 +271,36 @@ const theme = createTheme({
           lineHeight: 1.57,
           padding: '1px 8px',
           '&:before': {
-            backgroundColor: '#595959'
-          }
-        }
-      }
+            backgroundColor: '#595959',
+          },
+        },
+      },
     },
     MuiAutocomplete: {
       styleOverrides: {
         tag: {
           border: '1px solid #D9D9D9',
           borderRadius: '2px',
-          margin: '1px'
+          margin: '1px',
         },
         inputRoot: {
           '&.MuiAutocomplete-inputRoot': {
             paddingBottom: '5px',
-            paddingLeft: '12px'
+            paddingLeft: '12px',
           },
           '&.MuiInputBase-adornedStart': {
             paddingBottom: '4px',
             paddingLeft: '2px',
-            paddingTop: '4px'
+            paddingTop: '4px',
           },
           '& .MuiAutocomplete-input': {
-            padding: 0
-          }
+            padding: 0,
+          },
         },
         endAdornment: {
-          right: '7px'
-        }
-      }
+          right: '7px',
+        },
+      },
     },
     MuiChip: {
       styleOverrides: {
@@ -310,17 +310,17 @@ const theme = createTheme({
           '& .MuiChip-deleteIcon': {
             color: alpha(common.black, 0.45),
             height: '11px',
-            width: '11px'
-          }
+            width: '11px',
+          },
         },
         label: {
           fontSize: '12px',
           paddingLeft: '8px',
-          paddingRight: '8px'
-        }
-      }
-    }
-  }
-})
+          paddingRight: '8px',
+        },
+      },
+    },
+  },
+});
 
-export default theme
+export default theme;

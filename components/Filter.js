@@ -1,4 +1,4 @@
-import { Close } from '@mui/icons-material'
+import { Close } from '@mui/icons-material';
 import {
   Autocomplete,
   Button,
@@ -7,18 +7,18 @@ import {
   FormControl,
   Slider,
   TextField,
-  Typography
-} from '@mui/material'
-import { common } from '@mui/material/colors'
-import Container from '@mui/material/Container'
-import Divider from '@mui/material/Divider'
-import Grid from '@mui/material/Grid'
-import Input from '@mui/material/Input'
-import InputLabel from '@mui/material/InputLabel'
-import NativeSelect from '@mui/material/NativeSelect'
-import { useContext, useEffect } from 'react'
-import { initialState, superheroesInfo } from '../pages/_app'
-import theme from '../styles/theme'
+  Typography,
+} from '@mui/material';
+import { common } from '@mui/material/colors';
+import Container from '@mui/material/Container';
+import Divider from '@mui/material/Divider';
+import Grid from '@mui/material/Grid';
+import Input from '@mui/material/Input';
+import InputLabel from '@mui/material/InputLabel';
+import NativeSelect from '@mui/material/NativeSelect';
+import { useContext, useEffect } from 'react';
+import { initialState, superheroesInfo } from '../pages/_app';
+import theme from '../styles/theme';
 
 const powerStatsOptions = [
   'intelligence',
@@ -26,19 +26,19 @@ const powerStatsOptions = [
   'speed',
   'durability',
   'power',
-  'combat'
-]
+  'combat',
+];
 
-export default function Filter (props) {
-  const { searchParams, setSearchParams } = useContext(superheroesInfo)
+export default function Filter(props) {
+  const { searchParams, setSearchParams } = useContext(superheroesInfo);
 
   const handleState = ({ target }, autocompleteValue) => {
-    const { value, name } = target
+    const { value, name } = target;
 
     const autocompleteName =
       target.querySelector('input') !== null
         ? target.querySelector('input').name
-        : null
+        : null;
 
     setSearchParams(prev => ({
       ...prev,
@@ -46,20 +46,20 @@ export default function Filter (props) {
       ...(autocompleteName && {
         [autocompleteName]: {
           min: autocompleteValue[0],
-          max: autocompleteValue[1]
-        }
-      })
-    }))
-  }
+          max: autocompleteValue[1],
+        },
+      }),
+    }));
+  };
 
   useEffect(() => {
-    const clearButton = document.querySelector('#clear-filter')
-    const filterOptions = document.querySelector('#filter-options')
-    if (clearButton && filterOptions) filterOptions.prepend(clearButton)
-  }, [searchParams])
+    const clearButton = document.querySelector('#clear-filter');
+    const filterOptions = document.querySelector('#filter-options');
+    if (clearButton && filterOptions) filterOptions.prepend(clearButton);
+  }, [searchParams]);
 
   const changedState =
-    JSON.stringify(searchParams) !== JSON.stringify(initialState)
+    JSON.stringify(searchParams) !== JSON.stringify(initialState);
 
   return (
     <Collapse in={props.openFilter}>
@@ -68,11 +68,11 @@ export default function Filter (props) {
           variant='text'
           sx={{
             color: common.black,
-            display: { xs: 'none', md: 'inline-flex' }
+            display: { xs: 'none', md: 'inline-flex' },
           }}
           startIcon={<Close />}
           onClick={() => {
-            setSearchParams(initialState)
+            setSearchParams(initialState);
           }}
         >
           Clear Filters
@@ -141,8 +141,8 @@ export default function Filter (props) {
                 sx={{
                   textTransform: 'capitalize',
                   path: {
-                    pointerEvents: 'none'
-                  }
+                    pointerEvents: 'none',
+                  },
                 }}
                 multiple
                 id='powerStats'
@@ -150,30 +150,30 @@ export default function Filter (props) {
                 disableClearable
                 value={searchParams.powerStats}
                 onChange={(event, value) => {
-                  event.target.name = 'powerStats'
+                  event.target.name = 'powerStats';
                   setSearchParams(prev => ({
                     ...prev,
-                    powerStats: value
-                  }))
+                    powerStats: value,
+                  }));
                 }}
                 ChipProps={{
                   deleteIcon: <Close />,
                   onDelete: event => {
-                    const power = event.target.previousSibling.innerHTML
+                    const power = event.target.previousSibling.innerHTML;
 
                     // Delete slider value
-                    const copyObject = { ...searchParams }
-                    delete copyObject[power]
-                    setSearchParams(copyObject)
+                    const copyObject = { ...searchParams };
+                    delete copyObject[power];
+                    setSearchParams(copyObject);
 
                     // Delete autocomplete value
                     setSearchParams(prev => ({
                       ...prev,
                       powerStats: searchParams.powerStats.filter(
                         current => current !== power
-                      )
-                    }))
-                  }
+                      ),
+                    }));
+                  },
                 }}
                 renderInput={params => (
                   <TextField {...params} variant='standard' name='powerStats' />
@@ -209,7 +209,7 @@ export default function Filter (props) {
                           marginLeft: 'auto',
                           marginRight: 'auto',
                           maxWidth: 'calc(100% - 20px)',
-                          [theme.breakpoints.up('md')]: { maxWidth: '100%' }
+                          [theme.breakpoints.up('md')]: { maxWidth: '100%' },
                         }}
                       />
                     </FormControl>
@@ -221,5 +221,5 @@ export default function Filter (props) {
         </Grid>
       </Container>
     </Collapse>
-  )
+  );
 }

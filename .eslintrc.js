@@ -1,12 +1,12 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true
+    es2021: true,
   },
   settings: {
     react: {
-      version: 'detect'
-    }
+      version: 'detect',
+    },
   },
   extends: [
     'next/core-web-vitals',
@@ -16,14 +16,14 @@ module.exports = {
     'plugin:react/recommended',
     'plugin:react/jsx-runtime',
     'plugin:jsx-a11y/recommended',
-    'plugin:prettier/recommended'
+    'plugin:prettier/recommended',
   ],
   parserOptions: {
     ecmaFeatures: {
-      jsx: true
+      jsx: true,
     },
     ecmaVersion: 'latest',
-    sourceType: 'module'
+    sourceType: 'module',
   },
   plugins: ['react', 'jsx-a11y'],
   rules: {
@@ -34,8 +34,8 @@ module.exports = {
     'react/no-unused-state': 'error',
     'no-confusing-arrow': [
       'error',
-      { allowParens: true, onlyOneSimpleParam: false }
+      { allowParens: true, onlyOneSimpleParam: false },
     ],
-    'react/no-array-index-key': 'error'
-  }
-}
+    'react/no-array-index-key': 'error',
+  },
+};
